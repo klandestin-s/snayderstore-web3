@@ -1,7 +1,7 @@
 const https = require("https");
 
 const TOKEN = process.env.GITHUB_TOKEN;
-const REPO = "shan-only/PersonalWeb3";
+const REPO = "shan-only/api-protesung";
 const FILEPATH = "visits.json";
 const BRANCH = "main";
 
