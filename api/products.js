@@ -1,7 +1,7 @@
 const https = require("https");
 
 const TOKEN = process.env.GITHUB_TOKEN;
-const REPO = "shan-only/api-protesung";
+const REPO = "klandestin-s/api-protesung";
 const FILEPATH = "products.json";
 const BRANCH = "main";
 
