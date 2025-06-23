@@ -66,7 +66,7 @@
         align-items: center;
         padding: 0 1.5rem; /* Diperkecil */
         z-index: 1000;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); /* Shadow lebih lembut */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
       }
 
       .navbar-container {
@@ -139,6 +139,41 @@
         background: linear-gradient(45deg, #00cc99, #00b383);
       }
 
+      /* Search Container */
+      .search-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+        margin-right: 10px;
+      }
+
+      .search-container input {
+        padding: 0.5rem 2rem 0.5rem 0.8rem;
+        border-radius: 50px;
+        border: 1px solid rgba(51, 153, 255, 0.3);
+        background: var(--input-bg);
+        color: var(--text-light);
+        width: 180px;
+        transition: var(--transition);
+        font-size: 0.9rem;
+      }
+
+      .search-container input:focus {
+        outline: none;
+        width: 220px;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px rgba(51, 153, 255, 0.2);
+      }
+
+      .search-btn {
+        position: absolute;
+        right: 8px;
+        background: none;
+        border: none;
+        color: var(--text-muted);
+        cursor: pointer;
+      }
+
       /* Responsif navbar */
       .menu-toggle {
         display: none;
@@ -189,7 +224,7 @@
         position: relative;
         overflow: hidden;
         border-bottom: 3px solid var(--accent);
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3); /* Shadow lebih lembut */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
         margin-top: calc(var(--nav-height) - 10px);
       }
 
@@ -241,7 +276,7 @@
         text-decoration: none;
         margin: 0.4rem; /* Diperkecil */
         transition: var(--transition);
-        box-shadow: 0 3px 10px rgba(51, 153, 255, 0.3); /* Shadow lebih lembut */
+        box-shadow: 0 2px 5px rgba(51, 153, 255, 0.2); /* Shadow lebih lembut */
         border: none;
         cursor: pointer;
         position: relative;
@@ -267,7 +302,7 @@
 
       .btn:hover {
         transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(51, 153, 255, 0.4); /* Shadow lebih lembut */
+        box-shadow: 0 3px 8px rgba(51, 153, 255, 0.3); /* Shadow lebih lembut */
       }
 
       /* Produk */
@@ -314,7 +349,7 @@
         border-radius: 12px; /* Diperkecil */
         overflow: hidden;
         transition: var(--transition);
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* Shadow lebih lembut */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
         position: relative;
         border: 1px solid rgba(51, 153, 255, 0.2);
         transform-style: preserve-3d;
@@ -325,7 +360,7 @@
 
       .product-card:hover {
         transform: translateY(-8px) rotateY(5deg); /* Efek lebih halus */
-        box-shadow: 0 8px 20px rgba(51, 153, 255, 0.2); /* Shadow lebih lembut */
+        box-shadow: 0 5px 15px rgba(51, 153, 255, 0.15); /* Shadow lebih lembut */
       }
 
       .product-badge {
@@ -339,7 +374,7 @@
         font-size: 0.75rem; /* Diperkecil */
         font-weight: bold;
         z-index: 10;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow lebih lembut */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
       }
 
       .product-image {
@@ -440,7 +475,7 @@
         max-width: 500px;
         padding: 1.5rem; /* Diperkecil */
         position: relative;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Shadow lebih lembut */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Shadow lebih lembut */
         transform: translateY(20px);
         transition: transform 0.4s ease;
         border: 1px solid rgba(51, 153, 255, 0.3);
@@ -575,7 +610,7 @@
 
       .btn-submit:hover {
         transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 204, 153, 0.3); /* Shadow lebih lembut */
+        box-shadow: 0 3px 8px rgba(0, 204, 153, 0.2); /* Shadow lebih lembut */
       }
 
       .btn-submit:disabled {
@@ -599,7 +634,7 @@
         padding: 1.2rem; /* Diperkecil */
         position: relative;
         border: 1px solid rgba(51, 153, 255, 0.2);
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* Shadow lebih lembut */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
       }
 
       .testimonial-header {
@@ -682,7 +717,7 @@
         max-width: 400px;
         padding: 1.5rem; /* Diperkecil */
         position: relative;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Shadow lebih lembut */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Shadow lebih lembut */
         border: 1px solid rgba(51, 153, 255, 0.3);
       }
 
@@ -743,7 +778,7 @@
         opacity: 0;
         transform: translateY(20px);
         transition: all 0.4s ease;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); /* Shadow lebih lembut */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
         font-size: 0.9rem; /* Diperkecil */
       }
 
@@ -773,20 +808,34 @@
 
         .nav-links {
           display: none;
-          position: absolute;
+          position: fixed;
           top: var(--nav-height);
-          left: 0;
-          right: 0;
+          left: -100%; /* Awalnya tersembunyi di kiri */
+          width: 70%; /* Lebar menu mobile */
+          height: calc(100vh - var(--nav-height));
           background: rgba(13, 27, 42, 0.98);
           flex-direction: column;
           padding: 0.8rem; /* Diperkecil */
           gap: 8px; /* Diperkecil */
           border-bottom: 2px solid rgba(51, 153, 255, 0.3);
           align-items: flex-start;
+          transition: left 0.3s ease; /* Animasi slide */
+          z-index: 999;
+          overflow-y: auto;
         }
 
         .nav-links.active {
           display: flex;
+          left: 0; /* Muncul dari kiri */
+        }
+
+        .search-container {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+
+        .search-container input {
+          width: 100%;
         }
 
         .menu-toggle {
@@ -828,6 +877,10 @@
 
         .brand-text {
           font-size: 1.1rem; /* Diperkecil */
+        }
+
+        .nav-links {
+          width: 80%; /* Lebih lebar di layar kecil */
         }
       }
 
@@ -950,7 +1003,16 @@
         </a>
 
         <div class="nav-links">
+          <!-- Tombol Beranda -->
           <a href="index.html" class="nav-link"> <i class="fas fa-home"></i> Beranda </a>
+
+          <!-- Menu Pencarian -->
+          <div class="search-container">
+            <input type="text" placeholder="Cari produk..." id="searchInput" />
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+          </div>
+
+          <!-- Menu lainnya -->
           <a href="dowloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
           <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
           <a href="#testimoni" class="nav-link btn-testimoni-nav"> <i class="fas fa-comment-alt"></i> Testimoni </a>
@@ -1099,7 +1161,6 @@
         </a>
       </div>
       <p>&copy; 2025 <strong>SNAYDER'S STORE</strong> &mdash; Allright Reserved <i class="fas fa-heart" style="color: var(--accent)"></i></p>
-      <!--       <p style="margin-top: 0.5rem; font-size: 0.9rem">Jl. Digital No. 123, Kota Virtual, Indonesia</p> -->
     </footer>
 
     <script>
@@ -1138,6 +1199,7 @@
       const loadingOverlay = document.getElementById("loadingOverlay");
       const menuToggle = document.getElementById("menuToggle");
       const navLinks = document.querySelector(".nav-links");
+      const searchInput = document.getElementById("searchInput");
 
       // Variabel untuk produk yang dipilih
       let products = [];
@@ -1194,13 +1256,13 @@
         const now = new Date();
         const wibOffset = 7 * 60 * 60 * 1000; // UTC+7 dalam milidetik
         const wibTime = new Date(now.getTime() + wibOffset);
-        return wibTime.toISOString().split('T')[0];
+        return wibTime.toISOString().split("T")[0];
       }
 
       // Fungsi untuk mencatat kunjungan dengan localStorage
       async function recordVisitWithLocalStorage() {
         const today = getTodayWIB();
-        const lastVisitDate = localStorage.getItem('visitDate');
+        const lastVisitDate = localStorage.getItem("visitDate");
 
         // Jika sudah mengunjungi hari ini, tidak perlu catat lagi
         if (lastVisitDate === today) {
@@ -1208,23 +1270,23 @@
         }
 
         try {
-          const response = await fetch('/api/save-visit', {
-            method: 'POST',
+          const response = await fetch("/api/save-visit", {
+            method: "POST",
           });
 
           if (!response.ok) {
-            throw new Error('Gagal mencatat kunjungan');
+            throw new Error("Gagal mencatat kunjungan");
           }
 
           const data = await response.json();
           if (data.success) {
             // Set localStorage dengan tanggal hari ini
-            localStorage.setItem('visitDate', today);
+            localStorage.setItem("visitDate", today);
           } else {
-            throw new Error('Response tidak sukses');
+            throw new Error("Response tidak sukses");
           }
         } catch (error) {
-          console.error('Error recording visit:', error);
+          console.error("Error recording visit:", error);
           showNotification("Gagal mencatat kunjungan", "error");
         }
       }
@@ -1569,6 +1631,20 @@
       menuToggle.addEventListener("click", () => {
         navLinks.classList.toggle("active");
         menuToggle.classList.toggle("active");
+      });
+
+      // Fungsi pencarian produk
+      searchInput.addEventListener("input", function () {
+        const searchTerm = this.value.toLowerCase().trim();
+
+        if (searchTerm.length < 2) {
+          renderProducts(products);
+          return;
+        }
+
+        const filteredProducts = products.filter((product) => product.name.toLowerCase().includes(searchTerm) || product.description.toLowerCase().includes(searchTerm));
+
+        renderProducts(filteredProducts);
       });
 
       // Panggil saat halaman dimuat
