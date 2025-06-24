@@ -250,7 +250,104 @@
           justify-content: flex-end;
         }
       }
+      /* Tambahan untuk dropdown menu */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
 
+      .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0.5rem 1rem;
+        border-radius: var(--border-radius);
+        text-decoration: none;
+        color: var(--text-light);
+        font-weight: 500;
+        transition: var(--transition);
+        background: rgba(51, 153, 255, 0.1);
+        font-size: 0.9rem;
+        white-space: nowrap;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropdown-toggle:hover {
+        background: rgba(51, 153, 255, 0.25);
+        transform: translateY(-2px);
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: var(--card-bg);
+        border: 1px solid rgba(51, 153, 255, 0.3);
+        border-radius: var(--border-radius);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        min-width: 200px;
+        padding: 0.5rem 0;
+        margin-top: 5px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: var(--transition);
+        z-index: 1000;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-menu li {
+        list-style: none;
+      }
+
+      .dropdown-menu .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0.6rem 1rem;
+        border-radius: 0;
+        background: transparent;
+        border-left: 3px solid transparent;
+      }
+
+      .dropdown-menu .nav-link:hover {
+        background: rgba(51, 153, 255, 0.1);
+        border-left: 3px solid var(--accent);
+        transform: none;
+      }
+
+      .dropdown-menu .admin-login-btn {
+        width: 100%;
+        text-align: left;
+        background: transparent;
+        border: none;
+        color: var(--text-light);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0.6rem 1rem;
+        border-radius: 0;
+        border-left: 3px solid transparent;
+      }
+
+      .dropdown-menu .admin-login-btn:hover {
+        background: rgba(51, 153, 255, 0.1);
+        border-left: 3px solid var(--accent);
+      }
+
+      /* Sembunyikan dropdown di mobile */
+      @media (max-width: 768px) {
+        .dropdown {
+          display: none;
+        }
+      }
       /* Header (disesuaikan) */
       header {
         text-align: center;
@@ -1029,7 +1126,7 @@
     </style>
   </head>
   <body>
-    <!-- Navbar Modern -->
+<!-- Navbar Modern -->
     <nav class="navbar">
       <div class="navbar-container">
         <!-- Logo di kiri -->
@@ -1050,6 +1147,19 @@
           <div class="nav-right">
             <!-- Menu Beranda di kanan -->
             <a href="index.html" class="nav-link"> <i class="fas fa-home"></i></a>
+            
+            <!-- Menu Dropdown untuk Desktop -->
+            <div class="dropdown">
+              <button class="dropdown-toggle">
+                <i class="fas fa-bars"></i> Menu <i class="fas fa-chevron-down"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="dowloads.html" class="nav-link"><i class="fas fa-download"></i> Download Config</a></li>
+                <li><a href="visitors.html" class="nav-link"><i class="fas fa-chart-line"></i> Statistik Pengunjung</a></li>
+                <li><a href="#testimoni" class="nav-link"><i class="fas fa-comment-alt"></i> Testimoni</a></li>
+                <li><button class="admin-login-btn nav-link"><i class="fas fa-lock"></i> Admin Login</button></li>
+              </ul>
+            </div>
 
             <!-- Menu Hamburger -->
             <div class="menu-toggle" id="menuToggle">
@@ -1061,12 +1171,12 @@
       </div>
     </nav>
 
-    <!-- Menu Hamburger Slide -->
+    <!-- Menu Hamburger Slide (untuk mobile) -->
     <div class="nav-links" id="navLinks">
       <a href="dowloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
       <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
-      <a href="#testimoni" class="nav-link btn-testimoni-nav"> <i class="fas fa-comment-alt"></i> Testimoni </a>
-      <button class="nav-link btn-admin-nav" id="adminLoginBtnNav"><i class="fas fa-lock"></i> Admin Login</button>
+      <a href="#testimoni" class="nav-link"> <i class="fas fa-comment-alt"></i> Testimoni </a>
+      <button class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
     </div>
 
     <!-- Loading Overlay -->
@@ -1079,7 +1189,7 @@
     <div id="content-wrapper">
       <!-- Produk Section -->
       <section class="products-section" id="produk">
-<!--         <h2 class="section-title">Produk Kami</h2> -->
+        <!--         <h2 class="section-title">Produk Kami</h2> -->
 
         <div class="products-grid" id="productsGrid">
           <!-- Produk akan dimuat melalui JavaScript -->
@@ -1357,7 +1467,12 @@
                 `;
           productsGrid.appendChild(card);
         });
-
+ // Event listener untuk tombol Admin Login (baik di mobile menu maupun dropdown desktop)
+      document.querySelectorAll('.admin-login-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          adminLoginModal.classList.add('active');
+        });
+      });
         // Pasang event listener untuk tombol detail dan order
         document.querySelectorAll(".btn-details").forEach((button) => {
           button.addEventListener("click", function () {
