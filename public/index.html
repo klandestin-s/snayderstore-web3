@@ -22,6 +22,7 @@
         --transition: all 0.3s ease;
         --warning: #ffcc00;
         --nav-height: 60px; /* Diperkecil */
+        --border-radius: 6px; /* Radius lebih kotak */
       }
 
       /* Reset dasar */
@@ -84,6 +85,7 @@
         gap: 10px; /* Diperkecil */
         text-decoration: none;
         color: var(--text-light);
+        flex-shrink: 0;
       }
 
       .logo-brand i {
@@ -102,6 +104,15 @@
         letter-spacing: 0.5px;
       }
 
+      /* KONTAINER UTAMA NAVBAR */
+      .nav-main-container {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        max-width: 600px;
+        justify-content: center;
+      }
+
       .nav-links {
         display: flex;
         align-items: center;
@@ -113,13 +124,14 @@
         align-items: center;
         gap: 6px; /* Diperkecil */
         padding: 0.5rem 1rem; /* Diperkecil */
-        border-radius: 50px;
+        border-radius: var(--border-radius); /* Lebih kotak */
         text-decoration: none;
         color: var(--text-light);
         font-weight: 500;
         transition: var(--transition);
         background: rgba(51, 153, 255, 0.1);
         font-size: 0.9rem; /* Diperkecil */
+        white-space: nowrap;
       }
 
       .nav-link:hover {
@@ -144,23 +156,24 @@
         display: flex;
         align-items: center;
         position: relative;
-        margin-right: 10px;
+        margin: 0 15px;
+        flex-grow: 1;
+        max-width: 400px;
       }
 
       .search-container input {
         padding: 0.5rem 2rem 0.5rem 0.8rem;
-        border-radius: 50px;
+        border-radius: var(--border-radius); /* Lebih kotak */
         border: 1px solid rgba(51, 153, 255, 0.3);
         background: var(--input-bg);
         color: var(--text-light);
-        width: 180px;
+        width: 100%;
         transition: var(--transition);
         font-size: 0.9rem;
       }
 
       .search-container input:focus {
         outline: none;
-        width: 220px;
         border-color: var(--accent);
         box-shadow: 0 0 0 2px rgba(51, 153, 255, 0.2);
       }
@@ -172,6 +185,14 @@
         border: none;
         color: var(--text-muted);
         cursor: pointer;
+      }
+
+      /* Menu Kanan */
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
       }
 
       /* Responsif navbar */
@@ -210,9 +231,23 @@
         opacity: 1;
       }
 
+      @media (max-width: 992px) {
+        .nav-main-container {
+          max-width: 500px;
+        }
+      }
+
       @media (max-width: 768px) {
         .menu-toggle {
           display: block;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .nav-main-container {
+          justify-content: flex-end;
         }
       }
 
@@ -271,7 +306,7 @@
         background: linear-gradient(45deg, var(--accent2), var(--accent));
         color: white;
         padding: 0.6rem 1.4rem; /* Diperkecil */
-        border-radius: 50px;
+        border-radius: var(--border-radius); /* Lebih kotak */
         font-weight: 600;
         text-decoration: none;
         margin: 0.4rem; /* Diperkecil */
@@ -346,7 +381,7 @@
 
       .product-card {
         background: var(--card-bg);
-        border-radius: 12px; /* Diperkecil */
+        border-radius: var(--border-radius); /* Lebih kotak */
         overflow: hidden;
         transition: var(--transition);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
@@ -370,7 +405,7 @@
         background: var(--success);
         color: white;
         padding: 0.2rem 0.6rem; /* Diperkecil */
-        border-radius: 15px; /* Diperkecil */
+        border-radius: var(--border-radius); /* Lebih kotak */
         font-size: 0.75rem; /* Diperkecil */
         font-weight: bold;
         z-index: 10;
@@ -423,7 +458,7 @@
       .action-btn {
         flex: 1;
         padding: 0.5rem; /* Diperkecil */
-        border-radius: 8px; /* Diperkecil */
+        border-radius: var(--border-radius); /* Lebih kotak */
         font-weight: 600;
         border: none;
         cursor: pointer;
@@ -470,7 +505,7 @@
 
       .modal-content {
         background: var(--card-bg);
-        border-radius: 14px; /* Diperkecil */
+        border-radius: var(--border-radius); /* Lebih kotak */
         width: 90%;
         max-width: 500px;
         padding: 1.5rem; /* Diperkecil */
@@ -525,7 +560,7 @@
       .package-item {
         background: rgba(51, 153, 255, 0.1);
         padding: 0.6rem; /* Diperkecil */
-        border-radius: 8px; /* Diperkecil */
+        border-radius: var(--border-radius); /* Lebih kotak */
         margin-bottom: 0.6rem; /* Diperkecil */
         border-left: 2px solid var(--accent); /* Diperkecil */
         cursor: pointer;
@@ -574,7 +609,7 @@
       textarea {
         width: 100%;
         padding: 0.6rem; /* Diperkecil */
-        border-radius: 8px; /* Diperkecil */
+        border-radius: var(--border-radius); /* Lebih kotak */
         border: 1px solid rgba(51, 153, 255, 0.3);
         background: var(--input-bg);
         color: var(--text-light);
@@ -596,7 +631,7 @@
         background: linear-gradient(45deg, var(--success), #00b383);
         color: white;
         border: none;
-        border-radius: 8px; /* Diperkecil */
+        border-radius: var(--border-radius); /* Lebih kotak */
         font-weight: 600;
         font-size: 0.95rem; /* Diperkecil */
         margin-top: 0.8rem; /* Diperkecil */
@@ -630,7 +665,7 @@
 
       .testimonial-card {
         background: var(--card-bg);
-        border-radius: 14px; /* Diperkecil */
+        border-radius: var(--border-radius); /* Lebih kotak */
         padding: 1.2rem; /* Diperkecil */
         position: relative;
         border: 1px solid rgba(51, 153, 255, 0.2);
@@ -712,7 +747,7 @@
 
       .admin-modal-content {
         background: var(--card-bg);
-        border-radius: 14px; /* Diperkecil */
+        border-radius: var(--border-radius); /* Lebih kotak */
         width: 90%;
         max-width: 400px;
         padding: 1.5rem; /* Diperkecil */
@@ -771,7 +806,7 @@
         bottom: 15px; /* Diperkecil */
         right: 15px; /* Diperkecil */
         padding: 12px 20px; /* Diperkecil */
-        border-radius: 8px; /* Diperkecil */
+        border-radius: var(--border-radius); /* Lebih kotak */
         color: white;
         font-weight: 600;
         z-index: 3000;
@@ -997,34 +1032,43 @@
     <!-- Navbar Modern -->
     <nav class="navbar">
       <div class="navbar-container">
+        <!-- Logo di kiri -->
         <a href="#" class="logo-brand">
           <i class="fas fa-store"></i>
           <span class="brand-text">SNAYDER'S STORE</span>
         </a>
 
-        <div class="nav-links">
-          <!-- Tombol Beranda -->
-          <a href="index.html" class="nav-link"> <i class="fas fa-home"></i> Beranda </a>
-
-          <!-- Menu Pencarian -->
+        <!-- Kontainer utama untuk menu pencarian dan kanan -->
+        <div class="nav-main-container">
+          <!-- Menu pencarian di tengah -->
           <div class="search-container">
             <input type="text" placeholder="Cari produk..." id="searchInput" />
             <button class="search-btn"><i class="fas fa-search"></i></button>
           </div>
 
-          <!-- Menu lainnya -->
-          <a href="dowloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
-          <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
-          <a href="#testimoni" class="nav-link btn-testimoni-nav"> <i class="fas fa-comment-alt"></i> Testimoni </a>
-          <button class="nav-link btn-admin-nav" id="adminLoginBtnNav"><i class="fas fa-lock"></i> Admin Login</button>
-        </div>
+          <!-- Menu kanan -->
+          <div class="nav-right">
+            <!-- Menu Beranda di kanan -->
+            <a href="index.html" class="nav-link"> <i class="fas fa-home"></i> Beranda </a>
 
-        <div class="menu-toggle" id="menuToggle">
-          <i class="fas fa-bars"></i>
-          <i class="fas fa-times"></i>
+            <!-- Menu Hamburger -->
+            <div class="menu-toggle" id="menuToggle">
+              <i class="fas fa-bars"></i>
+              <i class="fas fa-times"></i>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
+
+    <!-- Menu Hamburger Slide -->
+    <div class="nav-links" id="navLinks">
+      <a href="dowloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
+      <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
+      <a href="#testimoni" class="nav-link btn-testimoni-nav"> <i class="fas fa-comment-alt"></i> Testimoni </a>
+      <button class="nav-link btn-admin-nav" id="adminLoginBtnNav"><i class="fas fa-lock"></i> Admin Login</button>
+    </div>
+
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
       <div class="loading-spinner"></div>
@@ -1164,14 +1208,6 @@
     </footer>
 
     <script>
-      // Tutup menu mobile saat klik di luar nav-links dan tombol toggle
-      document.addEventListener("click", function (e) {
-        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-          navLinks.classList.remove("active");
-          menuToggle.classList.remove("active");
-        }
-      });
-
       // Elemen DOM
       const detailModal = document.getElementById("detailModal");
       const closeDetailModal = document.getElementById("closeDetailModal");
@@ -1186,7 +1222,7 @@
       const detailProductTitle = document.getElementById("detailProductTitle");
       const detailProductDescription = document.getElementById("detailProductDescription");
       const orderFromDetailBtn = document.getElementById("orderFromDetailBtn");
-      const adminLoginBtn = document.getElementById("adminLoginBtnNav"); // Diubah ke navbar
+      const adminLoginBtn = document.getElementById("adminLoginBtnNav");
       const adminLoginModal = document.getElementById("adminLoginModal");
       const closeAdminModal = document.getElementById("closeAdminModal");
       const adminLoginForm = document.getElementById("adminLoginForm");
@@ -1198,7 +1234,7 @@
       const submitOrderBtn = document.getElementById("submitOrderBtn");
       const loadingOverlay = document.getElementById("loadingOverlay");
       const menuToggle = document.getElementById("menuToggle");
-      const navLinks = document.querySelector(".nav-links");
+      const navLinks = document.getElementById("navLinks");
       const searchInput = document.getElementById("searchInput");
 
       // Variabel untuk produk yang dipilih
@@ -1609,6 +1645,7 @@
             }
           });
       });
+
       // Animasi scroll halus untuk link
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
@@ -1627,10 +1664,18 @@
         });
       });
 
-      // Toggle menu responsif
+      // Toggle menu hamburger
       menuToggle.addEventListener("click", () => {
         navLinks.classList.toggle("active");
         menuToggle.classList.toggle("active");
+      });
+
+      // Tutup menu saat klik di luar
+      document.addEventListener("click", function (e) {
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+          navLinks.classList.remove("active");
+          menuToggle.classList.remove("active");
+        }
       });
 
       // Fungsi pencarian produk
