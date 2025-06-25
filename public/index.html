@@ -195,6 +195,87 @@
         flex-shrink: 0;
       }
 
+      /* SERVICE DROPDOWN */
+      .service-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .service-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0.5rem 1rem;
+        border-radius: var(--border-radius);
+        background: rgba(51, 153, 255, 0.1);
+        color: var(--text-light);
+        font-weight: 500;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+      }
+
+      .service-btn:hover {
+        background: rgba(51, 153, 255, 0.25);
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--card-bg);
+        min-width: 220px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        border: 1px solid rgba(51, 153, 255, 0.3);
+      }
+
+      .service-dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .dropdown-content a,
+      .dropdown-content button {
+        display: block;
+        padding: 0.8rem 1rem;
+        text-decoration: none;
+        color: var(--text-light);
+        transition: var(--transition);
+        border-bottom: 1px solid rgba(51, 153, 255, 0.1);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        text-align: left;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropdown-content a:last-child,
+      .dropdown-content button:last-child {
+        border-bottom: none;
+      }
+
+      .dropdown-content a:hover,
+      .dropdown-content button:hover {
+        background: rgba(51, 153, 255, 0.15);
+      }
+
+      .dropdown-content .btn-admin-nav {
+        background: linear-gradient(45deg, #00cc99, #00b383);
+        border-radius: 0;
+      }
+
+      .dropdown-content .btn-admin-nav:hover {
+        background: linear-gradient(45deg, #00b383, #009973);
+      }
+
       /* Responsif navbar */
       .menu-toggle {
         display: none;
@@ -243,6 +324,10 @@
         }
 
         .nav-links {
+          display: none;
+        }
+
+        .service-dropdown {
           display: none;
         }
 
@@ -930,6 +1015,30 @@
           transform: translateY(0);
         }
       }
+      /* Sembunyikan menu hamburger di desktop */
+      @media (min-width: 769px) {
+        #navLinks {
+          display: none !important;
+        }
+        .menu-toggle {
+          display: none !important;
+        }
+        /* Pastikan dropdown service tetap terlihat di desktop */
+        .service-dropdown {
+          display: inline-block !important;
+        }
+      }
+
+      /* Di mobile: sembunyikan dropdown service */
+      @media (max-width: 768px) {
+        .service-dropdown {
+          display: none;
+        }
+        /* Tampilkan menu hamburger di mobile */
+        .menu-toggle {
+          display: block;
+        }
+      }
 
       .fade-in {
         animation: fadeIn 0.6s ease forwards;
@@ -959,13 +1068,6 @@
         animation: spin 1s ease-in-out infinite;
         margin-right: 6px; /* Diperkecil */
       }
-
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
       /* Loading state */
       .loading-overlay {
         position: fixed;
@@ -1032,7 +1134,6 @@
     <!-- Navbar Modern -->
     <nav class="navbar">
       <div class="navbar-container">
-        <!-- Logo di kiri -->
         <a href="#" class="logo-brand">
           <i class="fas fa-store"></i>
           <span class="brand-text">SNAYDERSTORE</span>
@@ -1049,9 +1150,20 @@
           <!-- Menu kanan -->
           <div class="nav-right">
             <!-- Menu Beranda di kanan -->
-            <a href="index.html" class="nav-link"> <i class="fas fa-home"></i></a>
+            <a href="index.html" class="nav-link"> <i class="fas fa-home"></i>Home</a>
 
-            <!-- Menu Hamburger -->
+            <!-- Menu SERVICE dengan dropdown - TETAP ADA DI DESKTOP -->
+            <div class="service-dropdown">
+              <button class="service-btn"><i class="fas fa-concierge-bell"></i> SERVICE <i class="fas fa-caret-down"></i></button>
+              <div class="dropdown-content">
+                <a href="dowloads.html"><i class="fas fa-download"></i> Download Config</a>
+                <a href="visitors.html"><i class="fas fa-chart-line"></i> Statistik Pengunjung</a>
+                <a href="#testimoni"><i class="fas fa-comment-alt"></i> Testimoni</a>
+                <button class="btn-admin-nav admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
+              </div>
+            </div>
+
+            <!-- Menu Hamburger - HANYA TERLIHAT DI MOBILE -->
             <div class="menu-toggle" id="menuToggle">
               <i class="fas fa-bars"></i>
               <i class="fas fa-times"></i>
@@ -1060,13 +1172,12 @@
         </div>
       </div>
     </nav>
-
-    <!-- Menu Hamburger Slide -->
+    <!-- Menu Hamburger Slide - HANYA UNTUK MOBILE -->
     <div class="nav-links" id="navLinks">
       <a href="dowloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
       <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
       <a href="#testimoni" class="nav-link btn-testimoni-nav"> <i class="fas fa-comment-alt"></i> Testimoni </a>
-      <button class="nav-link btn-admin-nav" id="adminLoginBtnNav"><i class="fas fa-lock"></i> Admin Login</button>
+      <button class="nav-link btn-admin-nav admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
     </div>
 
     <!-- Loading Overlay -->
@@ -1079,7 +1190,7 @@
     <div id="content-wrapper">
       <!-- Produk Section -->
       <section class="products-section" id="produk">
-<!--         <h2 class="section-title">Produk Kami</h2> -->
+        <!--         <h2 class="section-title">Produk Kami</h2> -->
 
         <div class="products-grid" id="productsGrid">
           <!-- Produk akan dimuat melalui JavaScript -->
@@ -1222,7 +1333,6 @@
       const detailProductTitle = document.getElementById("detailProductTitle");
       const detailProductDescription = document.getElementById("detailProductDescription");
       const orderFromDetailBtn = document.getElementById("orderFromDetailBtn");
-      const adminLoginBtn = document.getElementById("adminLoginBtnNav");
       const adminLoginModal = document.getElementById("adminLoginModal");
       const closeAdminModal = document.getElementById("closeAdminModal");
       const adminLoginForm = document.getElementById("adminLoginForm");
@@ -1598,9 +1708,11 @@
         }, 1500);
       });
 
-      // Buka modal login admin
-      adminLoginBtn.addEventListener("click", () => {
-        adminLoginModal.classList.add("active");
+      // Event listener untuk semua tombol admin login
+      document.querySelectorAll(".admin-login-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          adminLoginModal.classList.add("active");
+        });
       });
 
       // Login admin
