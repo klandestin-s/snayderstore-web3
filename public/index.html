@@ -1058,6 +1058,18 @@
       }
 
       /* Loading spinner */
+      /* Tambahkan transisi animasi muncul-hilang */
+      .loading-overlay {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+      }
+
+      .loading-overlay.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
       .loading {
         display: inline-block;
         width: 18px; /* Diperkecil */
@@ -1097,7 +1109,6 @@
         margin-top: 15px; /* Diperkecil */
         font-size: 1rem; /* Diperkecil */
       }
-
       /* MODAL DETAIL SCROLLABLE AREAS */
       .modal-description-container {
         max-height: 100px; /* Diperkecil */
@@ -1128,6 +1139,14 @@
         background-color: var(--accent);
         border-radius: 3px;
       }
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
     </style>
   </head>
   <body>
@@ -1150,7 +1169,7 @@
           <!-- Menu kanan -->
           <div class="nav-right">
             <!-- Menu Beranda di kanan -->
-            <a href="index.html" class="nav-link"> <i class="fas fa-home"></i></a>
+            <a href="index.html" class="nav-link"> <i class="fas fa-home"></i>Home</a>
 
             <!-- Menu SERVICE dengan dropdown - TETAP ADA DI DESKTOP -->
             <div class="service-dropdown">
@@ -1806,31 +1825,27 @@
 
       // Panggil saat halaman dimuat
       document.addEventListener("DOMContentLoaded", async () => {
-        // Tampilkan loading overlay
-        loadingOverlay.style.display = "flex";
+        loadingOverlay.classList.add("show");
 
         try {
-          // Catat kunjungan baru dengan localStorage
           await recordVisitWithLocalStorage();
-
-          // Ambil data dari API
           products = await fetchProducts();
           const testimonials = await fetchTestimonials();
 
           renderProducts(products);
           renderTestimonials(testimonials);
 
-          // Sembunyikan loading overlay
+          // Hilangkan loading dengan transisi
           setTimeout(() => {
-            loadingOverlay.style.display = "none";
-          }, 500);
+            loadingOverlay.classList.remove("show");
+          }, 600);
         } catch (error) {
           console.error("Failed to load data:", error);
           showNotification("Gagal memuat data, coba lagi nanti", "error");
-          loadingOverlay.style.display = "none";
+          loadingOverlay.classList.remove("show");
         }
 
-        // Animasi tambahan
+        // Tambahan animasi header
         setTimeout(() => {
           document.querySelector("header").classList.add("fade-in");
         }, 100);
