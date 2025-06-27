@@ -510,6 +510,18 @@
         flex-direction: column;
         height: 100%;
       }
+      .product-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .product-middle {
+        margin-top: auto;
+        margin-bottom: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
       .product-footer {
         margin-top: auto;
         display: flex;
@@ -536,9 +548,12 @@
         min-height: 50px;
         max-height: 80px;
         overflow-y: auto;
+        flex-shrink: 0;
       }
+
       .product-title {
-        flex-shrink: 0; /* Sudah ada, bagus */
+        flex-shrink: 0;
+        margin-bottom: 0.5rem;
       }
 
       .product-description {
@@ -1388,21 +1403,26 @@
           card.innerHTML = `
   ${badge}
   <img src="${product.image}" alt="${product.name}" class="product-image">
-  <div class="product-content">
-    <h3 class="product-title">${product.name}</h3>
+<div class="product-content">
+  <h3 class="product-title">${product.name}</h3>
+
+  <div class="product-middle">
     <p class="product-description">${product.description}</p>
-    <div class="product-footer">
-      <p class="product-price">Mulai ${formatPrice(product.price)}</p>
-      <div class="product-actions">
-        <button class="action-btn btn-order" data-product="${product.id}">
-          <i class="fas fa-shopping-cart"></i> Order
-        </button>
-        <button class="action-btn btn-details" data-product="${product.id}">
-          <i class="fas fa-info-circle"></i> Detail
-        </button>
-      </div>
+  </div>
+
+  <div class="product-footer">
+    <p class="product-price">Mulai ${formatPrice(product.price)}</p>
+    <div class="product-actions">
+      <button class="action-btn btn-order" data-product="${product.id}">
+        <i class="fas fa-shopping-cart"></i> Order
+      </button>
+      <button class="action-btn btn-details" data-product="${product.id}">
+        <i class="fas fa-info-circle"></i> Detail
+      </button>
     </div>
   </div>
+</div>
+
 `;
 
           productsGrid.appendChild(card);
