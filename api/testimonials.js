@@ -31,24 +31,24 @@ function githubRequest(path, method = "GET", data = null) {
             reject({
               statusCode: res.statusCode,
               message: json.message || `GitHub API error: ${res.statusCode}`,
-              body: json // Tambahkan ini untuk debug
+              body: json,
             });
           }
         } catch (e) {
-          reject({ 
-            statusCode: 500, 
+          reject({
+            statusCode: 500,
             message: "JSON parse error",
-            details: e.message 
+            details: e.message,
           });
         }
       });
     });
 
     req.on("error", (error) => {
-      reject({ 
-        statusCode: 500, 
+      reject({
+        statusCode: 500,
         message: "Network error",
-        details: error.message 
+        details: error.message,
       });
     });
 
@@ -69,12 +69,12 @@ module.exports = async (req, res) => {
     return res.status(200).end();
   }
 
-  // Cek GitHub Token (penting untuk debug)
+  // Cek GitHub Token
   if (!TOKEN || TOKEN === "undefined") {
     console.error("GitHub Token is missing!");
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: "Missing GitHub token. Please set GITHUB_TOKEN environment variable.",
-      solution: "Check your Vercel project environment variables"
+      solution: "Check your Vercel project environment variables",
     });
   }
 
@@ -83,9 +83,7 @@ module.exports = async (req, res) => {
     if (req.method === "GET") {
       let fileData;
       try {
-        fileData = await githubRequest(
-          `/repos/${REPO}/contents/${FILEPATH}?ref=${BRANCH}`
-        );
+        fileData = await githubRequest(`/repos/${REPO}/contents/${FILEPATH}?ref=${BRANCH}`);
       } catch (error) {
         // Handle 404 - File not found
         if (error.statusCode === 404) {
@@ -93,15 +91,15 @@ module.exports = async (req, res) => {
         }
         throw error;
       }
-      
+
       if (fileData.content) {
         const content = Buffer.from(fileData.content, "base64").toString("utf8");
         try {
           return res.status(200).json(JSON.parse(content));
         } catch (e) {
-          return res.status(500).json({ 
+          return res.status(500).json({
             error: "Invalid JSON format in testimonials file",
-            details: e.message
+            details: e.message,
           });
         }
       }
@@ -111,35 +109,34 @@ module.exports = async (req, res) => {
     // POST: Add new testimonial
     if (req.method === "POST") {
       const newTestimonial = req.body;
-      
-      // Validate data
-      if (!newTestimonial.name || !newTestimonial.rating || !newTestimonial.comment) {
-        return res.status(400).json({ 
-          error: "Nama, rating, dan komentar wajib diisi" 
+
+      // Validate data (tanpa komentar)
+      if (!newTestimonial.name || !newTestimonial.rating || !newTestimonial.product || !newTestimonial.image) {
+        return res.status(400).json({
+          error: "Nama, produk, rating, dan gambar wajib diisi",
         });
       }
 
-      // Convert rating to number - PERBAIKAN ERROR SINTAKS DI SINI
+      // Convert rating to number
       newTestimonial.rating = parseInt(newTestimonial.rating);
-      if (isNaN(newTestimonial.rating)) { // TAMBAHKAN KURUNG TUTUP DI SINI
-        return res.status(400).json({ 
-          error: "Rating harus berupa angka" 
+      if (isNaN(newTestimonial.rating)) {
+        return res.status(400).json({
+          error: "Rating harus berupa angka",
         });
       }
 
       // Add date and generate ID
       newTestimonial.date = new Date().toISOString().split("T")[0];
       newTestimonial.id = Math.random().toString(36).substr(2, 9);
+      newTestimonial.verified = true; // Default verified
 
       // Get current testimonials
       let fileData;
       let testimonials = [];
-      
+
       try {
-        fileData = await githubRequest(
-          `/repos/${REPO}/contents/${FILEPATH}?ref=${BRANCH}`
-        );
-        
+        fileData = await githubRequest(`/repos/${REPO}/contents/${FILEPATH}?ref=${BRANCH}`);
+
         if (fileData.content) {
           const content = Buffer.from(fileData.content, "base64").toString("utf8");
           testimonials = JSON.parse(content);
@@ -167,38 +164,36 @@ module.exports = async (req, res) => {
       // Update file on GitHub
       await githubRequest(`/repos/${REPO}/contents/${FILEPATH}`, "PUT", updatePayload);
 
-      return res.status(201).json({ 
+      return res.status(201).json({
         success: true,
         message: "Testimoni berhasil ditambahkan",
-        testimonial: newTestimonial
+        testimonial: newTestimonial,
       });
     }
 
     // PUT: Update testimonial
     if (req.method === "PUT") {
       const updatedTestimonial = req.body;
-      
-      // Validate data
-      if (!updatedTestimonial.id || !updatedTestimonial.name || !updatedTestimonial.rating || !updatedTestimonial.comment) {
-        return res.status(400).json({ 
-          error: "ID, nama, rating, dan komentar wajib diisi" 
+
+      // Validate data (tanpa komentar)
+      if (!updatedTestimonial.id || !updatedTestimonial.name || !updatedTestimonial.rating || !updatedTestimonial.product || !updatedTestimonial.image) {
+        return res.status(400).json({
+          error: "ID, nama, produk, rating, dan gambar wajib diisi",
         });
       }
 
       // Convert rating to number
       updatedTestimonial.rating = parseInt(updatedTestimonial.rating);
       if (isNaN(updatedTestimonial.rating)) {
-        return res.status(400).json({ 
-          error: "Rating harus berupa angka" 
+        return res.status(400).json({
+          error: "Rating harus berupa angka",
         });
       }
 
       // Get current testimonials
       let fileData;
       try {
-        fileData = await githubRequest(
-          `/repos/${REPO}/contents/${FILEPATH}?ref=${BRANCH}`
-        );
+        fileData = await githubRequest(`/repos/${REPO}/contents/${FILEPATH}?ref=${BRANCH}`);
       } catch (error) {
         if (error.statusCode === 404) {
           return res.status(404).json({ error: "File testimonials tidak ditemukan" });
@@ -211,21 +206,21 @@ module.exports = async (req, res) => {
       try {
         testimonials = JSON.parse(content);
       } catch (e) {
-        return res.status(500).json({ 
+        return res.status(500).json({
           error: "Invalid JSON format in testimonials file",
-          details: e.message
+          details: e.message,
         });
       }
 
       // Find index of testimonial by id
-      const index = testimonials.findIndex(t => t.id === updatedTestimonial.id);
+      const index = testimonials.findIndex((t) => t.id === updatedTestimonial.id);
       if (index === -1) {
         return res.status(404).json({ error: "Testimonial tidak ditemukan" });
       }
 
       // Preserve original date
       updatedTestimonial.date = testimonials[index].date;
-      
+
       // Update testimonial
       testimonials[index] = updatedTestimonial;
 
@@ -234,22 +229,22 @@ module.exports = async (req, res) => {
         message: `Update testimoni dari: ${updatedTestimonial.name}`,
         content: Buffer.from(JSON.stringify(testimonials, null, 2)).toString("base64"),
         branch: BRANCH,
-        sha: fileData.sha
+        sha: fileData.sha,
       };
 
       // Update file on GitHub
       await githubRequest(`/repos/${REPO}/contents/${FILEPATH}`, "PUT", updatePayload);
 
-      return res.status(200).json({ 
+      return res.status(200).json({
         success: true,
         message: "Testimoni berhasil diperbarui",
-        testimonial: updatedTestimonial
+        testimonial: updatedTestimonial,
       });
     }
 
     // DELETE: Delete testimonial
     if (req.method === "DELETE") {
-      const { id } = req.query; // Mengambil id dari query string
+      const { id } = req.query;
 
       if (!id) {
         return res.status(400).json({ error: "ID testimonial wajib diisi" });
@@ -258,9 +253,7 @@ module.exports = async (req, res) => {
       // Get current testimonials
       let fileData;
       try {
-        fileData = await githubRequest(
-          `/repos/${REPO}/contents/${FILEPATH}?ref=${BRANCH}`
-        );
+        fileData = await githubRequest(`/repos/${REPO}/contents/${FILEPATH}?ref=${BRANCH}`);
       } catch (error) {
         if (error.statusCode === 404) {
           return res.status(404).json({ error: "File testimonials tidak ditemukan" });
@@ -273,14 +266,14 @@ module.exports = async (req, res) => {
       try {
         testimonials = JSON.parse(content);
       } catch (e) {
-        return res.status(500).json({ 
+        return res.status(500).json({
           error: "Invalid JSON format in testimonials file",
-          details: e.message
+          details: e.message,
         });
       }
 
       // Find testimonial by id
-      const index = testimonials.findIndex(t => t.id === id);
+      const index = testimonials.findIndex((t) => t.id === id);
       if (index === -1) {
         return res.status(404).json({ error: "Testimonial tidak ditemukan" });
       }
@@ -293,33 +286,33 @@ module.exports = async (req, res) => {
         message: `Hapus testimoni dari: ${deletedTestimonial.name}`,
         content: Buffer.from(JSON.stringify(testimonials, null, 2)).toString("base64"),
         branch: BRANCH,
-        sha: fileData.sha
+        sha: fileData.sha,
       };
 
       // Update file on GitHub
       await githubRequest(`/repos/${REPO}/contents/${FILEPATH}`, "PUT", updatePayload);
 
-      return res.status(200).json({ 
+      return res.status(200).json({
         success: true,
         message: "Testimoni berhasil dihapus",
-        testimonial: deletedTestimonial
+        testimonial: deletedTestimonial,
       });
     }
 
-    return res.status(405).json({ 
-      error: "Method not allowed. Only GET, POST, PUT, DELETE are supported." 
+    return res.status(405).json({
+      error: "Method not allowed. Only GET, POST, PUT, DELETE are supported.",
     });
   } catch (error) {
     console.error("Testimonials API Error:", {
       message: error.message,
       statusCode: error.statusCode,
       details: error.details,
-      githubError: error.body || error
+      githubError: error.body || error,
     });
-    
+
     return res.status(error.statusCode || 500).json({
       error: error.message || "Internal server error",
-      details: "Check server logs for more information"
+      details: "Check server logs for more information",
     });
   }
 };
