@@ -504,12 +504,22 @@
         border-bottom: 1px solid rgba(51, 153, 255, 0.3); /* Diperkecil */
       }
 
-.product-price {
-  font-size: 1rem;
-  color: var(--accent2);
-  margin-bottom: 0.8rem;
-  font-weight: 700;
-  margin-top: auto; /* Tambahan ini! */
+.product-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-description {
+  flex-grow: 1;
+}
+
+.product-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
 
@@ -1376,6 +1386,7 @@
                     <div class="product-content">
                         <h3 class="product-title">${product.name}</h3>
                         <p class="product-description">${product.description}</p>
+                        <div class="product-bottom">
                         <p class="product-price">Mulai ${formatPrice(product.price)}</p>
                         <div class="product-actions">
                             <button class="action-btn btn-order" data-product="${product.id}">
@@ -1384,6 +1395,7 @@
                             <button class="action-btn btn-details" data-product="${product.id}">
                                 <i class="fas fa-info-circle"></i> Detail
                             </button>
+                            </div>
                         </div>
                     </div>
                 `;
