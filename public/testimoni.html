@@ -769,6 +769,93 @@
           transform: rotate(360deg);
         }
       }
+      
+      /* ========= TAMBAHAN: MODAL LOGIN ADMIN ========= */
+      /* Admin Login Modal */
+      .admin-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .admin-modal.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .admin-modal-content {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        width: 90%;
+        max-width: 400px;
+        padding: 1.5rem;
+        position: relative;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(51, 153, 255, 0.3);
+      }
+
+      .admin-modal-title {
+        font-size: 1.3rem;
+        margin-bottom: 1.2rem;
+        text-align: center;
+        color: var(--accent);
+      }
+
+      /* Notifikasi */
+      .notification {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        padding: 12px 20px;
+        border-radius: var(--border-radius);
+        color: white;
+        font-weight: 600;
+        z-index: 3000;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-size: 0.9rem;
+      }
+
+      .notification.success {
+        background: var(--success);
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .notification.error {
+        background: var(--danger);
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .notification.warning {
+        background: var(--warning);
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .loading {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+        margin-right: 6px;
+      }
     </style>
   </head>
   <body>
@@ -854,6 +941,29 @@
       </div>
     </div>
 
+    <!-- ========= TAMBAHAN: MODAL LOGIN ADMIN ========= -->
+    <!-- Admin Login Modal -->
+    <div class="admin-modal" id="adminLoginModal">
+      <div class="admin-modal-content">
+        <button class="modal-close" id="closeAdminModal">&times;</button>
+        <h3 class="admin-modal-title">Admin Login</h3>
+        <form id="adminLoginForm">
+          <div class="form-group">
+            <label for="adminUsername">Username</label>
+            <input type="text" id="adminUsername" required />
+          </div>
+          <div class="form-group">
+            <label for="adminPassword">Password</label>
+            <input type="password" id="adminPassword" required />
+          </div>
+          <button type="submit" class="btn-submit"><i class="fas fa-sign-in-alt"></i> Login</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Notifikasi -->
+    <div class="notification" id="notification"></div>
+
     <!-- Footer -->
     <footer>
       <div class="social-links">
@@ -888,6 +998,14 @@
       const menuToggle = document.getElementById("menuToggle");
       const navLinks = document.getElementById("navLinks");
       const loadingOverlay = document.getElementById("loadingOverlay");
+      
+      // TAMBAHAN: Elemen untuk login admin
+      const adminLoginModal = document.getElementById("adminLoginModal");
+      const closeAdminModal = document.getElementById("closeAdminModal");
+      const adminLoginForm = document.getElementById("adminLoginForm");
+      const adminUsernameInput = document.getElementById("adminUsername");
+      const adminPasswordInput = document.getElementById("adminPassword");
+      const notification = document.getElementById("notification");
 
       // Fungsi untuk menampilkan loading
       function showLoading() {
@@ -897,6 +1015,16 @@
       // Fungsi untuk menyembunyikan loading
       function hideLoading() {
         loadingOverlay.classList.remove("show");
+      }
+
+      // Fungsi untuk menampilkan notifikasi
+      function showNotification(message, type) {
+        notification.textContent = message;
+        notification.className = `notification ${type}`;
+
+        setTimeout(() => {
+          notification.className = "notification";
+        }, 3000);
       }
 
       async function fetchTestimonials() {
@@ -1018,11 +1146,78 @@
         }
       });
 
+      // ========= TAMBAHAN: FUNGSI LOGIN ADMIN =========
       // Event listener untuk semua tombol admin login
       document.querySelectorAll(".admin-login-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          window.location.href = "admin-panel.html";
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          adminLoginModal.classList.add("active");
         });
+      });
+
+      // Event listener untuk menutup modal admin
+      closeAdminModal.addEventListener("click", () => {
+        adminLoginModal.classList.remove("active");
+      });
+
+      // Event listener untuk klik di luar modal admin
+      adminLoginModal.addEventListener("click", (e) => {
+        if (e.target === adminLoginModal) {
+          adminLoginModal.classList.remove("active");
+        }
+      });
+
+      // Login admin
+      adminLoginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const username = adminUsernameInput.value;
+        const password = adminPasswordInput.value;
+
+        // Tampilkan loading
+        const submitBtn = adminLoginForm.querySelector(".btn-submit");
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="loading"></span> Memproses...';
+        submitBtn.disabled = true;
+
+        // Kirim permintaan login ke server
+        fetch("/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        })
+          .then((response) => {
+            if (response.status === 401) {
+              throw new Error("Unauthorized");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            if (data.success) {
+              localStorage.setItem("adminLoggedIn", "true");
+              showNotification("Login berhasil! Mengarahkan ke panel admin...", "success");
+
+              setTimeout(() => {
+                window.location.href = "admin-panel.html";
+              }, 2000);
+            } else {
+              showNotification(data.message || "Username atau password salah!", "error");
+              submitBtn.innerHTML = originalBtnText;
+              submitBtn.disabled = false;
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            if (error.message === "Unauthorized") {
+              showNotification("Username atau password salah!", "error");
+            } else {
+              showNotification("Terjadi kesalahan. Silakan coba lagi.", "error");
+            }
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+          });
       });
 
       // Panggil saat halaman dimuat
