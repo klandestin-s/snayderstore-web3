@@ -1115,6 +1115,43 @@
           transform: rotate(360deg);
         }
       }
+      .product-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem;
+}
+
+.product-top {
+  flex-shrink: 0;
+}
+
+.product-spacer {
+  flex-grow: 1;
+}
+
+.product-description-container {
+  flex-shrink: 0;
+  margin-bottom: 0.6rem;
+}
+
+.product-description {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  min-height: 50px;
+  max-height: 80px;
+  overflow-y: auto;
+}
+
+.product-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
     </style>
   </head>
   <body>
@@ -1412,31 +1449,31 @@
           // Tambahkan badge jika ada
           const badge = product.badge ? `<span class="product-badge">${product.badge}</span>` : "";
 
-          card.innerHTML = `
+card.innerHTML = `
   ${badge}
   <img src="${product.image}" alt="${product.name}" class="product-image">
-<div class="product-content">
-  <div class="product-top">
-    <h3 class="product-title">${product.name}</h3>
-  </div>
-
-  <div class="product-middle">
-    <p class="product-description">${product.description}</p>
-  </div>
-
-  <div class="product-footer">
-    <p class="product-price">Mulai ${formatPrice(product.price)}</p>
-    <div class="product-actions">
-      <button class="action-btn btn-order" data-product="${product.id}">
-        <i class="fas fa-shopping-cart"></i> Order
-      </button>
-      <button class="action-btn btn-details" data-product="${product.id}">
-        <i class="fas fa-info-circle"></i> Detail
-      </button>
+  <div class="product-content">
+    <div class="product-top">
+      <h3 class="product-title">${product.name}</h3>
+    </div>
+    <div class="product-spacer"></div>
+    <div class="product-description-container">
+      <p class="product-description">${product.description}</p>
+    </div>
+    <div class="product-footer">
+      <p class="product-price">Mulai ${formatPrice(product.price)}</p>
+      <div class="product-actions">
+        <button class="action-btn btn-order" data-product="${product.id}">
+          <i class="fas fa-shopping-cart"></i> Order
+        </button>
+        <button class="action-btn btn-details" data-product="${product.id}">
+          <i class="fas fa-info-circle"></i> Detail
+        </button>
+      </div>
     </div>
   </div>
-</div>
 `;
+
 
           productsGrid.appendChild(card);
         });
