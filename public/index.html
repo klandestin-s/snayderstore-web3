@@ -463,7 +463,6 @@
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Lebih banyak kolom */
         gap: 1.2rem; /* Diperkecil */
       }
-
       .product-card {
         background: var(--card-bg);
         border-radius: var(--border-radius); /* Lebih kotak */
@@ -505,15 +504,14 @@
       }
 
       .product-content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        height: 100%;
         padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
       }
-      .product-content {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
+      .product-top {
+        flex-shrink: 0;
       }
       .product-middle {
         margin-top: auto;
@@ -521,6 +519,11 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+      }
+      .product-middle {
+        flex-shrink: 0;
+        margin-top: auto;
+        margin-bottom: 0.5rem;
       }
       .product-footer {
         margin-top: auto;
@@ -530,7 +533,14 @@
         padding-top: 0.5rem;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
       }
-
+      .product-footer {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
       .product-title {
         font-size: 1.1rem;
         margin-bottom: 0.6rem;
@@ -550,14 +560,16 @@
         overflow-y: auto;
         flex-shrink: 0;
       }
-
+      .product-description {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        min-height: 50px;
+        max-height: 80px;
+        overflow-y: auto;
+      }
       .product-title {
         flex-shrink: 0;
         margin-bottom: 0.5rem;
-      }
-
-      .product-description {
-        flex-shrink: 0; /* Tambahkan ini */
       }
 
       .product-price {
@@ -1404,7 +1416,9 @@
   ${badge}
   <img src="${product.image}" alt="${product.name}" class="product-image">
 <div class="product-content">
-  <h3 class="product-title">${product.name}</h3>
+  <div class="product-top">
+    <h3 class="product-title">${product.name}</h3>
+  </div>
 
   <div class="product-middle">
     <p class="product-description">${product.description}</p>
@@ -1422,7 +1436,6 @@
     </div>
   </div>
 </div>
-
 `;
 
           productsGrid.appendChild(card);
