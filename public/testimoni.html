@@ -1280,10 +1280,52 @@
           });
       });
 
+      // Fungsi untuk mendapatkan tanggal hari ini dalam format YYYY-MM-DD (WIB)
+      function getTodayWIB() {
+        const now = new Date();
+        const wibOffset = 7 * 60 * 60 * 1000; // UTC+7 dalam milidetik
+        const wibTime = new Date(now.getTime() + wibOffset);
+        return wibTime.toISOString().split("T")[0];
+      }
+
+      // Fungsi untuk mencatat kunjungan dengan localStorage
+      async function recordVisitWithLocalStorage() {
+        const today = getTodayWIB();
+        const lastVisitDate = localStorage.getItem("visitDate");
+
+        // Jika sudah mengunjungi hari ini, tidak perlu catat lagi
+        if (lastVisitDate === today) {
+          return;
+        }
+
+        try {
+          const response = await fetch("/api/save-visit", {
+            method: "POST",
+          });
+
+          if (!response.ok) {
+            throw new Error("Gagal mencatat kunjungan");
+          }
+
+          const data = await response.json();
+          if (data.success) {
+            localStorage.setItem("visitDate", today);
+          } else {
+            throw new Error("Response tidak sukses");
+          }
+        } catch (error) {
+          console.error("Error recording visit:", error);
+          showNotification("Gagal mencatat kunjungan", "error");
+        }
+      }
+
       // Panggil saat halaman dimuat
       document.addEventListener("DOMContentLoaded", async () => {
         // Tampilkan loading
         showLoading();
+
+        // Catat kunjungan pengunjung
+        await recordVisitWithLocalStorage();
 
         // Ambil data testimoni
         await fetchTestimonials();
