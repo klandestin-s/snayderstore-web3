@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testimoni - SNAYDER'S STORE</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="icon" href="https://raw.githubusercontent.com/Yudzxml/UploaderV2/main/tmp/1f856a75.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://raw.githubusercontent.com/Yudzxml/UploaderV2/main/tmp/1f856a75.png">
     <style>
       :root {
         --bg-dark: #121212;
@@ -356,12 +356,12 @@
         border-radius: 10px;
       }
 
-  .testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
 
       .testimonial-card {
         background: var(--card-bg);
@@ -649,38 +649,30 @@
         }
       }
 
-      @media (min-width: 768px) {
+      /* PERUBAHAN UTAMA DISINI: Responsivitas Grid */
+      /* Mobile: 2 kolom */
+      @media (max-width: 767px) {
         .testimonial-grid {
           grid-template-columns: repeat(2, 1fr);
         }
+        .section-title {
+          font-size: 1.8rem;
+        }
       }
 
-      @media (min-width: 992px) {
+      /* Tablet: 3 kolom */
+      @media (min-width: 768px) and (max-width: 1199px) {
         .testimonial-grid {
           grid-template-columns: repeat(3, 1fr);
         }
       }
 
+      /* Desktop: 5 kolom */
       @media (min-width: 1200px) {
-        .testimonial-grid {
-          grid-template-columns: repeat(4, 1fr);
-        }
-      }
-
-      @media (min-width: 1400px) {
         .testimonial-grid {
           grid-template-columns: repeat(5, 1fr);
         }
       }
-
-  @media (max-width: 767px) {
-    .testimonial-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2 kolom di mobile */
-    }
-    .section-title {
-      font-size: 1.8rem;
-    }
-  }
     </style>
   </head>
   <body>
