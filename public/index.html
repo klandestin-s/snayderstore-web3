@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="icon" href="https://raw.githubusercontent.com/Yudzxml/UploaderV2/main/tmp/1f856a75.png" />
     <style>
-      /* Variabel warna - tema modern gelap */
       :root {
         --bg-dark: #121212;
         --card-bg: #1d1f25;
@@ -21,11 +20,10 @@
         --danger: #ff4d6d;
         --transition: all 0.3s ease;
         --warning: #ffcc00;
-        --nav-height: 60px; /* Diperkecil */
-        --border-radius: 6px; /* Radius lebih kotak */
+        --nav-height: 60px;
+        --border-radius: 6px;
       }
 
-      /* Reset dasar */
       * {
         box-sizing: border-box;
         margin: 0;
@@ -36,8 +34,8 @@
         background-color: var(--bg-dark);
         color: var(--text-light);
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 14px; /* Diperkecil */
-        line-height: 1.5; /* Diperkecil */
+        font-size: 14px;
+        line-height: 1.5;
         overflow-x: hidden;
         background-image: linear-gradient(135deg, rgba(13, 27, 42, 0.8) 0%, rgba(27, 38, 59, 0.8) 100%), radial-gradient(circle at top right, rgba(51, 170, 255, 0.1), transparent 25%),
           radial-gradient(circle at bottom left, rgba(0, 102, 255, 0.1), transparent 25%);
@@ -53,7 +51,6 @@
         width: 100%;
       }
 
-      /* NAVBAR MODERN */
       .navbar {
         position: fixed;
         top: 0;
@@ -65,9 +62,9 @@
         border-bottom: 2px solid rgba(51, 153, 255, 0.3);
         display: flex;
         align-items: center;
-        padding: 0 1.5rem; /* Diperkecil */
+        padding: 0 1.5rem;
         z-index: 1000;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
 
       .navbar-container {
@@ -82,20 +79,20 @@
       .logo-brand {
         display: flex;
         align-items: center;
-        gap: 10px; /* Diperkecil */
+        gap: 10px;
         text-decoration: none;
         color: var(--text-light);
         flex-shrink: 0;
       }
 
       .logo-brand i {
-        font-size: 1.6rem; /* Diperkecil */
+        font-size: 1.6rem;
         color: var(--accent);
-        text-shadow: 0 0 8px rgba(51, 153, 255, 0.7); /* Diperkecil */
+        text-shadow: 0 0 8px rgba(51, 153, 255, 0.7);
       }
 
       .brand-text {
-        font-size: 1.3rem; /* Diperkecil */
+        font-size: 1.3rem;
         font-weight: 700;
         background: linear-gradient(90deg, var(--accent), var(--accent2));
         -webkit-background-clip: text;
@@ -104,7 +101,6 @@
         letter-spacing: 0.5px;
       }
 
-      /* KONTAINER UTAMA NAVBAR */
       .nav-main-container {
         display: flex;
         align-items: center;
@@ -116,21 +112,21 @@
       .nav-links {
         display: flex;
         align-items: center;
-        gap: 12px; /* Diperkecil */
+        gap: 12px;
       }
 
       .nav-link {
         display: flex;
         align-items: center;
-        gap: 6px; /* Diperkecil */
-        padding: 0.5rem 1rem; /* Diperkecil */
-        border-radius: var(--border-radius); /* Lebih kotak */
+        gap: 6px;
+        padding: 0.5rem 1rem;
+        border-radius: var(--border-radius);
         text-decoration: none;
         color: var(--text-light);
         font-weight: 500;
         transition: var(--transition);
         background: rgba(51, 153, 255, 0.1);
-        font-size: 0.9rem; /* Diperkecil */
+        font-size: 0.9rem;
         white-space: nowrap;
       }
 
@@ -140,7 +136,7 @@
       }
 
       .nav-link i {
-        font-size: 0.95rem; /* Diperkecil */
+        font-size: 0.95rem;
       }
 
       .btn-testimoni-nav {
@@ -151,7 +147,6 @@
         background: linear-gradient(45deg, #00cc99, #00b383);
       }
 
-      /* Search Container */
       .search-container {
         display: flex;
         align-items: center;
@@ -163,7 +158,7 @@
 
       .search-container input {
         padding: 0.5rem 2rem 0.5rem 0.8rem;
-        border-radius: var(--border-radius); /* Lebih kotak */
+        border-radius: var(--border-radius);
         border: 1px solid rgba(51, 153, 255, 0.3);
         background: var(--input-bg);
         color: var(--text-light);
@@ -187,7 +182,6 @@
         cursor: pointer;
       }
 
-      /* Menu Kanan */
       .nav-right {
         display: flex;
         align-items: center;
@@ -195,7 +189,6 @@
         flex-shrink: 0;
       }
 
-      /* SERVICE DROPDOWN */
       .service-dropdown {
         position: relative;
         display: inline-block;
@@ -276,17 +269,16 @@
         background: linear-gradient(45deg, #00b383, #009973);
       }
 
-      /* Responsif navbar */
       .menu-toggle {
         display: none;
-        font-size: 1.3rem; /* Diperkecil */
+        font-size: 1.3rem;
         color: var(--text-light);
         cursor: pointer;
         transition: transform 0.3s ease;
         z-index: 1001;
         position: relative;
-        width: 25px; /* Diperkecil */
-        height: 25px; /* Diperkecil */
+        width: 25px;
+        height: 25px;
       }
 
       .menu-toggle .fa-bars {
@@ -336,15 +328,14 @@
         }
       }
 
-      /* Header (disesuaikan) */
       header {
         text-align: center;
-        padding: 1.5rem 1rem; /* Diperkecil */
+        padding: 1.5rem 1rem;
         background: linear-gradient(135deg, #0d1b2a, #1b263b);
         position: relative;
         overflow: hidden;
         border-bottom: 3px solid var(--accent);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         margin-top: calc(var(--nav-height) - 10px);
       }
 
@@ -354,21 +345,21 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 3px; /* Diperkecil */
+        height: 3px;
         background: linear-gradient(90deg, var(--accent2), var(--accent));
-        box-shadow: 0 0 10px var(--accent); /* Diperkecil */
+        box-shadow: 0 0 10px var(--accent);
       }
 
       .logo {
-        font-size: 2.2rem; /* Diperkecil */
-        margin-bottom: 0.8rem; /* Diperkecil */
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
         color: var(--text-light);
-        text-shadow: 0 0 8px var(--accent), 0 0 15px var(--accent2); /* Diperkecil */
+        text-shadow: 0 0 8px var(--accent), 0 0 15px var(--accent2);
       }
 
       h1 {
-        font-size: 1.8rem; /* Diperkecil */
-        margin-bottom: 0.4rem; /* Diperkecil */
+        font-size: 1.8rem;
+        margin-bottom: 0.4rem;
         background: linear-gradient(90deg, var(--accent), var(--accent2));
         -webkit-background-clip: text;
         background-clip: text;
@@ -378,30 +369,29 @@
       }
 
       .subtitle {
-        font-size: 0.95rem; /* Diperkecil */
+        font-size: 0.95rem;
         color: var(--text-muted);
         max-width: 600px;
-        margin: 0 auto 1rem; /* Diperkecil */
-        text-shadow: 0 0 8px rgba(0, 0, 0, 0.5); /* Diperkecil */
+        margin: 0 auto 1rem;
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
       }
 
-      /* Tombol utama */
       .btn {
         display: inline-block;
         background: linear-gradient(45deg, var(--accent2), var(--accent));
         color: white;
-        padding: 0.6rem 1.4rem; /* Diperkecil */
-        border-radius: var(--border-radius); /* Lebih kotak */
+        padding: 0.6rem 1.4rem;
+        border-radius: var(--border-radius);
         font-weight: 600;
         text-decoration: none;
-        margin: 0.4rem; /* Diperkecil */
+        margin: 0.4rem;
         transition: var(--transition);
-        box-shadow: 0 2px 5px rgba(51, 153, 255, 0.2); /* Shadow lebih lembut */
+        box-shadow: 0 2px 5px rgba(51, 153, 255, 0.2);
         border: none;
         cursor: pointer;
         position: relative;
         overflow: hidden;
-        font-size: 0.9rem; /* Diperkecil */
+        font-size: 0.9rem;
       }
 
       .btn::after {
@@ -422,20 +412,19 @@
 
       .btn:hover {
         transform: translateY(-3px);
-        box-shadow: 0 3px 8px rgba(51, 153, 255, 0.3); /* Shadow lebih lembut */
+        box-shadow: 0 3px 8px rgba(51, 153, 255, 0.3);
       }
 
-      /* Produk */
       .products-section {
-        padding: 2rem 1rem; /* Diperkecil */
+        padding: 2rem 1rem;
         max-width: 1200px;
         margin: 0 auto;
       }
 
       .section-title {
         text-align: center;
-        margin-bottom: 1.5rem; /* Diperkecil */
-        font-size: 1.5rem; /* Diperkecil */
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
         background: linear-gradient(90deg, var(--accent), var(--accent2));
         -webkit-background-clip: text;
         background-clip: text;
@@ -450,25 +439,26 @@
       .section-title::after {
         content: "";
         position: absolute;
-        bottom: -8px; /* Diperkecil */
+        bottom: -8px;
         left: 0;
         right: 0;
-        height: 2px; /* Diperkecil */
+        height: 2px;
         background: linear-gradient(90deg, var(--accent), var(--accent2));
         border-radius: 10px;
       }
 
       .products-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Lebih banyak kolom */
-        gap: 1.2rem; /* Diperkecil */
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.2rem;
       }
+
       .product-card {
         background: var(--card-bg);
-        border-radius: var(--border-radius); /* Lebih kotak */
+        border-radius: var(--border-radius);
         overflow: hidden;
         transition: var(--transition);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         position: relative;
         border: 1px solid rgba(51, 153, 255, 0.2);
         transform-style: preserve-3d;
@@ -478,29 +468,29 @@
       }
 
       .product-card:hover {
-        transform: translateY(-8px) rotateY(5deg); /* Efek lebih halus */
-        box-shadow: 0 5px 15px rgba(51, 153, 255, 0.15); /* Shadow lebih lembut */
+        transform: translateY(-8px) rotateY(5deg);
+        box-shadow: 0 5px 15px rgba(51, 153, 255, 0.15);
       }
 
       .product-badge {
         position: absolute;
-        top: 12px; /* Diperkecil */
-        right: 12px; /* Diperkecil */
+        top: 12px;
+        right: 12px;
         background: var(--success);
         color: white;
-        padding: 0.2rem 0.6rem; /* Diperkecil */
-        border-radius: var(--border-radius); /* Lebih kotak */
-        font-size: 0.75rem; /* Diperkecil */
+        padding: 0.2rem 0.6rem;
+        border-radius: var(--border-radius);
+        font-size: 0.75rem;
         font-weight: bold;
         z-index: 10;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
 
       .product-image {
         width: 100%;
-        height: 160px; /* Diperkecil */
+        height: 160px;
         object-fit: cover;
-        border-bottom: 1px solid rgba(51, 153, 255, 0.3); /* Diperkecil */
+        border-bottom: 1px solid rgba(51, 153, 255, 0.3);
       }
 
       .product-content {
@@ -510,9 +500,11 @@
         height: 100%;
         padding: 1rem;
       }
+
       .product-top {
         flex-shrink: 0;
       }
+
       .product-middle {
         margin-top: auto;
         margin-bottom: auto;
@@ -520,11 +512,7 @@
         flex-direction: column;
         justify-content: flex-end;
       }
-      .product-middle {
-        flex-shrink: 0;
-        margin-top: auto;
-        margin-bottom: 0.5rem;
-      }
+
       .product-footer {
         margin-top: auto;
         display: flex;
@@ -533,23 +521,11 @@
         padding-top: 0.5rem;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
       }
-      .product-footer {
-        margin-top: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 0.6rem;
-        padding-top: 0.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-      }
+
       .product-title {
         font-size: 1.1rem;
         margin-bottom: 0.6rem;
         color: var(--accent);
-        flex-shrink: 0;
-      }
-      .product-body {
-        margin-top: auto;
-        margin-bottom: auto;
       }
 
       .product-description {
@@ -558,18 +534,6 @@
         min-height: 50px;
         max-height: 80px;
         overflow-y: auto;
-        flex-shrink: 0;
-      }
-      .product-description {
-        color: var(--text-muted);
-        font-size: 0.85rem;
-        min-height: 50px;
-        max-height: 80px;
-        overflow-y: auto;
-      }
-      .product-title {
-        flex-shrink: 0;
-        margin-bottom: 0.5rem;
       }
 
       .product-price {
@@ -586,8 +550,8 @@
 
       .action-btn {
         flex: 1;
-        padding: 0.5rem; /* Diperkecil */
-        border-radius: var(--border-radius); /* Lebih kotak */
+        padding: 0.5rem;
+        border-radius: var(--border-radius);
         font-weight: 600;
         border: none;
         cursor: pointer;
@@ -595,8 +559,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 5px; /* Diperkecil */
-        font-size: 0.85rem; /* Diperkecil */
+        gap: 5px;
+        font-size: 0.85rem;
       }
 
       .btn-order {
@@ -609,7 +573,6 @@
         color: var(--accent);
       }
 
-      /* Modal */
       .modal-overlay {
         position: fixed;
         top: 0;
@@ -634,12 +597,12 @@
 
       .modal-content {
         background: var(--card-bg);
-        border-radius: var(--border-radius); /* Lebih kotak */
+        border-radius: var(--border-radius);
         width: 90%;
         max-width: 500px;
-        padding: 1.5rem; /* Diperkecil */
+        padding: 1.5rem;
         position: relative;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Shadow lebih lembut */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         transform: translateY(20px);
         transition: transform 0.4s ease;
         border: 1px solid rgba(51, 153, 255, 0.3);
@@ -651,11 +614,11 @@
 
       .modal-close {
         position: absolute;
-        top: 12px; /* Diperkecil */
-        right: 12px; /* Diperkecil */
+        top: 12px;
+        right: 12px;
         background: none;
         border: none;
-        font-size: 1.3rem; /* Diperkecil */
+        font-size: 1.3rem;
         color: var(--text-muted);
         cursor: pointer;
         transition: color 0.3s ease;
@@ -668,30 +631,29 @@
       }
 
       .modal-title {
-        font-size: 1.3rem; /* Diperkecil */
-        margin-bottom: 1.2rem; /* Diperkecil */
+        font-size: 1.3rem;
+        margin-bottom: 1.2rem;
         text-align: center;
         color: var(--accent);
       }
 
       .modal-subtitle {
         color: var(--text-muted);
-        margin-bottom: 1.2rem; /* Diperkecil */
+        margin-bottom: 1.2rem;
         text-align: center;
-        font-size: 0.9rem; /* Diperkecil */
+        font-size: 0.9rem;
       }
 
-      /* Detail Paket */
       .package-list {
-        margin-bottom: 1.2rem; /* Diperkecil */
+        margin-bottom: 1.2rem;
       }
 
       .package-item {
         background: rgba(51, 153, 255, 0.1);
-        padding: 0.6rem; /* Diperkecil */
-        border-radius: var(--border-radius); /* Lebih kotak */
-        margin-bottom: 0.6rem; /* Diperkecil */
-        border-left: 2px solid var(--accent); /* Diperkecil */
+        padding: 0.6rem;
+        border-radius: var(--border-radius);
+        margin-bottom: 0.6rem;
+        border-left: 2px solid var(--accent);
         cursor: pointer;
         transition: var(--transition);
       }
@@ -703,46 +665,45 @@
 
       .package-item.selected {
         background: rgba(51, 153, 255, 0.25);
-        border-left: 2px solid var(--success); /* Diperkecil */
+        border-left: 2px solid var(--success);
       }
 
       .package-name {
         font-weight: 600;
         color: var(--accent);
-        margin-bottom: 0.2rem; /* Diperkecil */
-        font-size: 0.95rem; /* Diperkecil */
+        margin-bottom: 0.2rem;
+        font-size: 0.95rem;
       }
 
       .package-price {
         color: var(--accent2);
         font-weight: 700;
-        font-size: 0.9rem; /* Diperkecil */
+        font-size: 0.9rem;
       }
 
-      /* Form */
       .form-group {
-        margin-bottom: 1rem; /* Diperkecil */
+        margin-bottom: 1rem;
         position: relative;
       }
 
       label {
         display: block;
-        margin-bottom: 0.4rem; /* Diperkecil */
+        margin-bottom: 0.4rem;
         color: var(--text-muted);
         font-weight: 500;
-        font-size: 0.9rem; /* Diperkecil */
+        font-size: 0.9rem;
       }
 
       input,
       select,
       textarea {
         width: 100%;
-        padding: 0.6rem; /* Diperkecil */
-        border-radius: var(--border-radius); /* Lebih kotak */
+        padding: 0.6rem;
+        border-radius: var(--border-radius);
         border: 1px solid rgba(51, 153, 255, 0.3);
         background: var(--input-bg);
         color: var(--text-light);
-        font-size: 0.9rem; /* Diperkecil */
+        font-size: 0.9rem;
         transition: var(--transition);
       }
 
@@ -756,25 +717,25 @@
 
       .btn-submit {
         width: 100%;
-        padding: 0.8rem; /* Diperkecil */
+        padding: 0.8rem;
         background: linear-gradient(45deg, var(--success), #00b383);
         color: white;
         border: none;
-        border-radius: var(--border-radius); /* Lebih kotak */
+        border-radius: var(--border-radius);
         font-weight: 600;
-        font-size: 0.95rem; /* Diperkecil */
-        margin-top: 0.8rem; /* Diperkecil */
+        font-size: 0.95rem;
+        margin-top: 0.8rem;
         cursor: pointer;
         transition: var(--transition);
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px; /* Diperkecil */
+        gap: 8px;
       }
 
       .btn-submit:hover {
         transform: translateY(-3px);
-        box-shadow: 0 3px 8px rgba(0, 204, 153, 0.2); /* Shadow lebih lembut */
+        box-shadow: 0 3px 8px rgba(0, 204, 153, 0.2);
       }
 
       .btn-submit:disabled {
@@ -784,7 +745,6 @@
         box-shadow: none;
       }
 
-      /* Admin Login Modal */
       .admin-modal {
         position: fixed;
         top: 0;
@@ -808,52 +768,51 @@
 
       .admin-modal-content {
         background: var(--card-bg);
-        border-radius: var(--border-radius); /* Lebih kotak */
+        border-radius: var(--border-radius);
         width: 90%;
         max-width: 400px;
-        padding: 1.5rem; /* Diperkecil */
+        padding: 1.5rem;
         position: relative;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Shadow lebih lembut */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         border: 1px solid rgba(51, 153, 255, 0.3);
       }
 
       .admin-modal-title {
-        font-size: 1.3rem; /* Diperkecil */
-        margin-bottom: 1.2rem; /* Diperkecil */
+        font-size: 1.3rem;
+        margin-bottom: 1.2rem;
         text-align: center;
         color: var(--accent);
       }
 
-      /* Footer */
       footer {
         text-align: center;
-        padding: 1.5rem 1rem; /* Diperkecil */
+        padding: 1.5rem 1rem;
         background: rgba(0, 0, 0, 0.3);
         color: var(--text-muted);
         border-top: 1px solid rgba(51, 153, 255, 0.1);
         margin-top: auto;
         width: 100%;
-        font-size: 0.9rem; /* Diperkecil */
+        font-size: 0.9rem;
       }
 
       .social-links {
         display: flex;
         justify-content: center;
-        gap: 12px; /* Diperkecil */
-        margin: 1rem 0; /* Diperkecil */
+        gap: 12px;
+        margin: 1rem 0;
       }
 
       .social-links a {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 36px; /* Diperkecil */
-        height: 36px; /* Diperkecil */
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         background: rgba(51, 153, 255, 0.1);
         color: var(--text-light);
         transition: var(--transition);
-        font-size: 0.95rem; /* Diperkecil */
+        font-size: 0.95rem;
       }
 
       .social-links a:hover {
@@ -861,21 +820,20 @@
         transform: translateY(-3px);
       }
 
-      /* Notifikasi */
       .notification {
         position: fixed;
-        bottom: 15px; /* Diperkecil */
-        right: 15px; /* Diperkecil */
-        padding: 12px 20px; /* Diperkecil */
-        border-radius: var(--border-radius); /* Lebih kotak */
+        bottom: 15px;
+        right: 15px;
+        padding: 12px 20px;
+        border-radius: var(--border-radius);
         color: white;
         font-weight: 600;
         z-index: 3000;
         opacity: 0;
         transform: translateY(20px);
         transition: all 0.4s ease;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
-        font-size: 0.9rem; /* Diperkecil */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-size: 0.9rem;
       }
 
       .notification.success {
@@ -896,29 +854,28 @@
         transform: translateY(0);
       }
 
-      /* Responsif */
       @media (max-width: 768px) {
         .nav-links {
           display: none;
           position: fixed;
           top: var(--nav-height);
-          left: -100%; /* Awalnya tersembunyi di kiri */
-          width: 70%; /* Lebar menu mobile */
+          left: -100%;
+          width: 70%;
           height: calc(100vh - var(--nav-height));
           background: rgba(13, 27, 42, 0.98);
           flex-direction: column;
-          padding: 0.8rem; /* Diperkecil */
-          gap: 8px; /* Diperkecil */
+          padding: 0.8rem;
+          gap: 8px;
           border-bottom: 2px solid rgba(51, 153, 255, 0.3);
           align-items: flex-start;
-          transition: left 0.3s ease; /* Animasi slide */
+          transition: left 0.3s ease;
           z-index: 999;
           overflow-y: auto;
         }
 
         .nav-links.active {
           display: flex;
-          left: 0; /* Muncul dari kiri */
+          left: 0;
         }
 
         .search-container {
@@ -937,18 +894,18 @@
         .nav-link {
           width: 100%;
           justify-content: flex-start;
-          padding-left: 20px; /* Diperkecil */
-          font-size: 0.9rem; /* Diperkecil */
+          padding-left: 20px;
+          font-size: 0.9rem;
         }
       }
 
       @media (max-width: 480px) {
         .logo {
-          font-size: 1.8rem; /* Diperkecil */
+          font-size: 1.8rem;
         }
 
         h1 {
-          font-size: 1.5rem; /* Diperkecil */
+          font-size: 1.5rem;
         }
 
         .products-grid {
@@ -964,15 +921,14 @@
         }
 
         .brand-text {
-          font-size: 1.1rem; /* Diperkecil */
+          font-size: 1.1rem;
         }
 
         .nav-links {
-          width: 80%; /* Lebih lebar di layar kecil */
+          width: 80%;
         }
       }
 
-      /* Animasi */
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -983,7 +939,7 @@
           transform: translateY(0);
         }
       }
-      /* Sembunyikan menu hamburger di desktop */
+
       @media (min-width: 769px) {
         #navLinks {
           display: none !important;
@@ -991,18 +947,15 @@
         .menu-toggle {
           display: none !important;
         }
-        /* Pastikan dropdown service tetap terlihat di desktop */
         .service-dropdown {
           display: inline-block !important;
         }
       }
 
-      /* Di mobile: sembunyikan dropdown service */
       @media (max-width: 768px) {
         .service-dropdown {
           display: none;
         }
-        /* Tampilkan menu hamburger di mobile */
         .menu-toggle {
           display: block;
         }
@@ -1025,30 +978,6 @@
         animation-delay: 0.4s;
       }
 
-      /* Loading spinner */
-      /* Tambahkan transisi animasi muncul-hilang */
-      .loading-overlay {
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.4s ease, visibility 0.4s ease;
-      }
-
-      .loading-overlay.show {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .loading {
-        display: inline-block;
-        width: 18px; /* Diperkecil */
-        height: 18px; /* Diperkecil */
-        border: 2px solid rgba(255, 255, 255, 0.3); /* Diperkecil */
-        border-radius: 50%;
-        border-top-color: #fff;
-        animation: spin 1s ease-in-out infinite;
-        margin-right: 6px; /* Diperkecil */
-      }
-      /* Loading state */
       .loading-overlay {
         position: fixed;
         top: 0;
@@ -1061,12 +990,20 @@
         align-items: center;
         z-index: 4000;
         flex-direction: column;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+      }
+
+      .loading-overlay.show {
+        opacity: 1;
+        visibility: visible;
       }
 
       .loading-spinner {
-        width: 50px; /* Diperkecil */
-        height: 50px; /* Diperkecil */
-        border: 4px solid rgba(255, 255, 255, 0.3); /* Diperkecil */
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
         border-radius: 50%;
         border-top-color: var(--accent);
         animation: spin 1s ease-in-out infinite;
@@ -1074,26 +1011,26 @@
 
       .loading-text {
         color: var(--text-light);
-        margin-top: 15px; /* Diperkecil */
-        font-size: 1rem; /* Diperkecil */
+        margin-top: 15px;
+        font-size: 1rem;
       }
-      /* MODAL DETAIL SCROLLABLE AREAS */
+
       .modal-description-container {
-        max-height: 100px; /* Diperkecil */
+        max-height: 100px;
         overflow-y: auto;
-        padding-right: 6px; /* Diperkecil */
-        margin-bottom: 1.2rem; /* Diperkecil */
+        padding-right: 6px;
+        margin-bottom: 1.2rem;
       }
 
       .modal-packages-container {
-        max-height: 200px; /* Diperkecil */
+        max-height: 200px;
         overflow-y: auto;
-        padding-right: 6px; /* Diperkecil */
+        padding-right: 6px;
       }
 
       .modal-description-container::-webkit-scrollbar,
       .modal-packages-container::-webkit-scrollbar {
-        width: 5px; /* Diperkecil */
+        width: 5px;
       }
 
       .modal-description-container::-webkit-scrollbar-track,
@@ -1115,47 +1052,9 @@
           transform: rotate(360deg);
         }
       }
-      .product-content {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 1rem;
-}
-
-.product-top {
-  flex-shrink: 0;
-}
-
-.product-spacer {
-  flex-grow: 1;
-}
-
-.product-description-container {
-  flex-shrink: 0;
-  margin-bottom: 0.6rem;
-}
-
-.product-description {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  min-height: 50px;
-  max-height: 80px;
-  overflow-y: auto;
-}
-
-.product-footer {
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
     </style>
   </head>
   <body>
-    <!-- Navbar Modern -->
     <nav class="navbar">
       <div class="navbar-container">
         <a href="#" class="logo-brand">
@@ -1163,32 +1062,25 @@
           <span class="brand-text">SNAYDERSTORE</span>
         </a>
 
-        <!-- Kontainer utama untuk menu pencarian dan kanan -->
         <div class="nav-main-container">
-          <!-- Menu pencarian di tengah -->
           <div class="search-container">
             <input type="text" placeholder="Cari produk..." id="searchInput" />
             <button class="search-btn"><i class="fas fa-search"></i></button>
           </div>
 
-          <!-- Menu kanan -->
           <div class="nav-right">
-            <!-- Menu Beranda di kanan -->
             <a href="index.html" class="nav-link"> <i class="fas fa-home"></i></a>
 
-            <!-- Menu SERVICE dengan dropdown - TETAP ADA DI DESKTOP -->
             <div class="service-dropdown">
               <button class="service-btn"><i class="fas fa-concierge-bell"></i> SERVICE <i class="fas fa-caret-down"></i></button>
               <div class="dropdown-content">
                 <a href="dowloads.html"><i class="fas fa-download"></i> Download Config</a>
                 <a href="visitors.html"><i class="fas fa-chart-line"></i> Statistik Pengunjung</a>
                 <a href="testimoni.html"><i class="fas fa-comment-alt"></i> Testimoni</a>
-                <!-- Diubah ke testimoni.html -->
                 <button class="btn-admin-nav admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
               </div>
             </div>
 
-            <!-- Menu Hamburger - HANYA TERLIHAT DI MOBILE -->
             <div class="menu-toggle" id="menuToggle">
               <i class="fas fa-bars"></i>
               <i class="fas fa-times"></i>
@@ -1197,24 +1089,20 @@
         </div>
       </div>
     </nav>
-    <!-- Menu Hamburger Slide - HANYA UNTUK MOBILE -->
+
     <div class="nav-links" id="navLinks">
       <a href="dowloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
       <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
       <a href="testimoni.html" class="nav-link btn-testimoni-nav"> <i class="fas fa-comment-alt"></i> Testimoni </a>
-      <!-- Diubah ke testimoni.html -->
       <button class="nav-link btn-admin-nav admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
     </div>
 
-    <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
       <div class="loading-spinner"></div>
       <p class="loading-text">Memuat data...</p>
     </div>
 
-    <!-- Wrapper untuk konten utama -->
     <div id="content-wrapper">
-      <!-- Produk Section -->
       <section class="products-section" id="produk">
         <div class="products-grid" id="productsGrid">
           <!-- Produk akan dimuat melalui JavaScript -->
@@ -1222,29 +1110,23 @@
       </section>
     </div>
 
-    <!-- Modal Detail Produk -->
     <div class="modal-overlay" id="detailModal">
       <div class="modal-content">
         <button class="modal-close" id="closeDetailModal">&times;</button>
         <h3 class="modal-title" id="detailProductTitle"></h3>
 
-        <!-- Container untuk deskripsi dengan scroll -->
         <div class="modal-description-container">
           <p class="modal-subtitle" id="detailProductDescription"></p>
         </div>
 
-        <!-- Container untuk paket dengan scroll -->
         <div class="modal-packages-container">
-          <div class="package-list" id="packageList">
-            <!-- Paket produk akan ditampilkan di sini -->
-          </div>
+          <div class="package-list" id="packageList"></div>
         </div>
 
         <button class="btn-submit" id="orderFromDetailBtn"><i class="fas fa-shopping-cart"></i> ORDER SEKARANG</button>
       </div>
     </div>
 
-    <!-- Modal Order -->
     <div class="modal-overlay" id="orderModal">
       <div class="modal-content">
         <button class="modal-close" id="closeOrderModal">&times;</button>
@@ -1283,7 +1165,6 @@
       </div>
     </div>
 
-    <!-- Admin Login Modal -->
     <div class="admin-modal" id="adminLoginModal">
       <div class="admin-modal-content">
         <button class="modal-close" id="closeAdminModal">&times;</button>
@@ -1305,27 +1186,19 @@
       </div>
     </div>
 
-    <!-- Notifikasi -->
     <div class="notification" id="notification"></div>
 
-    <!-- Footer -->
     <footer>
       <div class="social-links">
-        <!-- Facebook -->
         <a href="https://www.facebook.com/snayderstore.2025" title="Facebook" target="_blank">
           <i class="fab fa-facebook-f"></i>
         </a>
-
-        <!-- WhatsApp -->
         <a href="https://wa.me/6287866361260" title="WhatsApp" target="_blank">
           <i class="fab fa-whatsapp"></i>
         </a>
-        <!-- Telegram -->
         <a href="https://t.me/snayderstore" title="Telegram" target="_blank">
           <i class="fab fa-telegram"></i>
         </a>
-
-        <!-- Email Baru -->
         <a href="mailto:snaydersonly@gmail.com" title="Email" target="_blank">
           <i class="fas fa-envelope"></i>
         </a>
@@ -1351,8 +1224,6 @@
       const adminLoginModal = document.getElementById("adminLoginModal");
       const closeAdminModal = document.getElementById("closeAdminModal");
       const adminLoginForm = document.getElementById("adminLoginForm");
-      const adminUsernameInput = document.getElementById("adminUsername");
-      const adminPasswordInput = document.getElementById("adminPassword");
       const productsGrid = document.getElementById("productsGrid");
       const notification = document.getElementById("notification");
       const submitOrderBtn = document.getElementById("submitOrderBtn");
@@ -1427,7 +1298,6 @@
 
           const data = await response.json();
           if (data.success) {
-            // Set localStorage dengan tanggal hari ini
             localStorage.setItem("visitDate", today);
           } else {
             throw new Error("Response tidak sukses");
@@ -1449,31 +1319,29 @@
           // Tambahkan badge jika ada
           const badge = product.badge ? `<span class="product-badge">${product.badge}</span>` : "";
 
-card.innerHTML = `
-  ${badge}
-  <img src="${product.image}" alt="${product.name}" class="product-image">
-  <div class="product-content">
-    <div class="product-top">
-      <h3 class="product-title">${product.name}</h3>
-    </div>
-    <div class="product-spacer"></div>
-    <div class="product-description-container">
-      <p class="product-description">${product.description}</p>
-    </div>
-    <div class="product-footer">
-      <p class="product-price">Mulai ${formatPrice(product.price)}</p>
-      <div class="product-actions">
-        <button class="action-btn btn-order" data-product="${product.id}">
-          <i class="fas fa-shopping-cart"></i> Order
-        </button>
-        <button class="action-btn btn-details" data-product="${product.id}">
-          <i class="fas fa-info-circle"></i> Detail
-        </button>
-      </div>
-    </div>
-  </div>
-`;
-
+          card.innerHTML = `
+            ${badge}
+            <img src="${product.image}" alt="${product.name}" class="product-image">
+            <div class="product-content">
+              <div class="product-top">
+                <h3 class="product-title">${product.name}</h3>
+              </div>
+              <div class="product-middle">
+                <p class="product-description">${product.description}</p>
+              </div>
+              <div class="product-footer">
+                <p class="product-price">Mulai ${formatPrice(product.price)}</p>
+                <div class="product-actions">
+                  <button class="action-btn btn-order" data-product="${product.id}">
+                    <i class="fas fa-shopping-cart"></i> Order
+                  </button>
+                  <button class="action-btn btn-details" data-product="${product.id}">
+                    <i class="fas fa-info-circle"></i> Detail
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
 
           productsGrid.appendChild(card);
         });
@@ -1509,10 +1377,10 @@ card.innerHTML = `
               const packageItem = document.createElement("div");
               packageItem.className = "package-item";
               packageItem.innerHTML = `
-                            <div class="package-name">${pkg.name}</div>
-                            <div class="package-price">${formatPrice(pkg.price)}</div>
-                            <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">${pkg.description || ""}</div>
-                        `;
+                <div class="package-name">${pkg.name}</div>
+                <div class="package-price">${formatPrice(pkg.price)}</div>
+                <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">${pkg.description || ""}</div>
+              `;
               packageList.appendChild(packageItem);
             });
           } else {
@@ -1647,7 +1515,7 @@ card.innerHTML = `
         }
 
         // Tampilkan loading
-        submitOrderBtn.innerHTML = '<span class="loading"></span> Mengirim pesan...';
+        submitOrderBtn.innerHTML = '<span class="loading-spinner" style="display:inline-block;width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite"></span> Mengirim pesan...';
         submitOrderBtn.disabled = true;
 
         // Format pesan WhatsApp
@@ -1688,8 +1556,8 @@ card.innerHTML = `
       adminLoginForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const username = adminUsernameInput.value;
-        const password = adminPasswordInput.value;
+        const username = document.getElementById("adminUsername").value;
+        const password = document.getElementById("adminPassword").value;
 
         // Kirim permintaan login ke server
         fetch("/api/login", {
@@ -1727,24 +1595,6 @@ card.innerHTML = `
           });
       });
 
-      // Animasi scroll halus untuk link
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-
-          const targetId = this.getAttribute("href");
-          if (targetId === "#") return;
-
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            window.scrollTo({
-              top: targetElement.offsetTop - 80,
-              behavior: "smooth",
-            });
-          }
-        });
-      });
-
       // Toggle menu hamburger
       menuToggle.addEventListener("click", () => {
         navLinks.classList.toggle("active");
@@ -1768,7 +1618,10 @@ card.innerHTML = `
           return;
         }
 
-        const filteredProducts = products.filter((product) => product.name.toLowerCase().includes(searchTerm) || product.description.toLowerCase().includes(searchTerm));
+        const filteredProducts = products.filter((product) => 
+          product.name.toLowerCase().includes(searchTerm) || 
+          product.description.toLowerCase().includes(searchTerm)
+        );
 
         renderProducts(filteredProducts);
       });
@@ -1791,11 +1644,6 @@ card.innerHTML = `
           showNotification("Gagal memuat data, coba lagi nanti", "error");
           loadingOverlay.classList.remove("show");
         }
-
-        // Tambahan animasi header
-        setTimeout(() => {
-          document.querySelector("header").classList.add("fade-in");
-        }, 100);
       });
     </script>
   </body>
