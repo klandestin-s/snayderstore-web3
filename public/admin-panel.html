@@ -583,11 +583,6 @@
                   <label for="testimonialImage">Link Gambar</label>
                   <input type="text" id="testimonialImage" required />
                 </div>
-
-                <div class="form-group">
-                  <label for="testimonialComment">Komentar</label>
-                  <textarea id="testimonialComment" required></textarea>
-                </div>
               </div>
 
               <div class="action-buttons">
@@ -842,7 +837,6 @@
                         <th>Nama</th>
                         <th>Rating</th>
                         <th>Produk</th>
-                        <th>Komentar</th>
                         <th>Tanggal</th>
                         <th>Aksi</th>
                     </tr>
@@ -851,8 +845,6 @@
             `;
 
         testimonials.forEach((testimonial) => {
-          const truncatedComment = testimonial.comment.length > 50 ? testimonial.comment.substring(0, 50) + "..." : testimonial.comment;
-
           const stars = "★".repeat(testimonial.rating) + "☆".repeat(5 - testimonial.rating);
 
           html += `
@@ -860,7 +852,6 @@
                     <td>${testimonial.name}</td>
                     <td><span class="star-rating">${stars}</span></td>
                     <td>${testimonial.product}</td>
-                    <td>${truncatedComment}</td>
                     <td>${testimonial.date}</td>
                     <td>
                         <div class="action-buttons">
@@ -938,7 +929,6 @@
         document.getElementById("testimonialProduct").value = testimonial.product;
         document.getElementById("testimonialRating").value = testimonial.rating;
         document.getElementById("testimonialImage").value = testimonial.image;
-        document.getElementById("testimonialComment").value = testimonial.comment;
         testimonialIdInput.value = testimonial.id;
 
         // Ubah tombol submit
@@ -1096,7 +1086,6 @@
           product: document.getElementById("testimonialProduct").value,
           image: document.getElementById("testimonialImage").value,
           rating: parseInt(document.getElementById("testimonialRating").value),
-          comment: document.getElementById("testimonialComment").value,
           date: isEditMode ? testimonials.find((t) => t.id === testimonialIdInput.value).date : new Date().toISOString().split("T")[0],
           verified: true, // selalu verified karena diinput admin
         };
