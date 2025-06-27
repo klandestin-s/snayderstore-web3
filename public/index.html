@@ -515,38 +515,41 @@
         display: flex;
         flex-direction: column;
         gap: 0.6rem;
-        padding-top: 0.6rem;
+        padding-top: 0.5rem;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .product-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+      .product-body {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+
+      .product-description {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        min-height: 50px;
+        max-height: 80px;
+        overflow-y: auto;
+      }
+      .product-title {
+        flex-shrink: 0; /* Sudah ada, bagus */
+      }
+
+      .product-description {
+        flex-shrink: 0; /* Tambahkan ini */
       }
 
       .product-price {
         font-size: 1rem;
         color: var(--accent2);
         font-weight: 700;
-        text-align: left;
-      }
-
-      .product-title {
-        font-size: 1.1rem; /* Diperkecil */
-        margin-bottom: 0.6rem; /* Diperkecil */
-        color: var(--accent);
-      }
-
-      .product-description {
-        color: var(--text-muted);
-        font-size: 0.85rem;
         margin-bottom: 0.8rem;
-        min-height: 50px;
-        max-height: 80px;
-        overflow-y: auto;
-        flex-grow: 1;
-      }
-
-      .product-price {
-        font-size: 1rem; /* Diperkecil */
-        color: var(--accent2);
-        margin-bottom: 0.8rem; /* Diperkecil */
-        font-weight: 700;
       }
 
       .product-actions {
