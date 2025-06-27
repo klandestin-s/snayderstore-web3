@@ -414,11 +414,6 @@
         color: var(--accent);
       }
 
-      .testimonial-date {
-        font-size: 0.9rem;
-        color: var(--text-muted);
-      }
-
       .testimonial-product {
         font-size: 1rem;
         color: var(--accent2);
@@ -439,6 +434,19 @@
         font-size: 1.2rem;
         margin-bottom: 1rem;
         text-align: left;
+      }
+
+      /* PERUBAHAN: Footer baru untuk tanggal */
+      .testimonial-footer {
+        display: flex;
+        justify-content: flex-end; /* Agar tanggal di kanan */
+        margin-top: 10px;
+      }
+      
+      .testimonial-date {
+        font-size: 0.8rem; /* Ukuran lebih kecil */
+        color: var(--text-muted);
+        margin-left: auto; /* Pindahkan ke kanan */
       }
 
       .testimonial-badge {
@@ -836,13 +844,16 @@
                     <div class="testimonial-content">
                         <div class="testimonial-header">
                             <div class="testimonial-name">${testimonial.name}</div>
-                            <div class="testimonial-date">${testimonial.date}</div>
                         </div>
                         <div class="testimonial-product">
                             <i class="fas fa-shopping-bag"></i> ${testimonial.product}
                         </div>
                         <div class="testimonial-rating">
                             ${starsHtml}
+                        </div>
+                        <!-- Footer baru untuk tanggal -->
+                        <div class="testimonial-footer">
+                            <div class="testimonial-date">${testimonial.date}</div>
                         </div>
                     </div>
                 `;
