@@ -513,14 +513,29 @@
 
 .product-description {
   flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 0.8rem;
 }
 
-.product-bottom {
+.product-footer {
   margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 }
+
+.product-price {
+  font-size: 1rem;
+  color: var(--accent2);
+  font-weight: 700;
+  text-align: left;
+}
+
+      .product-actions {
+        display: flex;
+        gap: 0.6rem; /* Diperkecil */
+        margin-top: auto;
+      }
 
 
       .product-title {
@@ -546,11 +561,10 @@
         font-weight: 700;
       }
 
-      .product-actions {
-        display: flex;
-        gap: 0.6rem; /* Diperkecil */
-        margin-top: auto;
-      }
+     .product-actions {
+  display: flex;
+  gap: 0.6rem;
+}
 
       .action-btn {
         flex: 1;
@@ -1381,24 +1395,25 @@
           const badge = product.badge ? `<span class="product-badge">${product.badge}</span>` : "";
 
           card.innerHTML = `
-                    ${badge}
-                    <img src="${product.image}" alt="${product.name}" class="product-image">
-                    <div class="product-content">
-                        <h3 class="product-title">${product.name}</h3>
-                        <p class="product-description">${product.description}</p>
-                        <div class="product-bottom">
-                        <p class="product-price">Mulai ${formatPrice(product.price)}</p>
-                        <div class="product-actions">
-                            <button class="action-btn btn-order" data-product="${product.id}">
-                                <i class="fas fa-shopping-cart"></i> Order
-                            </button>
-                            <button class="action-btn btn-details" data-product="${product.id}">
-                                <i class="fas fa-info-circle"></i> Detail
-                            </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
+  ${badge}
+  <img src="${product.image}" alt="${product.name}" class="product-image">
+  <div class="product-content">
+    <h3 class="product-title">${product.name}</h3>
+    <p class="product-description">${product.description}</p>
+    <div class="product-footer">
+      <p class="product-price">Mulai ${formatPrice(product.price)}</p>
+      <div class="product-actions">
+        <button class="action-btn btn-order" data-product="${product.id}">
+          <i class="fas fa-shopping-cart"></i> Order
+        </button>
+        <button class="action-btn btn-details" data-product="${product.id}">
+          <i class="fas fa-info-circle"></i> Detail
+        </button>
+      </div>
+    </div>
+  </div>
+`;
+
           productsGrid.appendChild(card);
         });
 
