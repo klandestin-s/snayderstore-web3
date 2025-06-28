@@ -140,13 +140,13 @@
       }
 
       .btn-testimoni-nav {
-        background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        background: rgba(51, 153, 255, 0.1); /* Warna standar seperti menu lain */
       }
 
       .btn-admin-nav {
-        background: linear-gradient(45deg, #00cc99, #00b383);
+        /* background: linear-gradient(45deg, #00cc99, #00b383); DIHAPUS */
+        background: rgba(51, 153, 255, 0.1); /* Warna standar seperti menu lain */
       }
-
       .search-container {
         display: flex;
         align-items: center;
@@ -261,14 +261,15 @@
       }
 
       .dropdown-content .btn-admin-nav {
-        background: linear-gradient(45deg, #00cc99, #00b383);
+        /* background: linear-gradient(45deg, #00cc99, #00b383); DIHAPUS */
+        background: none; /* Gunakan warna default */
         border-radius: 0;
       }
 
       .dropdown-content .btn-admin-nav:hover {
-        background: linear-gradient(45deg, #00b383, #009973);
+        /* background: linear-gradient(45deg, #00b383, #009973); DIHAPUS */
+        background: rgba(51, 153, 255, 0.15); /* Warna hover standar */
       }
-
       .menu-toggle {
         display: none;
         font-size: 1.3rem;
@@ -942,7 +943,7 @@
           gap: 8px;
           border-bottom: 2px solid rgba(51, 153, 255, 0.3);
           align-items: flex-start;
-          transition: left 0.3s ease;
+          transition: left 0.39s ease;
           z-index: 999;
           overflow-y: auto;
         }
@@ -1011,7 +1012,7 @@
         }
 
         .nav-links {
-          width: 80%;
+          width: 70%;
         }
       }
 
