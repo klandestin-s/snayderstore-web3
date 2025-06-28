@@ -107,8 +107,7 @@
         display: flex;
         align-items: center;
         flex-grow: 1;
-        max-width: 600px;
-        justify-content: center;
+        justify-content: flex-end;
       }
 
       /* Search Container */
@@ -178,11 +177,11 @@
       }
 
       .btn-testimoni-nav {
-        background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        background: rgba(51, 153, 255, 0.1); /* Warna standar seperti menu lain */
       }
 
       .btn-admin-nav {
-        background: linear-gradient(45deg, #00cc99, #00b383);
+        background: rgba(51, 153, 255, 0.1); /* Warna standar seperti menu lain */
       }
 
       /* Menu Kanan */
@@ -720,12 +719,13 @@
 
       /* Animasi slide untuk menu mobile */
       @media (max-width: 768px) {
+        /* Di dalam media query max-width: 768px */
         .nav-links {
           display: none;
           position: fixed;
           top: var(--nav-height);
-          left: -100%; /* Awalnya tersembunyi di kiri */
-          width: 70%; /* Lebar menu mobile */
+          left: -100%;
+          width: 70%; /* Diubah dari 70% menjadi 80% */
           height: calc(100vh - var(--nav-height));
           background: rgba(13, 27, 42, 0.98);
           flex-direction: column;
@@ -733,7 +733,7 @@
           gap: 8px;
           border-bottom: 2px solid rgba(51, 153, 255, 0.3);
           align-items: flex-start;
-          transition: left 0.3s ease; /* Animasi slide */
+          transition: left 0.39s ease;
           z-index: 999;
           overflow-y: auto;
         }
@@ -751,7 +751,7 @@
       }
       @media (max-width: 768px) {
         .nav-links {
-          width: 80%; /* biar seperti di index.html */
+          width: 70%; /* biar seperti di index.html */
         }
 
         .nav-link {
@@ -917,7 +917,7 @@
         animation: spin 1s ease-in-out infinite;
         margin-right: 6px;
       }
-      
+
       /* PERUBAHAN: Tombol clear di input pencarian */
       .search-container .clear-btn {
         position: absolute;
@@ -939,6 +939,7 @@
     </div>
 
     <!-- Navbar Modern -->
+    <!-- NAVBAR BARU (copy dari dowloads.html) -->
     <nav class="navbar">
       <div class="navbar-container">
         <a href="index.html" class="logo-brand">
@@ -946,33 +947,23 @@
           <span class="brand-text">SNAYDERSTORE</span>
         </a>
 
-        <!-- Kontainer utama untuk menu pencarian dan kanan -->
         <div class="nav-main-container">
-          <!-- Menu pencarian di tengah -->
-          <div class="search-container">
-            <input type="text" placeholder="Cari produk..." id="searchInput" />
-            <button class="search-btn"><i class="fas fa-search"></i></button>
-          </div>
-
-          <!-- Menu kanan -->
           <div class="nav-right">
-            <!-- Menu Beranda di kanan (hanya desktop) -->
-            <a href="index.html" class="nav-link" id="desktopHomeLink">
-              <i class="fas fa-home"></i>
-            </a>
+            <!-- Tombol Home -->
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i>Home</a>
 
-            <!-- Menu SERVICE dengan dropdown (hanya desktop) -->
-            <div class="service-dropdown" id="desktopServiceDropdown">
+            <!-- Dropdown SERVICE -->
+            <div class="service-dropdown">
               <button class="service-btn"><i class="fas fa-concierge-bell"></i> SERVICE <i class="fas fa-caret-down"></i></button>
               <div class="dropdown-content">
                 <a href="dowloads.html"><i class="fas fa-download"></i> Download Config</a>
                 <a href="visitors.html"><i class="fas fa-chart-line"></i> Statistik Pengunjung</a>
                 <a href="testimoni.html"><i class="fas fa-comment-alt"></i> Testimoni</a>
-                <button class="btn-admin-nav admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
+                <button class="admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
               </div>
             </div>
 
-            <!-- Menu Hamburger (hanya mobile) -->
+            <!-- Tombol Hamburger -->
             <div class="menu-toggle" id="menuToggle">
               <i class="fas fa-bars"></i>
               <i class="fas fa-times"></i>
@@ -982,13 +973,13 @@
       </div>
     </nav>
 
-    <!-- Menu Hamburger Slide (hanya mobile) -->
+    <!-- MENU MOBILE -->
     <div class="nav-links" id="navLinks">
-      <a href="index.html" class="nav-link"> <i class="fas fa-home"></i> Beranda </a>
-      <a href="dowloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
-      <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
-      <a href="testimoni.html" class="nav-link btn-testimoni-nav"> <i class="fas fa-comment-alt"></i> Testimoni </a>
-      <button class="nav-link btn-admin-nav admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
+      <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Beranda</a>
+      <a href="dowloads.html" class="nav-link"><i class="fas fa-download"></i> Download Config</a>
+      <a href="visitors.html" class="nav-link"><i class="fas fa-chart-line"></i> Statistik Pengunjung</a>
+      <a href="testimoni.html" class="nav-link"><i class="fas fa-comment-alt"></i> Testimoni</a>
+      <button class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
     </div>
 
     <!-- Header -->
@@ -1145,7 +1136,7 @@
         verifiedTestimonials.forEach((testimonial, index) => {
           const testimonialCard = document.createElement("div");
           testimonialCard.className = `testimonial-card fade-in ${index > 0 ? "delay-" + index : ""}`;
-          testimonialCard.setAttribute('data-product', testimonial.product.toLowerCase());
+          testimonialCard.setAttribute("data-product", testimonial.product.toLowerCase());
 
           // Buat elemen rating bintang
           let starsHtml = "";
@@ -1331,33 +1322,33 @@
           showNotification("Gagal mencatat kunjungan", "error");
         }
       }
-      
+
       // ========= FUNGSI PENCARIAN PRODUK =========
       // Fungsi untuk memfilter testimoni berdasarkan produk
       function filterTestimonials(searchTerm) {
-        const cards = document.querySelectorAll('.testimonial-card');
+        const cards = document.querySelectorAll(".testimonial-card");
         let hasVisibleCard = false;
-        
-        cards.forEach(card => {
-          const productName = card.getAttribute('data-product');
-          
+
+        cards.forEach((card) => {
+          const productName = card.getAttribute("data-product");
+
           if (productName.includes(searchTerm.toLowerCase())) {
-            card.style.display = '';
+            card.style.display = "";
             hasVisibleCard = true;
           } else {
-            card.style.display = 'none';
+            card.style.display = "none";
           }
         });
-        
+
         // Tampilkan pesan jika tidak ada hasil
-        const noResultsMessage = document.getElementById('noResultsMessage');
+        const noResultsMessage = document.getElementById("noResultsMessage");
         if (!hasVisibleCard && searchTerm) {
           if (!noResultsMessage) {
-            const messageDiv = document.createElement('div');
-            messageDiv.id = 'noResultsMessage';
-            messageDiv.style.gridColumn = '1 / -1';
-            messageDiv.style.textAlign = 'center';
-            messageDiv.style.padding = '2rem';
+            const messageDiv = document.createElement("div");
+            messageDiv.id = "noResultsMessage";
+            messageDiv.style.gridColumn = "1 / -1";
+            messageDiv.style.textAlign = "center";
+            messageDiv.style.padding = "2rem";
             messageDiv.innerHTML = `
               <i class="fas fa-search" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
               <p>Tidak ditemukan testimoni untuk produk <strong>"${searchTerm}"</strong></p>
@@ -1368,29 +1359,29 @@
           noResultsMessage.remove();
         }
       }
-      
+
       // Setup fungsi pencarian
       function setupSearch() {
-        const searchInput = document.getElementById('searchInput');
+        const searchInput = document.getElementById("searchInput");
         const searchContainer = searchInput.parentElement;
-        
+
         // Buat tombol clear
-        const clearBtn = document.createElement('button');
-        clearBtn.className = 'clear-btn';
+        const clearBtn = document.createElement("button");
+        clearBtn.className = "clear-btn";
         clearBtn.innerHTML = '<i class="fas fa-times"></i>';
-        clearBtn.addEventListener('click', () => {
-          searchInput.value = '';
-          filterTestimonials('');
-          clearBtn.style.display = 'none';
+        clearBtn.addEventListener("click", () => {
+          searchInput.value = "";
+          filterTestimonials("");
+          clearBtn.style.display = "none";
           searchInput.focus();
         });
         searchContainer.appendChild(clearBtn);
-        
+
         // Event saat input berubah
-        searchInput.addEventListener('input', function() {
+        searchInput.addEventListener("input", function () {
           const searchTerm = this.value.trim();
           filterTestimonials(searchTerm);
-          clearBtn.style.display = searchTerm ? '' : 'none';
+          clearBtn.style.display = searchTerm ? "" : "none";
         });
       }
 
@@ -1404,7 +1395,7 @@
 
         // Ambil data testimoni
         await fetchTestimonials();
-        
+
         // Setup fungsi pencarian
         setupSearch();
       });
