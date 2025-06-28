@@ -21,7 +21,250 @@
       --danger: #ff4d6d;
       --transition: all 0.3s ease;
       --warning: #ffcc00;
-      --nav-height: 70px;
+      --nav-height: 60px;
+      --border-radius: 6px;
+    }
+
+    /* NAVBAR - Konsisten dengan index.html */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      background: rgba(13, 27, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid rgba(51, 153, 255, 0.3);
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .navbar-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-light);
+      flex-shrink: 0;
+    }
+
+    .logo-brand i {
+      font-size: 1.6rem;
+      color: var(--accent);
+      text-shadow: 0 0 8px rgba(51, 153, 255, 0.7);
+    }
+
+    .brand-text {
+      font-size: 1.3rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-main-container {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      justify-content: flex-end;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      color: var(--text-light);
+      font-weight: 500;
+      transition: var(--transition);
+      background: rgba(51, 153, 255, 0.1);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      background: rgba(51, 153, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .service-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .service-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      background: rgba(51, 153, 255, 0.1);
+      color: var(--text-light);
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+
+    .service-btn:hover {
+      background: rgba(51, 153, 255, 0.25);
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--card-bg);
+      min-width: 220px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      border: 1px solid rgba(51, 153, 255, 0.3);
+    }
+
+    .service-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a,
+    .dropdown-content button {
+      display: block;
+      padding: 0.8rem 1rem;
+      text-decoration: none;
+      color: var(--text-light);
+      transition: var(--transition);
+      border-bottom: 1px solid rgba(51, 153, 255, 0.1);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.3rem;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      z-index: 1001;
+      position: relative;
+      width: 25px;
+      height: 25px;
+    }
+
+    .menu-toggle .fa-bars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu-toggle .fa-times {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu-toggle.active .fa-bars {
+      opacity: 0;
+    }
+
+    .menu-toggle.active .fa-times {
+      opacity: 1;
+    }
+
+    /* Menu mobile - Konsisten dengan index.html */
+    .nav-links {
+      display: none;
+      position: fixed;
+      top: var(--nav-height);
+      left: -100%;
+      width: 70%;
+      height: calc(100vh - var(--nav-height));
+      background: rgba(13, 27, 42, 0.98);
+      flex-direction: column;
+      padding: 0.8rem;
+      gap: 8px;
+      border-bottom: 2px solid rgba(51, 153, 255, 0.3);
+      align-items: flex-start;
+      transition: left 0.39s ease;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .nav-links.active {
+      display: flex;
+      left: 0;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .service-dropdown {
+        display: none;
+      }
+    }
+.nav-link {
+  font-size: 0.9rem;
+  padding-left: 20px;
+  width: 100%;
+  justify-content: flex-start;
+}
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  .product-actions {
+    flex-direction: column;
+  }
+}
+
+    @media (min-width: 769px) {
+      .nav-links {
+        display: none !important;
+      }
+      .menu-toggle {
+        display: none !important;
+      }
+      .service-dropdown {
+        display: inline-block !important;
+      }
     }
 
     /* Reset dasar */
@@ -49,165 +292,6 @@
     #content-wrapper {
       flex: 1;
       width: 100%;
-    }
-
-    /* NAVBAR MODERN */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: var(--nav-height);
-      background: rgba(13, 27, 42, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 2px solid rgba(51, 153, 255, 0.3);
-      display: flex;
-      align-items: center;
-      padding: 0 2rem;
-      z-index: 1000;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .navbar-container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text-light);
-    }
-
-    .logo-brand i {
-      font-size: 1.8rem;
-      color: var(--accent);
-      text-shadow: 0 0 10px rgba(51, 153, 255, 0.7);
-    }
-
-    .brand-text {
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 0.5px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 0.6rem 1.2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      color: var(--text-light);
-      font-weight: 500;
-      transition: var(--transition);
-      background: rgba(51, 153, 255, 0.1);
-    }
-
-    .nav-link:hover {
-      background: rgba(51, 153, 255, 0.25);
-      transform: translateY(-2px);
-    }
-
-    .nav-link i {
-      font-size: 1.1rem;
-    }
-
-    .btn-testimoni-nav {
-      background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-    }
-
-    .btn-admin-nav {
-      background: linear-gradient(45deg, #00cc99, #00b383);
-    }
-
-    /* Responsif navbar */
-    .menu-toggle {
-      display: none;
-      font-size: 1.5rem;
-      color: var(--text-light);
-      cursor: pointer;
-      z-index: 1001;
-      width: 30px;
-      height: 30px;
-      position: relative;
-    }
-
-    .menu-toggle .fa-bars {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      transition: var(--transition);
-    }
-
-    .menu-toggle .fa-times {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-      transition: var(--transition);
-    }
-
-    .menu-toggle.active .fa-bars {
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-    }
-
-    .menu-toggle.active .fa-times {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-    }
-
-    @media (max-width: 768px) {
-      .category-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: var(--nav-height);
-        left: 0;
-        right: 0;
-        background: rgba(13, 27, 42, 0.98);
-        flex-direction: column;
-        padding: 1rem;
-        gap: 10px;
-        border-bottom: 2px solid rgba(51, 153, 255, 0.3);
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-link {
-        width: 100%;
-        justify-content: flex-start;
-        text-align: left;
-        padding-left: 1.5rem;
-      }
     }
 
     /* Header */
@@ -633,28 +717,63 @@
   </style>
 </head>
 <body>
-  <!-- Navbar Modern -->
+  <!-- Navbar Baru - Konsisten dengan index.html -->
   <nav class="navbar">
     <div class="navbar-container">
       <a href="index.html" class="logo-brand">
         <i class="fas fa-store"></i>
-        <span class="brand-text">SNAYDER'S STORE</span>
+        <span class="brand-text">SNAYDERSTORE</span>
       </a>
 
-      <div class="nav-links">
-        <a href="index.html" class="nav-link"> <i class="fas fa-home"></i> Beranda </a>
-        <a href="dowloads.html" class="nav-link"> <i class="fas fa-download"></i> Download </a>
-        <a href="index.html#testimoni" class="nav-link btn-testimoni-nav"> <i class="fas fa-comment-alt"></i> Testimoni </a>
-        <button class="nav-link btn-admin-nav" id="adminLoginBtnNav"><i class="fas fa-lock"></i> Admin Login</button>
-      </div>
-
-      <div class="menu-toggle" id="menuToggle">
-        <i class="fas fa-bars"></i>
-        <i class="fas fa-times"></i>
+      <div class="nav-main-container">
+        <div class="nav-right">
+          <!-- Tombol Home -->
+          <a href="index.html" class="nav-link">
+            <i class="fas fa-home"></i>Home
+          </a>
+          
+          <!-- Service Dropdown -->
+          <div class="service-dropdown">
+            <button class="service-btn">
+              <i class="fas fa-concierge-bell"></i> SERVICE <i class="fas fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="dowloads.html"><i class="fas fa-download"></i> Download Config</a>
+              <a href="visitors.html"><i class="fas fa-chart-line"></i> Statistik Pengunjung</a>
+              <a href="testimoni.html"><i class="fas fa-comment-alt"></i> Testimoni</a>
+              <button class="admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
+            </div>
+          </div>
+          
+          <!-- Hamburger Menu -->
+          <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times"></i>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
-  
+
+  <!-- Menu Mobile - Konsisten dengan index.html -->
+  <div class="nav-links" id="navLinks">
+    <a href="index.html" class="nav-link"> 
+      <i class="fas fa-home"></i> Beranda
+    </a>
+    <a href="dowloads.html" class="nav-link"> 
+      <i class="fas fa-download"></i> Download Config 
+    </a>
+    <a href="visitors.html" class="nav-link"> 
+      <i class="fas fa-chart-line"></i> Statistik Pengunjung 
+    </a>
+    <a href="testimoni.html" class="nav-link"> 
+      <i class="fas fa-comment-alt"></i> Testimoni 
+    </a>
+    <button class="nav-link admin-login-btn">
+      <i class="fas fa-lock"></i> Admin Login
+    </button>
+  </div>
+
   <!-- Admin Login Modal -->
   <div class="admin-modal" id="adminLoginModal">
     <div class="admin-modal-content">
@@ -1153,11 +1272,9 @@
       const adminUsernameInput = document.getElementById("adminUsername");
       const adminPasswordInput = document.getElementById("adminPassword");
       const notification = document.getElementById("notification");
-      const adminLoginBtn = document.getElementById("adminLoginBtnNav");
+      const adminLoginBtns = document.querySelectorAll(".admin-login-btn");
       const menuToggle = document.getElementById("menuToggle");
-      const navLinks = document.querySelector(".nav-links");
-      const barsIcon = menuToggle.querySelector('.fa-bars');
-      const timesIcon = menuToggle.querySelector('.fa-times');
+      const navLinks = document.getElementById("navLinks");
 
       // Tampilkan notifikasi
       function showNotification(message, type) {
@@ -1169,19 +1286,17 @@
         }, 3000);
       }
 
-      // Event listener untuk tombol admin login di navbar
-      if (adminLoginBtn) {
-        adminLoginBtn.addEventListener("click", () => {
+      // Event listener untuk tombol admin login
+      adminLoginBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
           adminLoginModal.classList.add("active");
         });
-      }
+      });
 
       // Tutup modal admin
-      if (closeAdminModal) {
-        closeAdminModal.addEventListener("click", () => {
-          adminLoginModal.classList.remove("active");
-        });
-      }
+      closeAdminModal.addEventListener("click", () => {
+        adminLoginModal.classList.remove("active");
+      });
 
       // Tutup modal jika klik di luar
       adminLoginModal.addEventListener("click", function (e) {
@@ -1190,18 +1305,17 @@
         }
       });
 
-      // Toggle menu mobile dan animasi ikon
+      // Toggle menu mobile - Konsisten dengan index.html
       menuToggle.addEventListener('click', function() {
-        // Toggle class active pada navLinks
         navLinks.classList.toggle('active');
-        
-        // Toggle class active pada menuToggle untuk animasi ikon
-        this.classList.toggle('active');
+        menuToggle.classList.toggle('active');
       });
 
       // Tutup menu ketika klik di luar area menu
       document.addEventListener("click", function (e) {
-        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains('active')) {
+        if (!navLinks.contains(e.target) && 
+            !menuToggle.contains(e.target) && 
+            navLinks.classList.contains('active')) {
           navLinks.classList.remove("active");
           menuToggle.classList.remove("active");
         }
@@ -1249,53 +1363,52 @@
           }
         });
       });
+      
+      // Fungsi untuk mendapatkan tanggal hari ini dalam format YYYY-MM-DD (WIB)
+      function getTodayWIB() {
+        const now = new Date();
+        // WIB adalah UTC+7
+        const wibOffset = 7 * 60 * 60 * 1000; // Offset dalam milidetik
+        const wibTime = new Date(now.getTime() + wibOffset);
+        return wibTime.toISOString().split('T')[0];
+      }
+
+      // Fungsi untuk mencatat kunjungan dengan localStorage
+      async function recordVisitWithLocalStorage() {
+        const today = getTodayWIB();
+        const lastVisitDate = localStorage.getItem('visitDate');
+
+        // Jika sudah mengunjungi hari ini, tidak perlu catat lagi
+        if (lastVisitDate === today) {
+          return;
+        }
+
+        try {
+          const response = await fetch('/api/save-visit', {
+            method: 'POST'
+          });
+
+          if (!response.ok) {
+            throw new Error('Gagal mencatat kunjungan');
+          }
+
+          const data = await response.json();
+          if (data.success) {
+            // Set localStorage dengan tanggal hari ini
+            localStorage.setItem('visitDate', today);
+          } else {
+            throw new Error('Response tidak sukses');
+          }
+        } catch (error) {
+          console.error('Error recording visit:', error);
+          // Tampilkan notifikasi jika diperlukan
+          showNotification("Gagal mencatat kunjungan", "error");
+        }
+      }
+
+      // Panggil fungsi untuk mencatat kunjungan
+      recordVisitWithLocalStorage();
     });
-  // Fungsi untuk mendapatkan tanggal hari ini dalam format YYYY-MM-DD (WIB)
-  function getTodayWIB() {
-    const now = new Date();
-    // WIB adalah UTC+7
-    const wibOffset = 7 * 60 * 60 * 1000; // Offset dalam milidetik
-    const wibTime = new Date(now.getTime() + wibOffset);
-    return wibTime.toISOString().split('T')[0];
-  }
-
-  // Fungsi untuk mencatat kunjungan dengan localStorage
-  async function recordVisitWithLocalStorage() {
-     const today = getTodayWIB();
-    const lastVisitDate = localStorage.getItem('visitDate');
-
-    // Jika sudah mengunjungi hari ini, tidak perlu catat lagi
-    if (lastVisitDate === today) {
-       return;
-    }
-
-    try {
-      const response = await fetch('/api/save-visit', {
-        method     : 'POST'
-      });
-
-      if (!response.ok) {
-        throw new Error('Gagal mencatat kunjungan');
-      }
-
-      const data = await response.json();
-      if (data.success) {
-        // Set localStorage dengan tanggal hari ini
-        localStorage.setItem('visitDate', today);
-      } else {
-        throw new Error('Response tidak sukses');
-      }
-    } catch (error) {
-      console.error('Error recording visit:', error);
-      // Tampilkan notifikasi jika diperlukan
-      showNotification("Gagal mencatat kunjungan", "error");
-    }
-  }
-
-  // Panggil fungsi untuk mencatat kunjungan
-  document.addEventListener("DOMContentLoaded", function() {
-    recordVisitWithLocalStorage();
-  });
-</script>
+  </script>
 </body>
 </html>
