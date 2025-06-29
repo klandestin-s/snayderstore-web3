@@ -525,6 +525,26 @@
         display: flex;
         gap: 0.6rem;
       }
+/* SCROLLBAR UNTUK DESKRIPSI PRODUK DI KARTU */
+.product-description::-webkit-scrollbar {
+  width: 5px;
+}
+
+.product-description::-webkit-scrollbar-track {
+  background: rgba(51, 153, 255, 0.1);
+  border-radius: 3px;
+}
+
+.product-description::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border-radius: 3px;
+}
+
+/* SCROLLBAR UNTUK FIREFOX */
+.product-description {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) rgba(51, 153, 255, 0.1);
+}
 
       .action-btn {
         flex: 1;
