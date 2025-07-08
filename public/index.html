@@ -6,6 +6,7 @@
     <title>SNAYDER'S STORE - Toko Digital Terpercaya</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="icon" href="https://raw.githubusercontent.com/klandestin-s/Cloud_v2/main/tmp/b281edce.png" />
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc"></script>
     <style>
       :root {
         --bg-dark: #121212;
@@ -1716,6 +1717,28 @@
           document.querySelector("header").classList.add("fade-in");
         }, 100);
       });
+      grecaptcha.ready(function () {
+    grecaptcha.execute('6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc', { action: 'submit' })
+      .then(function (token) {
+        // Kirim token ke server
+        fetch('/api/verify-recaptcha', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ token })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success && data.score > 0.5) {
+            console.log('Human verified:', data);
+            // lanjutkan proses form atau logika lainnya
+          } else {
+            console.log('reCAPTCHA failed or suspicious:', data);
+          }
+        });
+      });
+  });
     </script>
   </body>
 </html>
