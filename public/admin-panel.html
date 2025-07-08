@@ -505,6 +505,7 @@
 
         <div class="tabs">
           <button class="tab-btn active" data-tab="products">Produk</button>
+          <button class="tab-btn" data-tab="trending">Produk Trending</button>
           <button class="tab-btn" data-tab="testimonials">Testimonial</button>
         </div>
 
@@ -531,6 +532,21 @@
                 </div>
 
                 <div class="form-group">
+                  <label for="productRating">Rating (1-5)</label>
+                  <input type="number" id="productRating" min="0" max="5" step="0.1" value="0" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="productSold">Jumlah Terjual</label>
+                  <input type="number" id="productSold" min="0" value="0" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="productViews">Jumlah Dilihat</label>
+                  <input type="number" id="productViews" min="0" value="0" required />
+                </div>
+
+                <div class="form-group">
                   <label for="productDescription">Deskripsi Produk</label>
                   <textarea id="productDescription" required></textarea>
                 </div>
@@ -553,6 +569,17 @@
             <h3><i class="fas fa-list"></i> Daftar Produk Tersedia</h3>
             <div id="productsList">
               <p style="text-align: center; padding: 20px; color: var(--text-muted)"><span class="loading"></span> Memuat daftar produk...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Produk Trending Tab -->
+        <div id="trendingTab" class="tab-content">
+          <div class="admin-section">
+            <h3><i class="fas fa-fire"></i> Produk Trending</h3>
+            <p>Produk dengan rating di atas 4.5</p>
+            <div id="trendingProductsList">
+              <p style="text-align: center; padding: 20px; color: var(--text-muted)"><span class="loading"></span> Memuat produk trending...</p>
             </div>
           </div>
         </div>
@@ -621,6 +648,21 @@
       </div>
     </div>
 
+    <!-- Modal Konfirmasi Hapus Produk Trending -->
+    <div class="modal" id="deleteTrendingModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title"><i class="fas fa-exclamation-triangle"></i> Konfirmasi Hapus</h3>
+          <button class="close-modal">&times;</button>
+        </div>
+        <p>Apakah Anda yakin ingin menghapus produk trending "<span id="deleteTrendingName"></span>"? Tindakan ini tidak dapat dibatalkan.</p>
+        <div class="modal-buttons">
+          <button class="btn-submit btn-cancel" id="cancelTrendingDelete"><i class="fas fa-times"></i> Batal</button>
+          <button class="btn-submit btn-delete" id="confirmTrendingDelete"><i class="fas fa-trash"></i> Hapus</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Modal Konfirmasi Hapus Testimonial -->
     <div class="modal" id="deleteTestimonialModal">
       <div class="modal-content">
@@ -649,6 +691,7 @@
       const tabBtns = document.querySelectorAll(".tab-btn");
       const tabContents = document.querySelectorAll(".tab-content");
       const productsList = document.getElementById("productsList");
+      const trendingProductsList = document.getElementById("trendingProductsList");
       const testimonialsList = document.getElementById("testimonialsList");
       const productIdInput = document.getElementById("productId");
       const testimonialIdInput = document.getElementById("testimonialId");
@@ -664,11 +707,16 @@
       const deleteTestimonialName = document.getElementById("deleteTestimonialName");
       const cancelTestimonialDeleteBtn = document.getElementById("cancelTestimonialDelete");
       const confirmTestimonialDeleteBtn = document.getElementById("confirmTestimonialDelete");
+      const deleteTrendingModal = document.getElementById("deleteTrendingModal");
+      const deleteTrendingName = document.getElementById("deleteTrendingName");
+      const cancelTrendingDeleteBtn = document.getElementById("cancelTrendingDelete");
+      const confirmTrendingDeleteBtn = document.getElementById("confirmTrendingDelete");
 
       // Variabel global
       let products = [];
       let testimonials = [];
       let productToDelete = null;
+      let trendingToDelete = null;
       let testimonialToDelete = null;
 
       // Fungsi untuk menampilkan pesan status
@@ -697,6 +745,11 @@
         // Aktifkan tab yang dipilih
         document.getElementById(`${tabId}Tab`).classList.add("active");
         document.querySelector(`.tab-btn[data-tab="${tabId}"]`).classList.add("active");
+
+        // Jika tab trending diaktifkan, muat produk trending
+        if (tabId === "trending") {
+          loadTrendingProducts();
+        }
       }
 
       // Fungsi untuk menampilkan modal konfirmasi hapus
@@ -710,6 +763,19 @@
       function hideDeleteModal() {
         deleteModal.classList.remove("active");
         productToDelete = null;
+      }
+
+      // Fungsi untuk menampilkan modal konfirmasi hapus produk trending
+      function showDeleteTrendingModal(product) {
+        trendingToDelete = product;
+        deleteTrendingName.textContent = product.name;
+        deleteTrendingModal.classList.add("active");
+      }
+
+      // Fungsi untuk menyembunyikan modal trending
+      function hideDeleteTrendingModal() {
+        deleteTrendingModal.classList.remove("active");
+        trendingToDelete = null;
       }
 
       // Fungsi untuk menampilkan modal konfirmasi hapus testimonial
@@ -754,7 +820,9 @@
                         <th>Gambar</th>
                         <th>Nama Produk</th>
                         <th>Harga</th>
-                        <th>Deskripsi</th>
+                        <th>Rating</th>
+                        <th>Terjual</th>
+                        <th>Dilihat</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -762,7 +830,7 @@
             `;
 
         products.forEach((product) => {
-          const truncatedDesc = product.description.length > 50 ? product.description.substring(0, 50) + "..." : product.description;
+          const stars = "★".repeat(Math.round(product.rating || 0)) + "☆".repeat(5 - Math.round(product.rating || 0));
 
           html += `
                 <tr>
@@ -773,7 +841,9 @@
                     </td>
                     <td>${product.name}</td>
                     <td>Rp${product.price.toLocaleString("id-ID")}</td>
-                    <td>${truncatedDesc}</td>
+                    <td><span class="star-rating">${stars}</span> (${product.rating || 0})</td>
+                    <td>${product.sold || 0}</td>
+                    <td>${product.views || 0}</td>
                     <td>
                         <div class="action-buttons">
                             <button class="action-btn edit-btn" data-id="${product.id}">
@@ -808,25 +878,27 @@
         });
       }
 
-      // Fungsi untuk memuat daftar testimonial
-      async function loadTestimonials() {
+      // Fungsi untuk memuat dan menampilkan produk trending
+      async function loadTrendingProducts() {
         try {
-          testimonialsList.innerHTML = '<p style="text-align: center; padding: 20px; color: var(--text-muted);"><span class="loading"></span> Memuat testimonial...</p>';
+          trendingProductsList.innerHTML = '<p style="text-align: center; padding: 20px; color: var(--text-muted);"><span class="loading"></span> Memuat produk trending...</p>';
 
-          const response = await fetch(TESTIMONIALS_API);
+          const response = await fetch(PRODUCTS_API);
           if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-          testimonials = await response.json();
-          renderTestimonials(testimonials);
+          const allProducts = await response.json();
+          const trendingProducts = allProducts.filter((product) => product.rating > 4.5);
+
+          renderTrendingProducts(trendingProducts);
         } catch (error) {
-          testimonialsList.innerHTML = `<p style="text-align: center; padding: 20px; color: var(--danger);">Gagal memuat testimonial: ${error.message}</p>`;
+          trendingProductsList.innerHTML = `<p style="text-align: center; padding: 20px; color: var(--danger);">Gagal memuat produk trending: ${error.message}</p>`;
         }
       }
 
-      // Fungsi untuk menampilkan testimonial
-      function renderTestimonials(testimonials) {
-        if (!testimonials || testimonials.length === 0) {
-          testimonialsList.innerHTML = '<p style="text-align: center; padding: 20px; color: var(--text-muted);">Belum ada testimonial tersedia</p>';
+      // Fungsi untuk menampilkan produk trending
+      function renderTrendingProducts(trendingProducts) {
+        if (!trendingProducts || trendingProducts.length === 0) {
+          trendingProductsList.innerHTML = '<p style="text-align: center; padding: 20px; color: var(--text-muted);">Belum ada produk trending</p>';
           return;
         }
 
@@ -834,31 +906,39 @@
             <table class="products-table">
                 <thead>
                     <tr>
-                        <th>Nama</th>
+                        <th>Gambar</th>
+                        <th>Nama Produk</th>
+                        <th>Harga</th>
                         <th>Rating</th>
-                        <th>Produk</th>
-                        <th>Tanggal</th>
+                        <th>Terjual</th>
+                        <th>Dilihat</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
             `;
 
-        testimonials.forEach((testimonial) => {
-          const stars = "★".repeat(testimonial.rating) + "☆".repeat(5 - testimonial.rating);
+        trendingProducts.forEach((product) => {
+          const stars = "★".repeat(Math.round(product.rating)) + "☆".repeat(5 - Math.round(product.rating));
 
           html += `
                 <tr>
-                    <td>${testimonial.name}</td>
-                    <td><span class="star-rating">${stars}</span></td>
-                    <td>${testimonial.product}</td>
-                    <td>${testimonial.date}</td>
+                    <td>
+                        <div class="product-image">
+                            ${product.image ? `<img src="${product.image}" alt="${product.name}" width="60" height="60">` : `<i class="fas fa-image"></i>`}
+                        </div>
+                    </td>
+                    <td>${product.name}</td>
+                    <td>Rp${product.price.toLocaleString("id-ID")}</td>
+                    <td><span class="star-rating">${stars}</span> (${product.rating})</td>
+                    <td>${product.sold}</td>
+                    <td>${product.views}</td>
                     <td>
                         <div class="action-buttons">
-                            <button class="action-btn edit-btn" data-id="${testimonial.id}">
+                            <button class="action-btn edit-btn" data-id="${product.id}">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
-                            <button class="action-btn delete-btn" data-id="${testimonial.id}">
+                            <button class="action-btn delete-btn" data-id="${product.id}">
                                 <i class="fas fa-trash"></i> Hapus
                             </button>
                         </div>
@@ -872,17 +952,20 @@
             </table>
             `;
 
-        testimonialsList.innerHTML = html;
+        trendingProductsList.innerHTML = html;
 
         // Tambahkan event listener
         document.querySelectorAll(".edit-btn").forEach((btn) => {
-          btn.addEventListener("click", () => editTestimonial(btn.dataset.id));
+          btn.addEventListener("click", () => {
+            editProduct(btn.dataset.id);
+            switchTab("products"); // Pindah ke tab produk untuk edit
+          });
         });
 
         document.querySelectorAll(".delete-btn").forEach((btn) => {
           btn.addEventListener("click", () => {
-            const testimonial = testimonials.find((t) => t.id === btn.dataset.id);
-            if (testimonial) showDeleteTestimonialModal(testimonial);
+            const product = products.find((p) => p.id === btn.dataset.id);
+            if (product) showDeleteTrendingModal(product);
           });
         });
       }
@@ -896,6 +979,9 @@
         document.getElementById("productName").value = product.name;
         document.getElementById("productImage").value = product.image || "";
         document.getElementById("productPrice").value = product.price;
+        document.getElementById("productRating").value = product.rating || 0;
+        document.getElementById("productSold").value = product.sold || 0;
+        document.getElementById("productViews").value = product.views || 0;
         document.getElementById("productDescription").value = product.description;
         productIdInput.value = product.id;
 
@@ -997,6 +1083,32 @@
         }
       }
 
+      // Fungsi untuk menghapus produk trending
+      async function deleteTrendingProduct() {
+        if (!trendingToDelete) return;
+
+        const statusElement = document.getElementById("productStatus");
+
+        try {
+          const response = await fetch(`${PRODUCTS_API}?id=${trendingToDelete.id}`, {
+            method: "DELETE",
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+          }
+
+          // Muat ulang produk dan trending
+          await loadProducts();
+          await loadTrendingProducts();
+          showStatus(statusElement, `Produk trending "${trendingToDelete.name}" berhasil dihapus!`);
+          hideDeleteTrendingModal();
+        } catch (error) {
+          showStatus(statusElement, `Gagal menghapus produk trending: ${error.message}`, false);
+        }
+      }
+
       // Fungsi untuk menghapus testimonial
       async function deleteTestimonial() {
         if (!testimonialToDelete) return;
@@ -1032,6 +1144,9 @@
           name: document.getElementById("productName").value,
           image: document.getElementById("productImage").value,
           price: parseFloat(document.getElementById("productPrice").value),
+          rating: parseFloat(document.getElementById("productRating").value),
+          sold: parseInt(document.getElementById("productSold").value),
+          views: parseInt(document.getElementById("productViews").value),
           description: document.getElementById("productDescription").value,
           packages: [],
         };
@@ -1119,6 +1234,85 @@
         }
       }
 
+      // Fungsi untuk memuat daftar testimonial
+      async function loadTestimonials() {
+        try {
+          testimonialsList.innerHTML = '<p style="text-align: center; padding: 20px; color: var(--text-muted);"><span class="loading"></span> Memuat testimonial...</p>';
+
+          const response = await fetch(TESTIMONIALS_API);
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+          testimonials = await response.json();
+          renderTestimonials(testimonials);
+        } catch (error) {
+          testimonialsList.innerHTML = `<p style="text-align: center; padding: 20px; color: var(--danger);">Gagal memuat testimonial: ${error.message}</p>`;
+        }
+      }
+
+      // Fungsi untuk menampilkan testimonial
+      function renderTestimonials(testimonials) {
+        if (!testimonials || testimonials.length === 0) {
+          testimonialsList.innerHTML = '<p style="text-align: center; padding: 20px; color: var(--text-muted);">Belum ada testimonial tersedia</p>';
+          return;
+        }
+
+        let html = `
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Rating</th>
+                        <th>Produk</th>
+                        <th>Tanggal</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+            `;
+
+        testimonials.forEach((testimonial) => {
+          const stars = "★".repeat(testimonial.rating) + "☆".repeat(5 - testimonial.rating);
+
+          html += `
+                <tr>
+                    <td>${testimonial.name}</td>
+                    <td><span class="star-rating">${stars}</span></td>
+                    <td>${testimonial.product}</td>
+                    <td>${testimonial.date}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit-btn" data-id="${testimonial.id}">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="action-btn delete-btn" data-id="${testimonial.id}">
+                                <i class="fas fa-trash"></i> Hapus
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                `;
+        });
+
+        html += `
+                </tbody>
+            </table>
+            `;
+
+        testimonialsList.innerHTML = html;
+
+        // Tambahkan event listener
+        document.querySelectorAll(".edit-btn").forEach((btn) => {
+          btn.addEventListener("click", () => editTestimonial(btn.dataset.id));
+        });
+
+        document.querySelectorAll(".delete-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const testimonial = testimonials.find((t) => t.id === btn.dataset.id);
+            if (testimonial) showDeleteTestimonialModal(testimonial);
+          });
+        });
+      }
+
       // Event Listeners
       productForm.addEventListener("submit", saveProduct);
       testimonialForm.addEventListener("submit", saveTestimonial);
@@ -1139,6 +1333,13 @@
       closeModalBtn.addEventListener("click", hideDeleteModal);
       cancelDeleteBtn.addEventListener("click", hideDeleteModal);
       confirmDeleteBtn.addEventListener("click", deleteProduct);
+
+      // Event listener untuk modal produk trending
+      document.querySelectorAll("#deleteTrendingModal .close-modal").forEach((btn) => {
+        btn.addEventListener("click", hideDeleteTrendingModal);
+      });
+      cancelTrendingDeleteBtn.addEventListener("click", hideDeleteTrendingModal);
+      confirmTrendingDeleteBtn.addEventListener("click", deleteTrendingProduct);
 
       // Event listener untuk modal testimonial
       document.querySelectorAll("#deleteTestimonialModal .close-modal").forEach((btn) => {
