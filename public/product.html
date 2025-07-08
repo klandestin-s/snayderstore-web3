@@ -1129,13 +1129,14 @@
 
           <div class="nav-right">
             <a href="index.html" class="nav-link"> <i class="fas fa-home"></i></a>
-
             <div class="service-dropdown">
               <button class="service-btn"><i class="fas fa-concierge-bell"></i> SERVICE <i class="fas fa-caret-down"></i></button>
               <div class="dropdown-content">
-                <a href="dowloads.html"><i class="fas fa-download"></i> Download Config</a>
+                <a href="downloads.html"><i class="fas fa-download"></i> Download Config</a>
+                <a href="product.html"><i class="fas fa-box-open"></i> Produk Kami</a>
                 <a href="visitors.html"><i class="fas fa-chart-line"></i> Statistik Pengunjung</a>
-                <a href="testimoni.html"><i class="fas fa-comment-alt"></i> Testimoni</a>
+                <a href="testimoni.html"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
+                <a href="index.html#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
                 <button class="btn-admin-nav admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
                 <button class="nav-link theme-toggle-btn desktop-only"><i class="fas fa-moon"></i> Tema</button>
               </div>
@@ -1151,11 +1152,13 @@
     </nav>
 
     <div class="nav-links" id="navLinks">
-      <a href="dowloads.html" class="nav-link"><i class="fas fa-download"></i> Download Config</a>
-      <a href="visitors.html" class="nav-link"><i class="fas fa-chart-line"></i> Statistik Pengunjung</a>
-      <a href="testimoni.html" class="nav-link btn-testimoni-nav"><i class="fas fa-comment-alt"></i> Testimoni</a>
+      <a href="index.html" class="nav-link active"> <i class="fas fa-home"></i> Beranda </a>
+      <a href="downloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
+      <a href="product.html" class="nav-link"> <i class="fas fa-box-open"></i> Produk Kami </a>
+      <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
+      <a href="testimoni.html"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
+      <a href="index.html#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
       <button class="nav-link btn-admin-nav admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
-
       <button class="nav-link theme-toggle-btn mobile-only"><i class="fas fa-moon"></i> Tema</button>
     </div>
 
@@ -1718,27 +1721,26 @@
         }, 100);
       });
       grecaptcha.ready(function () {
-    grecaptcha.execute('6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc', { action: 'submit' })
-      .then(function (token) {
-        // Kirim token ke server
-        fetch('/api/verify-recaptcha', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ token })
-        })
-        .then(res => res.json())
-        .then(data => {
-          if (data.success && data.score > 0.5) {
-            console.log('Human verified:', data);
-            // lanjutkan proses form atau logika lainnya
-          } else {
-            console.log('reCAPTCHA failed or suspicious:', data);
-          }
+        grecaptcha.execute("6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc", { action: "submit" }).then(function (token) {
+          // Kirim token ke server
+          fetch("/api/verify-recaptcha", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ token }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success && data.score > 0.5) {
+                console.log("Human verified:", data);
+                // lanjutkan proses form atau logika lainnya
+              } else {
+                console.log("reCAPTCHA failed or suspicious:", data);
+              }
+            });
         });
       });
-  });
     </script>
   </body>
 </html>
