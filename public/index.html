@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SNAYDER'S STORE - Toko Config Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-     <link rel="icon" href="https://raw.githubusercontent.com/klandestin-s/Cloud_v2/main/tmp/b281edce.png" />
+    <link rel="icon" href="https://raw.githubusercontent.com/klandestin-s/Cloud_v2/main/tmp/b281edce.png" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc"></script>
     <style>
@@ -618,8 +618,8 @@
 
       .community-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr); /* 4 kolom pada desktop */
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 1.5rem;
         margin-top: 1.5rem;
       }
 
@@ -863,6 +863,18 @@
       }
       .delay-4 {
         animation-delay: 0.8s;
+      }
+      .hero {
+        padding-bottom: 3rem;
+      }
+
+      .features-section {
+        margin-top: 1.5rem;
+      }
+      @media (max-width: 768px) {
+        .features-section {
+          margin-top: 2rem;
+        }
       }
 
       @media (max-width: 768px) {
@@ -1127,7 +1139,7 @@
       <a href="downloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
       <a href="product.html" class="nav-link"> <i class="fas fa-box-open"></i> Produk Kami </a>
       <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
-      <a href="testimoni.html"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
+      <a href="testimoni.html" class="nav-link"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
       <a href="#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
       <button class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
     </div>
