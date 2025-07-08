@@ -145,12 +145,11 @@
       }
 
       .btn-testimoni-nav {
-        background: rgba(51, 153, 255, 0.1); /* Warna standar seperti menu lain */
+        background: rgba(51, 153, 255, 0.1);
       }
 
       .btn-admin-nav {
-        /* background: linear-gradient(45deg, #00cc99, #00b383); DIHAPUS */
-        background: rgba(51, 153, 255, 0.1); /* Warna standar seperti menu lain */
+        background: rgba(51, 153, 255, 0.1);
       }
       .search-container {
         display: flex;
@@ -266,14 +265,12 @@
       }
 
       .dropdown-content .btn-admin-nav {
-        /* background: linear-gradient(45deg, #00cc99, #00b383); DIHAPUS */
-        background: none; /* Gunakan warna default */
+        background: none;
         border-radius: 0;
       }
 
       .dropdown-content .btn-admin-nav:hover {
-        /* background: linear-gradient(45deg, #00b383, #009973); DIHAPUS */
-        background: rgba(51, 153, 255, 0.15); /* Warna hover standar */
+        background: rgba(51, 153, 255, 0.15);
       }
       .menu-toggle {
         display: none;
@@ -1111,6 +1108,109 @@
           padding-left: 20px;
         }
       }
+
+      /* TAMBAHAN UNTUK PRODUK TRENDING */
+      .trending-badge {
+        background: var(--warning);
+        color: #000;
+      }
+
+      .product-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.8rem;
+        background: rgba(51, 153, 255, 0.1);
+        border-radius: var(--border-radius);
+        padding: 0.6rem;
+      }
+
+      .product-stat {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      .no-trending {
+        grid-column: 1/-1;
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-muted);
+      }
+
+      .no-trending i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--text-muted);
+      }
+
+      .product-image {
+        cursor: zoom-in;
+        transition: transform 0.3s ease;
+      }
+
+      .product-image:hover {
+        transform: scale(1.02);
+      }
+
+      /* MODAL ZOOM GAMBAR */
+      .image-zoom-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .image-zoom-modal.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .zoomed-image-container {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+      .zoomed-image {
+        max-width: 100%;
+        max-height: 80vh;
+        border-radius: 6px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+      }
+
+      .zoom-close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .zoom-close-btn:hover {
+        background: var(--accent);
+        transform: rotate(90deg);
+      }
     </style>
   </head>
   <body>
@@ -1156,7 +1256,7 @@
       <a href="downloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
       <a href="product.html" class="nav-link"> <i class="fas fa-box-open"></i> Produk Kami </a>
       <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
-     <a href="testimoni.html" class="nav-link"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
+      <a href="testimoni.html"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
       <a href="index.html#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
       <button class="nav-link btn-admin-nav admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
       <button class="nav-link theme-toggle-btn mobile-only"><i class="fas fa-moon"></i> Tema</button>
@@ -1169,9 +1269,15 @@
 
     <div id="content-wrapper">
       <section class="products-section" id="produk">
+        <h2 class="section-title">Produk Kami</h2>
         <div class="products-grid" id="productsGrid">
           <!-- Produk akan dimuat melalui JavaScript -->
         </div>
+      </section>
+
+      <section class="products-section" id="trending">
+        <h2 class="section-title">Produk Trending</h2>
+        <div class="products-grid" id="trendingGrid"></div>
       </section>
     </div>
 
@@ -1251,6 +1357,13 @@
       </div>
     </div>
 
+    <div class="image-zoom-modal" id="imageZoomModal">
+      <div class="zoomed-image-container">
+        <button class="zoom-close-btn" id="closeImageZoomModal">&times;</button>
+        <img src="" alt="Zoomed Image" class="zoomed-image" id="zoomedImage" />
+      </div>
+    </div>
+
     <div class="notification" id="notification"></div>
 
     <footer>
@@ -1291,12 +1404,16 @@
       const adminUsernameInput = document.getElementById("adminUsername");
       const adminPasswordInput = document.getElementById("adminPassword");
       const productsGrid = document.getElementById("productsGrid");
+      const trendingGrid = document.getElementById("trendingGrid");
       const notification = document.getElementById("notification");
       const submitOrderBtn = document.getElementById("submitOrderBtn");
       const loadingOverlay = document.getElementById("loadingOverlay");
       const menuToggle = document.getElementById("menuToggle");
       const navLinks = document.getElementById("navLinks");
       const searchInput = document.getElementById("searchInput");
+      const imageZoomModal = document.getElementById("imageZoomModal");
+      const closeImageZoomModal = document.getElementById("closeImageZoomModal");
+      const zoomedImage = document.getElementById("zoomedImage");
 
       let products = [];
       let selectedProduct = null;
@@ -1377,31 +1494,36 @@
           const badge = product.badge ? `<span class="product-badge">${product.badge}</span>` : "";
 
           card.innerHTML = `
-  ${badge}
-  <img src="${product.image}" alt="${product.name}" class="product-image">
-  <div class="product-content">
-    <div class="product-top">
-      <h3 class="product-title">${product.name}</h3>
-    </div>
-    <div class="product-spacer"></div>
-    <div class="product-description-container">
-      <p class="product-description">${product.description}</p>
-    </div>
-    <div class="product-footer">
-      <p class="product-price">Mulai ${formatPrice(product.price)}</p>
-      <div class="product-actions">
-        <button class="action-btn btn-order" data-product="${product.id}">
-          <i class="fas fa-shopping-cart"></i> Order
-        </button>
-        <button class="action-btn btn-details" data-product="${product.id}">
-          <i class="fas fa-info-circle"></i> Detail
-        </button>
-      </div>
-    </div>
-  </div>
-`;
+                    ${badge}
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-content">
+                        <div class="product-top">
+                            <h3 class="product-title">${product.name}</h3>
+                        </div>
+                        <div class="product-spacer"></div>
+                        <div class="product-description-container">
+                            <p class="product-description">${product.description}</p>
+                        </div>
+                        <div class="product-footer">
+                            <p class="product-price">Mulai ${formatPrice(product.price)}</p>
+                            <div class="product-actions">
+                                <button class="action-btn btn-order" data-product="${product.id}">
+                                    <i class="fas fa-shopping-cart"></i> Order
+                                </button>
+                                <button class="action-btn btn-details" data-product="${product.id}">
+                                    <i class="fas fa-info-circle"></i> Detail
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
 
           productsGrid.appendChild(card);
+
+          // Tambahkan event listener untuk gambar produk biasa
+          card.querySelector(".product-image").addEventListener("click", function () {
+            openImageZoomModal(product.image);
+          });
         });
 
         document.querySelectorAll(".btn-details").forEach((button) => {
@@ -1419,6 +1541,93 @@
         });
       }
 
+      function renderTrendingProducts(products) {
+        trendingGrid.innerHTML = "";
+
+        // Filter produk dengan rating > 4.5
+        const trendingProducts = products.filter((p) => p.rating > 4.5);
+
+        if (trendingProducts.length === 0) {
+          trendingGrid.innerHTML = `
+                    <div class="no-trending">
+                        <i class="fas fa-star"></i>
+                        <h3>Tidak ada produk trending saat ini</h3>
+                        <p>Cek kembali nanti ya!</p>
+                    </div>
+                `;
+          return;
+        }
+
+        trendingProducts.forEach((product, index) => {
+          const card = document.createElement("div");
+          card.className = `product-card fade-in ${index > 0 ? "delay-" + index : ""}`;
+
+          card.innerHTML = `
+                    <span class="product-badge trending-badge">TRENDING</span>
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-content">
+                        <div class="product-top">
+                            <h3 class="product-title">${product.name}</h3>
+                        </div>
+                        <div class="product-spacer"></div>
+                        <div class="product-description-container">
+                            <p class="product-description">${product.description}</p>
+                        </div>
+                        <div class="product-stats">
+                            <div class="product-stat">
+                                <i class="fas fa-star"></i> ${product.rating.toFixed(1)}
+                            </div>
+                            <div class="product-stat">
+                                <i class="fas fa-shopping-cart"></i> ${product.sold}
+                            </div>
+                            <div class="product-stat">
+                                <i class="fas fa-eye"></i> ${product.views}
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <p class="product-price">Mulai ${formatPrice(product.price)}</p>
+                            <div class="product-actions">
+                                <button class="action-btn btn-order" data-product="${product.id}">
+                                    <i class="fas fa-shopping-cart"></i> Order
+                                </button>
+                                <button class="action-btn btn-details" data-product="${product.id}">
+                                    <i class="fas fa-info-circle"></i> Detail
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+          trendingGrid.appendChild(card);
+
+          // Tambahkan event listener untuk gambar produk trending
+          card.querySelector(".product-image").addEventListener("click", function () {
+            openImageZoomModal(product.image);
+          });
+        });
+
+        // Event listener untuk tombol order dan detail
+        trendingGrid.querySelectorAll(".btn-details").forEach((button) => {
+          button.addEventListener("click", function () {
+            const productId = this.getAttribute("data-product");
+            openDetailModal(productId);
+          });
+        });
+
+        trendingGrid.querySelectorAll(".btn-order").forEach((button) => {
+          button.addEventListener("click", function () {
+            const productId = this.getAttribute("data-product");
+            openOrderModal(productId);
+          });
+        });
+      }
+
+      function openImageZoomModal(imageUrl) {
+        zoomedImage.src = imageUrl;
+        imageZoomModal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
       function openDetailModal(productId) {
         selectedProduct = products.find((p) => p.id == productId);
 
@@ -1432,10 +1641,10 @@
               const packageItem = document.createElement("div");
               packageItem.className = "package-item";
               packageItem.innerHTML = `
-                <div class="package-name">${pkg.name}</div>
-                <div class="package-price">${formatPrice(pkg.price)}</div>
-                <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">${pkg.description || ""}</div>
-              `;
+                            <div class="package-name">${pkg.name}</div>
+                            <div class="package-price">${formatPrice(pkg.price)}</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">${pkg.description || ""}</div>
+                        `;
               packageList.appendChild(packageItem);
             });
           } else {
@@ -1505,6 +1714,8 @@
         detailModal.classList.remove("active");
         orderModal.classList.remove("active");
         adminLoginModal.classList.remove("active");
+        imageZoomModal.classList.remove("active");
+        document.body.style.overflow = "auto";
         selectedProduct = null;
         selectedPackage = null;
       }
@@ -1521,6 +1732,7 @@
       closeDetailModal.addEventListener("click", closeModal);
       closeOrderModal.addEventListener("click", closeModal);
       closeAdminModal.addEventListener("click", closeModal);
+      closeImageZoomModal.addEventListener("click", closeModal);
 
       detailModal.addEventListener("click", function (e) {
         if (e.target === detailModal) {
@@ -1536,6 +1748,12 @@
 
       adminLoginModal.addEventListener("click", function (e) {
         if (e.target === adminLoginModal) {
+          closeModal();
+        }
+      });
+
+      imageZoomModal.addEventListener("click", function (e) {
+        if (e.target === imageZoomModal) {
           closeModal();
         }
       });
@@ -1667,6 +1885,7 @@
 
         renderProducts(filteredProducts);
       });
+
       document.querySelectorAll(".theme-toggle-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           const isLight = document.documentElement.getAttribute("data-theme") === "light";
@@ -1697,48 +1916,48 @@
             icon.classList.add("fa-sun");
           });
         }
-      });
 
-      document.addEventListener("DOMContentLoaded", async () => {
         loadingOverlay.classList.add("show");
 
-        try {
-          await recordVisitWithLocalStorage();
-          products = await fetchProducts();
-          renderProducts(products);
+        (async () => {
+          try {
+            await recordVisitWithLocalStorage();
+            products = await fetchProducts();
+            renderProducts(products);
+            renderTrendingProducts(products);
+
+            setTimeout(() => {
+              loadingOverlay.classList.remove("show");
+            }, 600);
+          } catch (error) {
+            console.error("Failed to load data:", error);
+            showNotification("Gagal memuat data, coba lagi nanti", "error");
+            loadingOverlay.classList.remove("show");
+          }
 
           setTimeout(() => {
-            loadingOverlay.classList.remove("show");
-          }, 600);
-        } catch (error) {
-          console.error("Failed to load data:", error);
-          showNotification("Gagal memuat data, coba lagi nanti", "error");
-          loadingOverlay.classList.remove("show");
-        }
+            document.querySelector("header").classList.add("fade-in");
+          }, 100);
+        })();
 
-        setTimeout(() => {
-          document.querySelector("header").classList.add("fade-in");
-        }, 100);
-      });
-      grecaptcha.ready(function () {
-        grecaptcha.execute("6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc", { action: "submit" }).then(function (token) {
-          // Kirim token ke server
-          fetch("/api/verify-recaptcha", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ token }),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.success && data.score > 0.5) {
-                console.log("Human verified:", data);
-                // lanjutkan proses form atau logika lainnya
-              } else {
-                console.log("reCAPTCHA failed or suspicious:", data);
-              }
-            });
+        grecaptcha.ready(function () {
+          grecaptcha.execute("6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc", { action: "submit" }).then(function (token) {
+            fetch("/api/verify-recaptcha", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ token }),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.success && data.score > 0.5) {
+                  console.log("Human verified:", data);
+                } else {
+                  console.log("reCAPTCHA failed or suspicious:", data);
+                }
+              });
+          });
         });
       });
     </script>
