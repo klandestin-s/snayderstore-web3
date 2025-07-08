@@ -6,6 +6,7 @@
     <title>SNAYDER'S STORE - Toko Config Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc"></script>
     <style>
       :root {
         --bg-dark: #121212;
@@ -380,20 +381,14 @@
         max-width: 1200px;
         margin: 0 auto;
       }
-
       .section-title {
         text-align: center;
-        margin-bottom: 3rem;
         font-size: 2rem;
+        margin-bottom: 3rem;
         background: linear-gradient(90deg, var(--accent), var(--accent2));
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        position: relative;
-        display: inline-block;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 0 1rem;
       }
 
       .section-title::after {
@@ -566,7 +561,7 @@
       /* Tambahan CSS untuk grid chart baru */
       .visitors-section .charts-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        grid-template-columns: repeat(2, 1fr); /* ← ubah ke 2 kolom */
         gap: 2rem;
         margin-top: 2rem;
       }
@@ -576,36 +571,73 @@
           grid-template-columns: 1fr;
         }
       }
-      /* Community Section */
-      .community-section {
-        padding: 4rem 1rem;
-        background: rgba(13, 27, 42, 0.7);
-        position: relative;
-      }
 
-      .community-section .container {
+      /* ====== STYLE UNTUK SECTION KOMUNITAS ====== */
+      .community-section {
+        padding: 3rem 1rem;
         max-width: 1200px;
         margin: 0 auto;
         text-align: center;
+        position: relative;
+      }
+
+      .community-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      }
+
+      .community-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: relative;
+        display: inline-block;
+      }
+
+      .community-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        border-radius: 10px;
       }
 
       .community-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.8rem;
-        margin-top: 2rem;
+        grid-template-columns: repeat(4, 1fr); /* 4 kolom pada desktop */
+        gap: 2rem;
+        margin-top: 1.5rem;
       }
 
       .community-card {
-        background: var(--card-bg);
-        border-radius: 16px;
-        padding: 2rem;
-        text-align: center;
+        background: rgba(13, 27, 42, 0.5);
+        border-radius: 12px;
+        padding: 2rem 1.5rem;
         transition: var(--transition);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         border: 1px solid rgba(51, 153, 255, 0.2);
         position: relative;
         overflow: hidden;
+        backdrop-filter: blur(10px);
+        min-height: 320px; /* Ukuran tetap untuk semua resolusi */
+      }
+
+      .community-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        border-color: var(--accent);
       }
 
       .community-card::before {
@@ -615,49 +647,101 @@
         left: 0;
         width: 100%;
         height: 5px;
-        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        background: linear-gradient(90deg, var(--accent2), var(--accent));
       }
 
-      .community-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 10px 25px rgba(51, 153, 255, 0.25);
-      }
-
-      .community-icon {
-        font-size: 3rem;
+      .community-logo {
+        font-size: 3.5rem;
         margin-bottom: 1.5rem;
-        color: var(--accent);
+        transition: var(--transition);
       }
 
-      .community-title {
-        font-size: 1.4rem;
+      .community-card:hover .community-logo {
+        transform: scale(1.1);
+      }
+
+      .community-name {
+        font-size: 1.2rem;
+        font-weight: 600;
         margin-bottom: 1rem;
         color: var(--text-light);
       }
 
       .community-description {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         color: var(--text-muted);
         margin-bottom: 1.5rem;
-        line-height: 1.6;
       }
 
       .community-btn {
         display: inline-block;
-        padding: 0.8rem 1.5rem;
+        padding: 0.7rem 1.5rem;
         background: linear-gradient(45deg, var(--accent2), var(--accent));
         color: white;
-        border-radius: 50px;
+        border-radius: 30px;
         text-decoration: none;
         font-weight: 600;
         transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        border: none;
+        cursor: pointer;
+      }
+
+      .community-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, var(--accent), var(--accent2));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+      }
+
+      .community-btn:hover::before {
+        opacity: 1;
       }
 
       .community-btn:hover {
         transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(51, 153, 255, 0.4);
+        box-shadow: 0 5px 15px rgba(51, 153, 255, 0.3);
       }
 
+      .whatsapp-card {
+        background: rgba(37, 211, 102, 0.1);
+      }
+
+      .telegram-card {
+        background: rgba(0, 136, 204, 0.1);
+      }
+
+      .facebook-card {
+        background: rgba(59, 89, 152, 0.1);
+      }
+
+      .email-card {
+        background: rgba(221, 75, 57, 0.1);
+      }
+
+      .whatsapp-logo {
+        color: #25d366;
+      }
+
+      .telegram-logo {
+        color: #0088cc;
+      }
+
+      .facebook-logo {
+        color: #3b5998;
+      }
+
+      .email-logo {
+        color: #dd4b39;
+      }
       /* Call to Action */
       .cta-section {
         padding: 5rem 1rem;
@@ -928,6 +1012,14 @@
         opacity: 1;
         transform: translateY(0);
       }
+      .community-logo {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        transition: var(--transition);
+      }
+      .community-card:hover .community-logo {
+        transform: scale(1.1);
+      }
 
       /* Loading Overlay */
       .loading-overlay {
@@ -975,13 +1067,27 @@
           transform: rotate(360deg);
         }
       }
+      html {
+        scroll-behavior: smooth;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
     </style>
   </head>
   <body>
     <!-- Navbar -->
     <nav class="navbar">
       <div class="navbar-container">
-        <a href="dashboard.html" class="logo-brand">
+        <a href="index.html" class="logo-brand">
           <i class="fas fa-store"></i>
           <span class="brand-text">SNAYDERSTORE</span>
         </a>
@@ -989,16 +1095,17 @@
         <div class="nav-main-container">
           <div class="nav-right">
             <!-- Tombol Home -->
-            <a href="dashboard.html" class="nav-link active"> <i class="fas fa-home"></i> Beranda </a>
+            <a href="index.html" class="nav-link active"> <i class="fas fa-home"></i> Beranda </a>
 
             <!-- Service Dropdown -->
             <div class="service-dropdown">
               <button class="service-btn"><i class="fas fa-concierge-bell"></i> SERVICE <i class="fas fa-caret-down"></i></button>
               <div class="dropdown-content">
                 <a href="downloads.html"><i class="fas fa-download"></i> Download Config</a>
-                <a href="index.html"><i class="fas fa-box-open"></i> Produk Kami</a>
+                <a href="product.html"><i class="fas fa-box-open"></i> Produk Kami</a>
                 <a href="visitors.html"><i class="fas fa-chart-line"></i> Statistik Pengunjung</a>
-                <a href="community.html"><i class="fas fa-users"></i> Komunitas</a>
+                <a href="testimoni.html"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
+                <a href="#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
                 <button class="admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
               </div>
             </div>
@@ -1015,11 +1122,12 @@
 
     <!-- Menu Mobile -->
     <div class="nav-links" id="navLinks">
-      <a href="dashboard.html" class="nav-link active"> <i class="fas fa-home"></i> Beranda </a>
+      <a href="index.html" class="nav-link active"> <i class="fas fa-home"></i> Beranda </a>
       <a href="downloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
-      <a href="index.html" class="nav-link"> <i class="fas fa-box-open"></i> Produk Kami </a>
+      <a href="product.html" class="nav-link"> <i class="fas fa-box-open"></i> Produk Kami </a>
       <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
-      <a href="community.html" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
+      <a href="testimoni.html"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
+      <a href="#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
       <button class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
     </div>
 
@@ -1033,7 +1141,7 @@
 
       <div class="cta-buttons">
         <a href="downloads.html" class="btn btn-primary"> <i class="fas fa-download"></i> Download Config Gratis </a>
-        <a href="index.html" class="btn btn-secondary"> <i class="fas fa-box-open"></i> Lihat Produk Kami </a>
+        <a href="product.html" class="btn btn-secondary"> <i class="fas fa-box-open"></i> Lihat Produk Kami </a>
       </div>
     </section>
 
@@ -1057,7 +1165,7 @@
           </div>
           <h3 class="feature-title">Produk Kami</h3>
           <p class="feature-description">Temukan berbagai config premium untuk semua operator dengan server tercepat dan terstabil. Pengalaman internet tanpa batas.</p>
-          <a href="index.html" class="feature-link"> Lihat Produk <i class="fas fa-arrow-right"></i> </a>
+          <a href="product.html" class="feature-link"> Lihat Produk <i class="fas fa-arrow-right"></i> </a>
         </div>
 
         <div class="feature-card fade-in delay-2">
@@ -1066,7 +1174,7 @@
           </div>
           <h3 class="feature-title">Komunitas</h3>
           <p class="feature-description">Bergabunglah dengan komunitas pengguna config kami untuk berbagi pengalaman, tips, dan update terbaru seputar config.</p>
-          <a href="community.html" class="feature-link"> Lihat Komunitas <i class="fas fa-arrow-right"></i> </a>
+          <a href="#community" class="feature-link"> Lihat Komunitas <i class="fas fa-arrow-right"></i> </a>
         </div>
       </div>
     </section>
@@ -1127,48 +1235,50 @@
         </div>
       </div>
     </section>
-    <!-- Community Section -->
+    <!-- ======== SECTION KOMUNITAS ======== -->
     <section class="community-section">
-      <div class="container">
-        <h2 class="section-title">Bergabung dengan Komunitas Kami</h2>
-        <p class="feature-description" style="max-width: 700px; margin: 0 auto 2rem">Terhubung dengan kami melalui berbagai platform untuk update terbaru dan dukungan pelanggan</p>
+      <h2 class="community-title">Bergabung dengan Komunitas Kami</h2>
+      <p class="subtitle">Terhubung dengan kami melalui berbagai platform untuk update terbaru dan dukungan pelanggan</p>
 
-        <div class="community-grid">
-          <div class="community-card fade-in">
-            <div class="community-icon">
-              <i class="fab fa-whatsapp"></i>
-            </div>
-            <h3 class="community-title">WhatsApp Group</h3>
-            <p class="community-description">Dapatkan update produk serta dapatkan otomatis config gratis.</p>
-            <a href="https://wa.me/6287866361260" class="community-btn">Join Sekarang</a>
+      <div class="community-grid">
+        <!-- WhatsApp -->
+        <div class="community-card whatsapp-card">
+          <div class="community-logo whatsapp-logo">
+            <i class="fab fa-whatsapp"></i>
           </div>
+          <h3 class="community-name">WhatsApp Group</h3>
+          <p class="community-description">Dapatkan update produk serta dapatkan otomatis config gratis.</p>
+          <a href="https://wa.me/6287866361260" target="_blank" class="community-btn"> <i class="fab fa-whatsapp"></i> Join Sekarang </a>
+        </div>
 
-          <div class="community-card fade-in delay-1">
-            <div class="community-icon">
-              <i class="fab fa-telegram"></i>
-            </div>
-            <h3 class="community-title">Telegram Channel</h3>
-            <p class="community-description">Channel testimoni terpercaya, bukti dan kepuasan kami disini</p>
-            <a href="https://t.me/snayderstesti" class="community-btn">Cek Sekarang</a>
+        <!-- Telegram -->
+        <div class="community-card telegram-card">
+          <div class="community-logo telegram-logo">
+            <i class="fab fa-telegram"></i>
           </div>
+          <h3 class="community-name">Telegram Channel</h3>
+          <p class="community-description">Channel testimoni terpercaya, bukti dan kepuasan kami disini</p>
+          <a href="https://t.me/snayderstesti" target="_blank" class="community-btn"> <i class="fab fa-telegram"></i> Cek Sekarang </a>
+        </div>
 
-          <div class="community-card fade-in delay-2">
-            <div class="community-icon">
-              <i class="fab fa-facebook"></i>
-            </div>
-            <h3 class="community-title">Facebook Page</h3>
-            <p class="community-description">Ini adalah halaman facebook bisnis kami, ikuti segera</p>
-            <a href="https://www.facebook.com/snayderstore.2025" class="community-btn">Kunjungi yuk</a>
+        <!-- Facebook -->
+        <div class="community-card facebook-card">
+          <div class="community-logo facebook-logo">
+            <i class="fab fa-facebook"></i>
           </div>
+          <h3 class="community-name">Facebook Page</h3>
+          <p class="community-description">Ini adalah halaman facebook bisnis kami, ikuti segera</p>
+          <a href="https://www.facebook.com/snayderstore.2025" target="_blank" class="community-btn"> <i class="fab fa-facebook"></i> Kunjungi yuk</a>
+        </div>
 
-          <div class="community-card fade-in delay-3">
-            <div class="community-icon">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <h3 class="community-title">Email Support</h3>
-            <p class="community-description">Kirim pertanyaan atau masalah teknis ke tim support kami</p>
-            <a href="mailto:snaydersonly@gmail.com" class="community-btn">Kirim Email</a>
+        <!-- Email -->
+        <div class="community-card email-card">
+          <div class="community-logo email-logo">
+            <i class="fas fa-envelope"></i>
           </div>
+          <h3 class="community-name">Email Support</h3>
+          <p class="community-description">Kirim pertanyaan atau masalah teknis ke tim support kami</p>
+          <a href="mailto:snaydersonly@gmail.com" target="_blank" class="community-btn"> <i class="fas fa-envelope"></i> Kirim Email </a>
         </div>
       </div>
     </section>
@@ -1176,9 +1286,13 @@
     <!-- Call to Action -->
     <section class="cta-section">
       <div class="cta-content">
-        <h2 class="cta-title">Siap Mengoptimalkan Pengalaman Internet Anda?</h2>
-        <p class="cta-description">Dapatkan config HTTP Custom terbaru dengan server premium untuk kecepatan dan stabilitas maksimal. Tersedia untuk semua operator dengan update rutin setiap hari.</p>
-        <a href="downloads.html" class="btn btn-primary"> <i class="fas fa-download"></i> Download Sekarang </a>
+        <div class="rocket-icon" style="font-size: 4rem; color: var(--accent); animation: float 2s ease-in-out infinite">🚀</div>
+        <h2 class="cta-title">Ingin config dengan kecepatan maksimal?</h2>
+        <p class="cta-description">
+          Nikmati koneksi terbaik dengan kecepatan maksimal menggunakan config premium tercepat dari kami. Dirancang khusus untuk kamu yang butuh performa tinggi tanpa gangguan — cocok untuk kebutuhan harian, gaming, streaming, hingga
+          produktivitas tanpa delay.
+        </p>
+        <a href="product.html" class="btn btn-primary"> <i class="fas fa-shopping-cart"></i> Order Sekarang </a>
       </div>
     </section>
 
@@ -1200,7 +1314,6 @@
       </div>
       <div class="copyright">
         <p>&copy; 2025 <strong>SNAYDER'S STORE</strong> &mdash; Allright Reserved <i class="fas fa-heart" style="color: #33aaff"></i></p>
-        <p>Jl. Digital No. 123, Kota Virtual, Indonesia</p>
       </div>
     </footer>
 
@@ -1451,6 +1564,27 @@
         } finally {
           loadingOverlay.classList.remove("show");
         }
+      });
+      grecaptcha.ready(function () {
+        grecaptcha.execute("6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc", { action: "submit" }).then(function (token) {
+          // Kirim token ke server
+          fetch("/api/verify-recaptcha", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ token }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success && data.score > 0.5) {
+                console.log("Human verified:", data);
+                // lanjutkan proses form atau logika lainnya
+              } else {
+                console.log("reCAPTCHA failed or suspicious:", data);
+              }
+            });
+        });
       });
     </script>
   </body>
