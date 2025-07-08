@@ -563,7 +563,19 @@
         height: 300px;
         position: relative;
       }
+      /* Tambahan CSS untuk grid chart baru */
+      .visitors-section .charts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
 
+      @media (max-width: 768px) {
+        .visitors-section .charts-grid {
+          grid-template-columns: 1fr;
+        }
+      }
       /* Community Section */
       .community-section {
         padding: 4rem 1rem;
@@ -796,173 +808,173 @@
         }
       }
       /* Tambahan untuk modal admin login */
-    .admin-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .admin-modal.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .admin-modal-content {
-      background: var(--card-bg);
-      border-radius: var(--border-radius);
-      width: 90%;
-      max-width: 400px;
-      padding: 1.5rem;
-      position: relative;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(51, 153, 255, 0.3);
-    }
-
-    .admin-modal-title {
-      font-size: 1.3rem;
-      margin-bottom: 1.2rem;
-      text-align: center;
-      color: var(--accent);
-    }
-
-    .form-group {
-      margin-bottom: 1rem;
-      position: relative;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.4rem;
-      color: var(--text-muted);
-      font-weight: 500;
-      font-size: 0.9rem;
-    }
-
-    input {
-      width: 100%;
-      padding: 0.6rem;
-      border-radius: var(--border-radius);
-      border: 1px solid rgba(51, 153, 255, 0.3);
-      background: var(--input-bg);
-      color: var(--text-light);
-      font-size: 0.9rem;
-      transition: var(--transition);
-    }
-
-    input:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 2px rgba(51, 153, 255, 0.2);
-    }
-
-    .btn-submit {
-      width: 100%;
-      padding: 0.8rem;
-      background: linear-gradient(45deg, var(--success), #00b383);
-      color: white;
-      border: none;
-      border-radius: var(--border-radius);
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-top: 0.8rem;
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .btn-submit:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 3px 8px rgba(0, 204, 153, 0.2);
-    }
-
-    /* Notifikasi */
-    .notification {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      padding: 12px 20px;
-      border-radius: var(--border-radius);
-      color: white;
-      font-weight: 600;
-      z-index: 3000;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.4s ease;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      font-size: 0.9rem;
-    }
-
-    .notification.success {
-      background: var(--success);
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .notification.error {
-      background: var(--danger);
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Loading Overlay */
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 4000;
-      flex-direction: column;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
-    }
-
-    .loading-overlay.show {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .loading-spinner {
-      width: 50px;
-      height: 50px;
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: var(--accent);
-      animation: spin 1s ease-in-out infinite;
-    }
-
-    .loading-text {
-      color: var(--text-light);
-      margin-top: 15px;
-      font-size: 1rem;
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
+      .admin-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
       }
-      to {
-        transform: rotate(360deg);
+
+      .admin-modal.active {
+        opacity: 1;
+        pointer-events: all;
       }
-    }
+
+      .admin-modal-content {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        width: 90%;
+        max-width: 400px;
+        padding: 1.5rem;
+        position: relative;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(51, 153, 255, 0.3);
+      }
+
+      .admin-modal-title {
+        font-size: 1.3rem;
+        margin-bottom: 1.2rem;
+        text-align: center;
+        color: var(--accent);
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+        position: relative;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.4rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.6rem;
+        border-radius: var(--border-radius);
+        border: 1px solid rgba(51, 153, 255, 0.3);
+        background: var(--input-bg);
+        color: var(--text-light);
+        font-size: 0.9rem;
+        transition: var(--transition);
+      }
+
+      input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px rgba(51, 153, 255, 0.2);
+      }
+
+      .btn-submit {
+        width: 100%;
+        padding: 0.8rem;
+        background: linear-gradient(45deg, var(--success), #00b383);
+        color: white;
+        border: none;
+        border-radius: var(--border-radius);
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-top: 0.8rem;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .btn-submit:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 3px 8px rgba(0, 204, 153, 0.2);
+      }
+
+      /* Notifikasi */
+      .notification {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        padding: 12px 20px;
+        border-radius: var(--border-radius);
+        color: white;
+        font-weight: 600;
+        z-index: 3000;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        font-size: 0.9rem;
+      }
+
+      .notification.success {
+        background: var(--success);
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .notification.error {
+        background: var(--danger);
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Loading Overlay */
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 4000;
+        flex-direction: column;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+      }
+
+      .loading-overlay.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: var(--accent);
+        animation: spin 1s ease-in-out infinite;
+      }
+
+      .loading-text {
+        color: var(--text-light);
+        margin-top: 15px;
+        font-size: 1rem;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
     </style>
   </head>
   <body>
@@ -1095,19 +1107,26 @@
         </div>
       </div>
     </section>
-
-    <!-- Statistik Pengunjung -->
+    <!-- Statistik Pengunjung - Bagian yang diperbaiki -->
     <section class="visitors-section">
       <h2 class="section-title">Statistik Pengunjung</h2>
 
-      <div class="chart-container fade-in">
-        <h3 class="chart-title">Pengunjung Bulanan</h3>
-        <div class="chart-wrapper">
-          <canvas id="visitorsChart"></canvas>
+      <div class="charts-grid">
+        <div class="chart-container fade-in">
+          <h3 class="chart-title">Pengunjung Harian (30 Hari Terakhir)</h3>
+          <div class="chart-wrapper">
+            <canvas id="dailyChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-container fade-in delay-1">
+          <h3 class="chart-title">Pengunjung Bulanan</h3>
+          <div class="chart-wrapper">
+            <canvas id="monthlyChart"></canvas>
+          </div>
         </div>
       </div>
     </section>
-
     <!-- Community Section -->
     <section class="community-section">
       <div class="container">
@@ -1185,201 +1204,254 @@
       </div>
     </footer>
 
-<!-- Admin Login Modal -->
-  <div class="admin-modal" id="adminLoginModal">
-    <div class="admin-modal-content">
-      <button class="modal-close" id="closeAdminModal">&times;</button>
-      <h3 class="admin-modal-title">Admin Login</h3>
-      <form id="adminLoginForm">
-        <div class="form-group">
-          <label for="adminUsername">Username</label>
-          <input type="text" id="adminUsername" required />
-        </div>
-        <div class="form-group">
-          <label for="adminPassword">Password</label>
-          <input type="password" id="adminPassword" required />
-        </div>
-        <button type="submit" class="btn-submit"><i class="fas fa-sign-in-alt"></i> Login</button>
-      </form>
+    <!-- Admin Login Modal -->
+    <div class="admin-modal" id="adminLoginModal">
+      <div class="admin-modal-content">
+        <button class="modal-close" id="closeAdminModal">&times;</button>
+        <h3 class="admin-modal-title">Admin Login</h3>
+        <form id="adminLoginForm">
+          <div class="form-group">
+            <label for="adminUsername">Username</label>
+            <input type="text" id="adminUsername" required />
+          </div>
+          <div class="form-group">
+            <label for="adminPassword">Password</label>
+            <input type="password" id="adminPassword" required />
+          </div>
+          <button type="submit" class="btn-submit"><i class="fas fa-sign-in-alt"></i> Login</button>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <!-- Notifikasi -->
-  <div class="notification" id="notification"></div>
+    <!-- Notifikasi -->
+    <div class="notification" id="notification"></div>
 
-  <!-- Loading Overlay -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-spinner"></div>
-    <p class="loading-text">Memuat data...</p>
-  </div>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Memuat data...</p>
+    </div>
 
-  <script>
-    // DOM Elements
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
-    const adminLoginBtns = document.querySelectorAll(".admin-login-btn");
-    const adminLoginModal = document.getElementById("adminLoginModal");
-    const closeAdminModal = document.getElementById("closeAdminModal");
-    const adminLoginForm = document.getElementById("adminLoginForm");
-    const notification = document.getElementById("notification");
-    const loadingOverlay = document.getElementById("loadingOverlay");
-    const totalVisitorsValue = document.getElementById("totalVisitorsValue");
+    <script>
+      // DOM Elements
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+      const adminLoginBtns = document.querySelectorAll(".admin-login-btn");
+      const adminLoginModal = document.getElementById("adminLoginModal");
+      const closeAdminModal = document.getElementById("closeAdminModal");
+      const adminLoginForm = document.getElementById("adminLoginForm");
+      const notification = document.getElementById("notification");
+      const loadingOverlay = document.getElementById("loadingOverlay");
 
-    // Toggle mobile menu
-    menuToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-      menuToggle.classList.toggle("active");
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains("active")) {
-        navLinks.classList.remove("active");
-        menuToggle.classList.remove("active");
-      }
-    });
-
-    // Admin login buttons
-    adminLoginBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        adminLoginModal.classList.add("active");
+      // Toggle mobile menu
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        menuToggle.classList.toggle("active");
       });
-    });
 
-    // Close admin modal
-    closeAdminModal.addEventListener("click", () => {
-      adminLoginModal.classList.remove("active");
-    });
-
-    // Close modal when clicking outside
-    adminLoginModal.addEventListener("click", (e) => {
-      if (e.target === adminLoginModal) {
-        adminLoginModal.classList.remove("active");
-      }
-    });
-
-    // Admin login form submission
-    adminLoginForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      
-      const username = document.getElementById("adminUsername").value;
-      const password = document.getElementById("adminPassword").value;
-
-      try {
-        const response = await fetch("/api/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          localStorage.setItem("adminLoggedIn", "true");
-          showNotification("Login berhasil! Mengarahkan ke panel admin...", "success");
-
-          setTimeout(() => {
-            window.location.href = "admin-panel.html";
-          }, 2000);
-        } else {
-          showNotification(data.message || "Username atau password salah!", "error");
+      // Close menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains("active")) {
+          navLinks.classList.remove("active");
+          menuToggle.classList.remove("active");
         }
-      } catch (error) {
-        console.error("Login error:", error);
-        showNotification("Terjadi kesalahan. Silakan coba lagi.", "error");
-      }
-    });
+      });
 
-    // Show notification
-    function showNotification(message, type) {
-      notification.textContent = message;
-      notification.className = `notification ${type}`;
-
-      setTimeout(() => {
-        notification.className = "notification";
-      }, 3000);
-    }
-
-    // Initialize visitors chart
-    document.addEventListener("DOMContentLoaded", async () => {
-      // Show loading overlay
-      loadingOverlay.classList.add("show");
-
-      try {
-        // Fetch visitors data from API
-        const response = await fetch("/api/visitors");
-        if (!response.ok) throw new Error("Gagal memuat data pengunjung");
-        const data = await response.json();
-
-        // Check if data is valid
-        if (!data.labels || !data.values) throw new Error("Format data tidak valid");
-
-        // Calculate total visitors
-        const totalVisitors = data.values.reduce((sum, value) => sum + value, 0);
-        totalVisitorsValue.textContent = totalVisitors.toLocaleString();
-
-        // Create chart
-        const ctx = document.getElementById("visitorsChart").getContext("2d");
-        const visitorsChart = new Chart(ctx, {
-          type: "bar",
-          data: {
-            labels: data.labels,
-            datasets: [
-              {
-                label: "Jumlah Pengunjung",
-                data: data.values,
-                backgroundColor: "rgba(51, 170, 255, 0.5)",
-                borderColor: "rgba(51, 170, 255, 1)",
-                borderWidth: 1,
-              },
-            ],
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: {
-                display: false,
-              },
-              tooltip: {
-                backgroundColor: "rgba(29, 31, 37, 0.9)",
-                titleColor: "#e0f0ff",
-                bodyColor: "#88bbff",
-                borderColor: "#3399ff",
-                borderWidth: 1,
-              },
-            },
-            scales: {
-              y: {
-                beginAtZero: true,
-                grid: {
-                  color: "rgba(51, 153, 255, 0.1)",
-                },
-                ticks: {
-                  color: "#88bbff",
-                },
-              },
-              x: {
-                grid: {
-                  color: "rgba(51, 153, 255, 0.1)",
-                },
-                ticks: {
-                  color: "#88bbff",
-                },
-              },
-            },
-          },
+      // Admin login buttons
+      adminLoginBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          adminLoginModal.classList.add("active");
         });
-      } catch (error) {
-        console.error("Error initializing chart:", error);
-        showNotification("Gagal memuat data statistik pengunjung", "error");
-      } finally {
-        loadingOverlay.classList.remove("show");
+      });
+
+      // Close admin modal
+      closeAdminModal.addEventListener("click", () => {
+        adminLoginModal.classList.remove("active");
+      });
+
+      // Close modal when clicking outside
+      adminLoginModal.addEventListener("click", (e) => {
+        if (e.target === adminLoginModal) {
+          adminLoginModal.classList.remove("active");
+        }
+      });
+
+      // Admin login form submission
+      adminLoginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById("adminUsername").value;
+        const password = document.getElementById("adminPassword").value;
+
+        try {
+          const response = await fetch("/api/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            localStorage.setItem("adminLoggedIn", "true");
+            showNotification("Login berhasil! Mengarahkan ke panel admin...", "success");
+
+            setTimeout(() => {
+              window.location.href = "admin-panel.html";
+            }, 2000);
+          } else {
+            showNotification(data.message || "Username atau password salah!", "error");
+          }
+        } catch (error) {
+          console.error("Login error:", error);
+          showNotification("Terjadi kesalahan. Silakan coba lagi.", "error");
+        }
+      });
+
+      // Show notification
+      function showNotification(message, type) {
+        notification.textContent = message;
+        notification.className = `notification ${type}`;
+
+        setTimeout(() => {
+          notification.className = "notification";
+        }, 3000);
       }
-    });
-  </script>
+
+      // Initialize visitors charts
+      document.addEventListener("DOMContentLoaded", async () => {
+        // Show loading overlay
+        loadingOverlay.classList.add("show");
+
+        try {
+          // Fetch visitors data from API
+          const response = await fetch("/api/get-stats");
+          if (!response.ok) throw new Error("Gagal memuat data pengunjung");
+          const data = await response.json();
+
+          // Check if data is valid
+          if (!data.dates || !data.dailyData || !data.months || !data.monthlyData) {
+            throw new Error("Format data tidak valid");
+          }
+
+          // Create daily chart
+          const dailyCtx = document.getElementById("dailyChart").getContext("2d");
+          const dailyChart = new Chart(dailyCtx, {
+            type: "line",
+            data: {
+              labels: data.dates,
+              datasets: [
+                {
+                  label: "Pengunjung Harian",
+                  data: data.dailyData,
+                  borderColor: "rgba(51, 170, 255, 1)",
+                  backgroundColor: "rgba(51, 170, 255, 0.1)",
+                  borderWidth: 3,
+                  pointBackgroundColor: "rgba(51, 170, 255, 1)",
+                  pointRadius: 4,
+                  tension: 0.3,
+                  fill: true,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: false,
+                },
+                tooltip: {
+                  backgroundColor: "rgba(29, 31, 37, 0.9)",
+                  titleColor: "#e0f0ff",
+                  bodyColor: "#88bbff",
+                  borderColor: "#3399ff",
+                  borderWidth: 1,
+                },
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  grid: {
+                    color: "rgba(51, 153, 255, 0.1)",
+                  },
+                  ticks: {
+                    color: "#88bbff",
+                  },
+                },
+                x: {
+                  grid: {
+                    color: "rgba(51, 153, 255, 0.1)",
+                  },
+                  ticks: {
+                    color: "#88bbff",
+                  },
+                },
+              },
+            },
+          });
+
+          // Create monthly chart
+          const monthlyCtx = document.getElementById("monthlyChart").getContext("2d");
+          const monthlyChart = new Chart(monthlyCtx, {
+            type: "bar",
+            data: {
+              labels: data.months,
+              datasets: [
+                {
+                  label: "Pengunjung Bulanan",
+                  data: data.monthlyData,
+                  backgroundColor: "rgba(51, 170, 255, 0.5)",
+                  borderColor: "rgba(51, 170, 255, 1)",
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: false,
+                },
+                tooltip: {
+                  backgroundColor: "rgba(29, 31, 37, 0.9)",
+                  titleColor: "#e0f0ff",
+                  bodyColor: "#88bbff",
+                  borderColor: "#3399ff",
+                  borderWidth: 1,
+                },
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  grid: {
+                    color: "rgba(51, 153, 255, 0.1)",
+                  },
+                  ticks: {
+                    color: "#88bbff",
+                  },
+                },
+                x: {
+                  grid: {
+                    color: "rgba(51, 153, 255, 0.1)",
+                  },
+                  ticks: {
+                    color: "#88bbff",
+                  },
+                },
+              },
+            },
+          });
+        } catch (error) {
+          console.error("Error initializing charts:", error);
+          showNotification("Gagal memuat data statistik pengunjung", "error");
+        } finally {
+          loadingOverlay.classList.remove("show");
+        }
+      });
     </script>
   </body>
 </html>
