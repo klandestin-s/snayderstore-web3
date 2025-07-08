@@ -298,17 +298,6 @@
         margin-top: calc(var(--nav-height) - 10px);
       }
 
-      .hero::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--accent2), var(--accent));
-        box-shadow: 0 0 15px var(--accent);
-      }
-
       .hero-logo {
         font-size: 3.5rem;
         margin-bottom: 1.5rem;
@@ -618,9 +607,21 @@
 
       .community-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        grid-template-columns: repeat(4, 1fr);
         gap: 1.5rem;
         margin-top: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .community-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .community-grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       .community-card {
@@ -702,7 +703,9 @@
         transition: opacity 0.3s ease;
         z-index: -1;
       }
-
+      .section-title::after {
+        display: none;
+      }
       .community-btn:hover::before {
         opacity: 1;
       }
@@ -875,6 +878,20 @@
         .features-section {
           margin-top: 2rem;
         }
+      }
+      .features-section {
+        position: relative;
+        z-index: 0;
+        margin-top: 0;
+        padding-top: 0;
+      }
+      @media (max-width: 768px) {
+        .hero::before {
+          display: none;
+        }
+      }
+      .features-section {
+        margin-top: 2rem;
       }
 
       @media (max-width: 768px) {
@@ -1140,7 +1157,8 @@
       <a href="product.html" class="nav-link"> <i class="fas fa-box-open"></i> Produk Kami </a>
       <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
       <a href="testimoni.html" class="nav-link"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
-      <a href="#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
+      <a href="testimoni.html" class="nav-link"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
+
       <button class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
     </div>
 
