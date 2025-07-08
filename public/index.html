@@ -1586,6 +1586,64 @@
             });
         });
       });
+      // Fungsi untuk mendapatkan tanggal hari ini dalam format YYYY-MM-DD WIB
+      function getTodayWIB() {
+        const now = new Date();
+        const wibOffset = 7 * 60 * 60 * 1000; // WIB UTC+7
+        const wibTime = new Date(now.getTime() + wibOffset);
+        return wibTime.toISOString().split("T")[0];
+      }
+
+      // Fungsi untuk mencatat kunjungan dengan localStorage
+      async function recordVisitWithLocalStorage() {
+        const today = getTodayWIB();
+        const lastVisitDate = localStorage.getItem("visitDate");
+
+        // Cek apakah pengunjung sudah mengunjungi hari ini
+        if (lastVisitDate === today) {
+          return;
+        }
+
+        try {
+          const response = await fetch("/api/save-visit", {
+            method: "POST",
+          });
+
+          if (!response.ok) {
+            throw new Error("Gagal mencatat kunjungan");
+          }
+
+          const data = await response.json();
+          if (data.success) {
+            localStorage.setItem("visitDate", today);
+          } else {
+            throw new Error("Response tidak sukses");
+          }
+        } catch (error) {
+          console.error("Error recording visit:", error);
+          showNotification("Gagal mencatat kunjungan", "error");
+        }
+      }
+
+      // Panggil fungsi saat halaman dimuat
+      document.addEventListener("DOMContentLoaded", async () => {
+        // Tampilkan loading overlay
+        loadingOverlay.classList.add("show");
+
+        try {
+          // Rekam kunjungan
+          await recordVisitWithLocalStorage();
+
+          // Inisialisasi grafik pengunjung (kode yang sudah ada)
+          // ... (kode inisialisasi grafik)
+        } catch (error) {
+          console.error("Failed to load data:", error);
+          showNotification("Gagal memuat data, coba lagi nanti", "error");
+        } finally {
+          // Sembunyikan loading overlay
+          loadingOverlay.classList.remove("show");
+        }
+      });
     </script>
   </body>
 </html>
