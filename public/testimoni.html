@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Testimoni - SNAYDER'S STORE</title>
+    <title>Komunitas - SNAYDER'S STORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="icon" href="https://raw.githubusercontent.com/klandestin-s/Cloud_v2/main/tmp/b281edce.png" />
     <style>
       :root {
         --bg-dark: #121212;
@@ -177,11 +176,11 @@
       }
 
       .btn-testimoni-nav {
-        background: rgba(51, 153, 255, 0.1); /* Warna standar seperti menu lain */
+        background: rgba(51, 153, 255, 0.1);
       }
 
       .btn-admin-nav {
-        background: rgba(51, 153, 255, 0.1); /* Warna standar seperti menu lain */
+        background: rgba(51, 153, 255, 0.1);
       }
 
       /* Menu Kanan */
@@ -478,14 +477,14 @@
       /* PERUBAHAN: Footer baru untuk tanggal */
       .testimonial-footer {
         display: flex;
-        justify-content: flex-end; /* Agar tanggal di kanan */
+        justify-content: flex-end;
         margin-top: 10px;
       }
 
       .testimonial-date {
-        font-size: 0.8rem; /* Ukuran lebih kecil */
+        font-size: 0.8rem;
         color: var(--text-muted);
-        margin-left: auto; /* Pindahkan ke kanan */
+        margin-left: auto;
       }
 
       .testimonial-badge {
@@ -719,13 +718,12 @@
 
       /* Animasi slide untuk menu mobile */
       @media (max-width: 768px) {
-        /* Di dalam media query max-width: 768px */
         .nav-links {
           display: none;
           position: fixed;
           top: var(--nav-height);
           left: -100%;
-          width: 70%; /* Diubah dari 70% menjadi 80% */
+          width: 80%;
           height: calc(100vh - var(--nav-height));
           background: rgba(13, 27, 42, 0.98);
           flex-direction: column;
@@ -740,10 +738,9 @@
 
         .nav-links.active {
           display: flex;
-          left: 0; /* Muncul dari kiri */
+          left: 0;
         }
       }
-      /* Sembunyikan menu hamburger slide di desktop */
       @media (min-width: 769px) {
         #navLinks {
           display: none !important;
@@ -751,7 +748,7 @@
       }
       @media (max-width: 768px) {
         .nav-links {
-          width: 70%; /* biar seperti di index.html */
+          width: 70%;
         }
 
         .nav-link {
@@ -771,7 +768,6 @@
       }
 
       /* ========= TAMBAHAN: MODAL LOGIN ADMIN ========= */
-      /* Admin Login Modal */
       .admin-modal {
         position: fixed;
         top: 0;
@@ -921,25 +917,214 @@
       /* PERUBAHAN: Tombol clear di input pencarian */
       .search-container .clear-btn {
         position: absolute;
-        right: 35px; /* Disesuaikan agar tidak menutup tombol search */
+        right: 35px;
         background: none;
         border: none;
         color: var(--text-muted);
         cursor: pointer;
         font-size: 0.9rem;
-        display: none; /* Awalnya tersembunyi */
+        display: none;
+      }
+
+      /* ====== STYLE UNTUK SECTION KOMUNITAS ====== */
+      .community-section {
+        padding: 3rem 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+      }
+
+      .community-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      }
+
+      .community-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: relative;
+        display: inline-block;
+      }
+
+      .community-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        border-radius: 10px;
+      }
+
+      .community-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 kolom pada desktop */
+        gap: 2rem;
+        margin-top: 1.5rem;
+      }
+
+      .community-card {
+        background: rgba(13, 27, 42, 0.5);
+        border-radius: 12px;
+        padding: 2rem 1.5rem;
+        transition: var(--transition);
+        border: 1px solid rgba(51, 153, 255, 0.2);
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        min-height: 320px; /* Ukuran tetap untuk semua resolusi */
+      }
+
+      .community-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        border-color: var(--accent);
+      }
+
+      .community-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, var(--accent2), var(--accent));
+      }
+
+      .community-logo {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        transition: var(--transition);
+      }
+
+      .community-card:hover .community-logo {
+        transform: scale(1.1);
+      }
+
+      .community-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-light);
+      }
+
+      .community-description {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+      }
+
+      .community-btn {
+        display: inline-block;
+        padding: 0.7rem 1.5rem;
+        background: linear-gradient(45deg, var(--accent2), var(--accent));
+        color: white;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        border: none;
+        cursor: pointer;
+      }
+
+      .community-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, var(--accent), var(--accent2));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+      }
+
+      .community-btn:hover::before {
+        opacity: 1;
+      }
+
+      .community-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(51, 153, 255, 0.3);
+      }
+
+      .whatsapp-card {
+        background: rgba(37, 211, 102, 0.1);
+      }
+
+      .telegram-card {
+        background: rgba(0, 136, 204, 0.1);
+      }
+
+      .facebook-card {
+        background: rgba(59, 89, 152, 0.1);
+      }
+
+      .email-card {
+        background: rgba(221, 75, 57, 0.1);
+      }
+
+      .whatsapp-logo {
+        color: #25d366;
+      }
+
+      .telegram-logo {
+        color: #0088cc;
+      }
+
+      .facebook-logo {
+        color: #3b5998;
+      }
+
+      .email-logo {
+        color: #dd4b39;
+      }
+
+      /* Responsivitas untuk mobile */
+      @media (max-width: 768px) {
+        .community-grid {
+          grid-template-columns: repeat(2, 1fr); /* 2 kolom pada mobile */
+          gap: 1.5rem; /* Gap lebih kecil untuk mobile */
+        }
+
+        .community-card {
+          min-height: 300px; /* Ukuran tetap untuk mobile */
+        }
+      }
+
+      /* Untuk layar yang sangat kecil (mobile kecil) */
+      @media (max-width: 480px) {
+        .community-grid {
+          grid-template-columns: 1fr; /* 1 kolom pada mobile kecil */
+        }
       }
     </style>
   </head>
   <body>
-    <!-- Loading Overlay - Hanya satu elemen -->
+    <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
       <div class="loading-spinner"></div>
       <p class="loading-text">Memuat testimoni...</p>
     </div>
 
     <!-- Navbar Modern -->
-    <!-- NAVBAR BARU (copy dari dowloads.html) -->
     <nav class="navbar">
       <div class="navbar-container">
         <a href="index.html" class="logo-brand">
@@ -994,6 +1179,131 @@
 
       <div class="testimonial-grid" id="testimonialsGrid">
         <!-- Testimoni akan dimuat melalui JavaScript -->
+        <div class="testimonial-card fade-in">
+          <div class="testimonial-badge">Verified</div>
+          <div class="testimonial-image-container">
+            <img src="https://via.placeholder.com/300x200?text=Bukti+Testimoni" alt="Bukti testimoni" class="testimonial-image" />
+            <div class="zoom-btn" data-image="https://via.placeholder.com/300x200?text=Bukti+Testimoni">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="testimonial-content">
+            <div class="testimonial-header">
+              <div class="testimonial-name">John Doe</div>
+            </div>
+            <div class="testimonial-product"><i class="fas fa-shopping-bag"></i> Paket Premium</div>
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="testimonial-footer">
+              <div class="testimonial-date">12 Juni 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in delay-1">
+          <div class="testimonial-badge">Verified</div>
+          <div class="testimonial-image-container">
+            <img src="https://via.placeholder.com/300x200?text=Bukti+Testimoni" alt="Bukti testimoni" class="testimonial-image" />
+            <div class="zoom-btn" data-image="https://via.placeholder.com/300x200?text=Bukti+Testimoni">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="testimonial-content">
+            <div class="testimonial-header">
+              <div class="testimonial-name">Jane Smith</div>
+            </div>
+            <div class="testimonial-product"><i class="fas fa-shopping-bag"></i> Paket VIP</div>
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <div class="testimonial-footer">
+              <div class="testimonial-date">10 Juni 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-in delay-2">
+          <div class="testimonial-badge">Verified</div>
+          <div class="testimonial-image-container">
+            <img src="https://via.placeholder.com/300x200?text=Bukti+Testimoni" alt="Bukti testimoni" class="testimonial-image" />
+            <div class="zoom-btn" data-image="https://via.placeholder.com/300x200?text=Bukti+Testimoni">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+          <div class="testimonial-content">
+            <div class="testimonial-header">
+              <div class="testimonial-name">Robert Johnson</div>
+            </div>
+            <div class="testimonial-product"><i class="fas fa-shopping-bag"></i> Paket Basic</div>
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+            <div class="testimonial-footer">
+              <div class="testimonial-date">8 Juni 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== SECTION KOMUNITAS ======== -->
+    <section class="community-section">
+      <h2 class="community-title">Bergabung dengan Komunitas Kami</h2>
+      <p class="subtitle">Terhubung dengan kami melalui berbagai platform untuk update terbaru dan dukungan pelanggan</p>
+
+      <div class="community-grid">
+        <!-- WhatsApp -->
+        <div class="community-card whatsapp-card">
+          <div class="community-logo whatsapp-logo">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <h3 class="community-name">WhatsApp Group</h3>
+          <p class="community-description">Dapatkan update produk serta dapatkan otomatis config gratis.</p>
+          <a href="https://wa.me/6287866361260" target="_blank" class="community-btn"> <i class="fab fa-whatsapp"></i> Join Sekarang </a>
+        </div>
+
+        <!-- Telegram -->
+        <div class="community-card telegram-card">
+          <div class="community-logo telegram-logo">
+            <i class="fab fa-telegram"></i>
+          </div>
+          <h3 class="community-name">Telegram Channel</h3>
+          <p class="community-description">Channel testimoni terpercaya, bukti dan kepuasan kami disini</p>
+          <a href="https://t.me/snayderstesti" target="_blank" class="community-btn"> <i class="fab fa-telegram"></i> Cek Sekarang </a>
+        </div>
+
+        <!-- Facebook -->
+        <div class="community-card facebook-card">
+          <div class="community-logo facebook-logo">
+            <i class="fab fa-facebook"></i>
+          </div>
+          <h3 class="community-name">Facebook Page</h3>
+          <p class="community-description">Ini adalah halaman facebook bisnis kami, ikuti segera</p>
+          <a href="https://www.facebook.com/snayderstore.2025" target="_blank" class="community-btn"> <i class="fab fa-facebook"></i> Kunjungi yuk</a>
+        </div>
+
+        <!-- Email -->
+        <div class="community-card email-card">
+          <div class="community-logo email-logo">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3 class="community-name">Email Support</h3>
+          <p class="community-description">Kirim pertanyaan atau masalah teknis ke tim support kami</p>
+          <a href="mailto:snaydersonly@gmail.com" target="_blank" class="community-btn"> <i class="fas fa-envelope"></i> Kirim Email </a>
+        </div>
       </div>
     </section>
 
@@ -1103,14 +1413,14 @@
           console.error("Error:", error);
           // Tampilkan pesan error jika fetch gagal
           testimonialsGrid.innerHTML = `
-            <div style="text-align: center; padding: 2rem; grid-column: 1 / -1;">
-              <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--danger); margin-bottom: 1rem;"></i>
-              <p>Gagal memuat testimoni. Silakan coba lagi nanti.</p>
-              <button class="btn" onclick="location.reload()" style="margin-top: 1rem;">
-                <i class="fas fa-sync-alt"></i> Muat Ulang
-              </button>
-            </div>
-          `;
+                    <div style="text-align: center; padding: 2rem; grid-column: 1 / -1;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--danger); margin-bottom: 1rem;"></i>
+                        <p>Gagal memuat testimoni. Silakan coba lagi nanti.</p>
+                        <button class="btn" onclick="location.reload()" style="margin-top: 1rem;">
+                            <i class="fas fa-sync-alt"></i> Muat Ulang
+                        </button>
+                    </div>
+                `;
         } finally {
           hideLoading(); // Sembunyikan loading setelah selesai
         }
@@ -1125,11 +1435,11 @@
 
         if (verifiedTestimonials.length === 0) {
           testimonialsGrid.innerHTML = `
-            <div style="text-align: center; padding: 2rem; grid-column: 1 / -1;">
-              <i class="fas fa-comment-slash" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
-              <p>Belum ada testimoni. Jadilah yang pertama!</p>
-            </div>
-          `;
+                    <div style="text-align: center; padding: 2rem; grid-column: 1 / -1;">
+                        <i class="fas fa-comment-slash" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
+                        <p>Belum ada testimoni. Jadilah yang pertama!</p>
+                    </div>
+                `;
           return;
         }
 
@@ -1149,29 +1459,29 @@
           }
 
           testimonialCard.innerHTML = `
-            ${testimonial.verified ? '<div class="testimonial-badge">Verified</div>' : ""}
-            <div class="testimonial-image-container">
-              <img src="${testimonial.image}" alt="Bukti testimoni" class="testimonial-image">
-              <div class="zoom-btn" data-image="${testimonial.image}">
-                <i class="fas fa-search-plus"></i>
-              </div>
-            </div>
-            <div class="testimonial-content">
-              <div class="testimonial-header">
-                <div class="testimonial-name">${testimonial.name}</div>
-              </div>
-              <div class="testimonial-product">
-                <i class="fas fa-shopping-bag"></i> ${testimonial.product}
-              </div>
-              <div class="testimonial-rating">
-                ${starsHtml}
-              </div>
-              <!-- Footer baru untuk tanggal -->
-              <div class="testimonial-footer">
-                <div class="testimonial-date">${testimonial.date}</div>
-              </div>
-            </div>
-          `;
+                    ${testimonial.verified ? '<div class="testimonial-badge">Verified</div>' : ""}
+                    <div class="testimonial-image-container">
+                        <img src="${testimonial.image}" alt="Bukti testimoni" class="testimonial-image">
+                        <div class="zoom-btn" data-image="${testimonial.image}">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="testimonial-header">
+                            <div class="testimonial-name">${testimonial.name}</div>
+                        </div>
+                        <div class="testimonial-product">
+                            <i class="fas fa-shopping-bag"></i> ${testimonial.product}
+                        </div>
+                        <div class="testimonial-rating">
+                            ${starsHtml}
+                        </div>
+                        <!-- Footer baru untuk tanggal -->
+                        <div class="testimonial-footer">
+                            <div class="testimonial-date">${testimonial.date}</div>
+                        </div>
+                    </div>
+                `;
 
           testimonialsGrid.appendChild(testimonialCard);
         });
@@ -1350,9 +1660,9 @@
             messageDiv.style.textAlign = "center";
             messageDiv.style.padding = "2rem";
             messageDiv.innerHTML = `
-              <i class="fas fa-search" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
-              <p>Tidak ditemukan testimoni untuk produk <strong>"${searchTerm}"</strong></p>
-            `;
+                        <i class="fas fa-search" style="font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
+                        <p>Tidak ditemukan testimoni untuk produk <strong>"${searchTerm}"</strong></p>
+                    `;
             testimonialsGrid.appendChild(messageDiv);
           }
         } else if (noResultsMessage) {
