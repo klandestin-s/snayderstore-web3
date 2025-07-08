@@ -1211,6 +1211,89 @@
         background: var(--accent);
         transform: rotate(90deg);
       }
+
+      /* TAMBAHAN NAVIGASI PRODUK */
+      .product-nav-container {
+        padding: 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        z-index: 50;
+        animation: fadeIn 0.6s ease forwards;
+      }
+
+      .product-nav-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
+      }
+
+      .product-nav-btn {
+        background: linear-gradient(45deg, var(--accent2), var(--accent));
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 0.6rem 1.2rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-nav-btn::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -60%;
+        width: 20px;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: rotate(25deg);
+        transition: all 0.6s;
+      }
+
+      .product-nav-btn:hover::after {
+        left: 120%;
+      }
+
+      .product-nav-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(51, 153, 255, 0.3);
+      }
+
+      .product-nav-btn i {
+        font-size: 1rem;
+      }
+
+      /* Untuk mobile */
+      @media (max-width: 768px) {
+        .product-nav-buttons {
+          overflow-x: auto;
+          padding-bottom: 10px;
+          justify-content: flex-start;
+        }
+      
+        .product-nav-buttons::-webkit-scrollbar {
+          height: 6px;
+        }
+      
+        .product-nav-buttons::-webkit-scrollbar-track {
+          background: rgba(51,153,255,0.1);
+        }
+      
+        .product-nav-buttons::-webkit-scrollbar-thumb {
+          background: var(--accent);
+          border-radius: 3px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1260,6 +1343,27 @@
       <a href="index.html#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
       <button class="nav-link btn-admin-nav admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
       <button class="nav-link theme-toggle-btn mobile-only"><i class="fas fa-moon"></i> Tema</button>
+    </div>
+
+    <!-- TAMBAHAN: NAVIGASI PRODUK -->
+    <div class="product-nav-container">
+      <div class="product-nav-buttons">
+        <button class="product-nav-btn" data-target="trending">
+          <i class="fas fa-fire"></i> Produk Trending
+        </button>
+        <button class="product-nav-btn" data-target="config premium">
+          <i class="fas fa-crown"></i> Config Premium
+        </button>
+        <button class="product-nav-btn" data-target="vps hosting">
+          <i class="fas fa-server"></i> VPS Hosting
+        </button>
+        <button class="product-nav-btn" data-target="panel">
+          <i class="fas fa-tachometer-alt"></i> Panel
+        </button>
+        <button class="product-nav-btn" data-target="script">
+          <i class="fas fa-code"></i> Script
+        </button>
+      </div>
     </div>
 
     <div class="loading-overlay" id="loadingOverlay">
@@ -1907,6 +2011,38 @@
         });
       });
 
+      // TAMBAHAN: FUNGSI SCROLL KE PRODUK
+      function scrollToProduct(target) {
+        if (target === 'trending') {
+          // Scroll ke section produk trending
+          document.getElementById('trending').scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+
+        // Cari produk berdasarkan kata kunci
+        const products = document.querySelectorAll('.product-card');
+        let targetProduct = null;
+
+        products.forEach(product => {
+          const title = product.querySelector('.product-title').textContent.toLowerCase();
+          if (title.includes(target)) {
+            targetProduct = product;
+          }
+        });
+
+        if (targetProduct) {
+          targetProduct.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          
+          // Tambahkan efek highlight sementara
+          targetProduct.style.boxShadow = '0 0 0 3px var(--accent)';
+          setTimeout(() => {
+            targetProduct.style.boxShadow = '';
+          }, 3000);
+        } else {
+          showNotification('Produk tidak ditemukan', 'warning');
+        }
+      }
+
       document.addEventListener("DOMContentLoaded", () => {
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme === "light") {
@@ -1939,6 +2075,14 @@
             document.querySelector("header").classList.add("fade-in");
           }, 100);
         })();
+
+        // Event listener untuk tombol navigasi produk
+        document.querySelectorAll('.product-nav-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            scrollToProduct(target);
+          });
+        });
 
         grecaptcha.ready(function () {
           grecaptcha.execute("6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc", { action: "submit" }).then(function (token) {
