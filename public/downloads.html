@@ -734,22 +734,44 @@ body {
   flex-direction: column;
 }
 
-/* Zoom-out hanya di layar kecil */
-@media (max-width: 720px) {
+/* Struktur dasar agar layout fleksibel */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Pastikan konten bisa mendorong footer */
+#content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === ZOOM-OUT AGAR 2 GRID MUAT DI SEMUA LAYAR MOBILE === */
+@media (max-width: 719px) {
   body {
-    transform: scale(0.85);
+    transform: scale(calc(100vw / 640));
     transform-origin: top center;
-    height: auto; /* biar content bisa panjang */
   }
 
-  #content-wrapper {
-    flex: none; /* biar tidak force 100% height setelah di-zoom */
+  html, body {
+    width: 640px;  /* "lebar logis" tetap 640px agar 2 grid muat */
+    overflow-x: hidden;
   }
 
   footer {
     margin-top: auto;
   }
 }
+
 
   </style>
 </head>
