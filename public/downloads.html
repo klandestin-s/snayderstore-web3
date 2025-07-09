@@ -267,52 +267,7 @@
         display: inline-block !important;
       }
     }
-html, body {
-    overflow-x: auto;
-  }
- @media (max-width: 768px) {
-    body {
-      transform: scale(0.95);
-      transform-origin: top center;
-      padding: 0;
-      overflow-x: hidden;
-    }
 
-    header,
-    .downloads-section,
-    .category-grid,
-    .popular-grid,
-    #content-wrapper {
-      width: 100%;
-    }
-  }
-  @media (max-width: 768px) {
-    body {
-      width: max-content;
-      min-width: 100vw;
-    }
-
-    header,
-    .downloads-section,
-    .category-grid,
-    .popular-grid,
-    #content-wrapper {
-      width: max-content;
-      overflow-x: auto;
-    }
-
-    .category-grid {
-      display: flex;
-      flex-wrap: nowrap;
-      scroll-snap-type: x mandatory;
-      gap: 1rem;
-    }
-
-    .category-card {
-      flex: 0 0 85%;
-      scroll-snap-align: start;
-    }
-  }
     /* Reset dasar */
     * {
       box-sizing: border-box;
@@ -760,10 +715,37 @@ html, body {
         font-size: 1.3rem;
       }
     }
+    @media (max-width: 480px) {
+  .category-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+  }
+
+  .category-card {
+    min-width: 85%;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  .popular-grid {
+    display: flex !important;
+    overflow-x: auto;
+    gap: 1rem;
+  }
+
+  .popular-grid .category-card {
+    min-width: 85%;
+    flex: 0 0 auto;
+  }
+}
+
   </style>
 </head>
 <body>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <!-- Navbar Baru - Konsisten dengan index.html -->
   <nav class="navbar">
     <div class="navbar-container">
