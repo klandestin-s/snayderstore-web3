@@ -2063,6 +2063,7 @@
         }
 
         if (target === "all") {
+          renderProducts(products); // <== tambahkan ini agar reset produk
           document.getElementById("produk").scrollIntoView({ behavior: "smooth" });
           return;
         }
