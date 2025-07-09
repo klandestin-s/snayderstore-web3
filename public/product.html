@@ -1611,10 +1611,12 @@
       function renderProducts(products) {
         productsGrid.innerHTML = "";
 
-        products.forEach((product, index) => {
+        // Jangan tampilkan produk trending (rating > 4.5)
+        const filteredProducts = products.filter((p) => p.rating <= 4.5);
+
+        filteredProducts.forEach((product, index) => {
           const card = document.createElement("div");
           card.className = `product-card fade-in ${index > 0 ? "delay-" + index : ""}`;
-
           const badge = product.badge ? `<span class="product-badge">${product.badge}</span>` : "";
 
           card.innerHTML = `
