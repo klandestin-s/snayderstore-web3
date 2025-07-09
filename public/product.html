@@ -1611,8 +1611,7 @@
       function renderProducts(products) {
         productsGrid.innerHTML = "";
 
-       const filteredProducts = products.filter((p) => !p.rating || p.rating <= 4.5);
-
+        const filteredProducts = products.filter((p) => !p.rating || p.rating <= 4.5);
 
         filteredProducts.forEach((product, index) => {
           const card = document.createElement("div");
@@ -2044,7 +2043,7 @@
 
       function filterProductsByCategory(keyword) {
         if (keyword === "all") {
-          renderProducts(products);
+          renderProducts(products); // tampilkan semua produk
           return;
         }
 
@@ -2056,6 +2055,7 @@
           showNotification(`Tidak ada produk dengan kata "${keyword}"`, "warning");
         }
       }
+
       function scrollToProduct(target) {
         if (target === "trending") {
           document.getElementById("trending").scrollIntoView({ behavior: "smooth" });
