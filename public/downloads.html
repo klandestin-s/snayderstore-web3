@@ -267,7 +267,37 @@
         display: inline-block !important;
       }
     }
+html, body {
+    overflow-x: auto;
+  }
 
+  @media (max-width: 768px) {
+    body {
+      width: max-content;
+      min-width: 100vw;
+    }
+
+    header,
+    .downloads-section,
+    .category-grid,
+    .popular-grid,
+    #content-wrapper {
+      width: max-content;
+      overflow-x: auto;
+    }
+
+    .category-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+    }
+
+    .category-card {
+      flex: 0 0 85%;
+      scroll-snap-align: start;
+    }
+  }
     /* Reset dasar */
     * {
       box-sizing: border-box;
