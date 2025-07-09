@@ -715,41 +715,18 @@
         font-size: 1.3rem;
       }
     }
-    @media (max-width: 480px) {
-  .category-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 1rem;
-    padding-bottom: 1rem;
-    scroll-snap-type: x mandatory;
+  @media (max-width: 480px) {
+  body {
+    transform: scale(0.85);
+    transform-origin: top;
   }
 
-  .category-card {
-    min-width: 85%;
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-  }
-
-  .popular-grid {
-    display: flex !important;
-    overflow-x: auto;
-    gap: 1rem;
-  }
-
-  .popular-grid .category-card {
-    min-width: 85%;
-    flex: 0 0 auto;
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
   }
 }
-html, body {
-  overflow-x: auto;
-  min-width: 320px;
-}
 
-body {
-  width: fit-content;
-}
 
   </style>
 </head>
