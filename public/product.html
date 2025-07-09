@@ -2009,23 +2009,24 @@
             });
         });
 
-        function filterProductsByCategory(category) {
-            if (category === "all") {
-                renderProducts(products);
-                return;
-            }
+function filterProductsByCategory(keyword) {
+    if (keyword === "all") {
+        renderProducts(products);
+        return;
+    }
 
-            const filtered = products.filter((product) => 
-                product.category && product.category.toLowerCase().includes(category.toLowerCase())
-            );
+    const filtered = products.filter((product) =>
+        (product.name + " " + product.description)
+            .toLowerCase()
+            .includes(keyword.toLowerCase())
+    );
 
-            renderProducts(filtered);
+    renderProducts(filtered);
 
-            if (filtered.length === 0) {
-                showNotification(`Tidak ada produk dalam kategori "${category}"`, "warning");
-            }
-        }
-
+    if (filtered.length === 0) {
+        showNotification(`Tidak ada produk dengan kata "${keyword}"`, "warning");
+    }
+}
         function scrollToProduct(target) {
             if (target === "trending") {
                 document.getElementById("trending").scrollIntoView({ behavior: "smooth" });
