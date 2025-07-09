@@ -1611,8 +1611,8 @@
       function renderProducts(products) {
         productsGrid.innerHTML = "";
 
-        // Jangan tampilkan produk trending (rating > 4.5)
-        const filteredProducts = products.filter((p) => p.rating <= 4.5);
+       const filteredProducts = products.filter((p) => !p.rating || p.rating <= 4.5);
+
 
         filteredProducts.forEach((product, index) => {
           const card = document.createElement("div");
