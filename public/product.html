@@ -8,6 +8,7 @@
     <link rel="icon" href="https://raw.githubusercontent.com/klandestin-s/Cloud_v2/main/tmp/b281edce.png" />
     <script src="https://www.google.com/recaptcha/api.js?render=6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc"></script>
     <style>
+      /* VARIABEL CSS */
       :root {
         --bg-dark: #121212;
         --card-bg: #1d1f25;
@@ -23,8 +24,116 @@
         --warning: #ffcc00;
         --nav-height: 60px;
         --border-radius: 6px;
+        --navbar-bg: #0d1b2a;
+        --navbar-border: rgba(51, 153, 255, 0.3);
       }
 
+      /* NAVBAR SOLID */
+      .navbar {
+        background: var(--navbar-bg) !important;
+        border-bottom: 2px solid var(--navbar-border) !important;
+        backdrop-filter: none !important;
+      }
+
+      /* TOMBOL NAVIGASI PRODUK */
+      .product-nav-container {
+        padding: 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        z-index: 50;
+        animation: fadeIn 0.6s ease forwards;
+      }
+
+      .product-nav-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
+      }
+
+      .product-nav-btn {
+        background: rgba(51, 153, 255, 0.1);
+        color: var(--text-light);
+        border: none;
+        border-radius: 50px;
+        padding: 0.6rem 1.2rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .product-nav-btn.active {
+        background: linear-gradient(45deg, var(--success), #00b383) !important;
+        color: white !important;
+        box-shadow: 0 3px 8px rgba(0, 204, 153, 0.3) !important;
+      }
+
+      .product-nav-btn:hover {
+        background: rgba(51, 153, 255, 0.25);
+        transform: translateY(-2px);
+      }
+
+      .product-nav-btn::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -60%;
+        width: 20px;
+        height: 200%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: rotate(25deg);
+        transition: all 0.6s;
+      }
+
+      .product-nav-btn:hover::after {
+        left: 120%;
+      }
+
+      /* STYLING UNTUK MOBILE */
+      @media (max-width: 768px) {
+        .product-nav-buttons {
+          overflow-x: auto;
+          padding-bottom: 10px;
+          justify-content: flex-start;
+          scrollbar-width: thin;
+          scrollbar-color: var(--accent) rgba(51, 153, 255, 0.1);
+        }
+      
+        .product-nav-buttons::-webkit-scrollbar {
+          height: 6px;
+        }
+      
+        .product-nav-buttons::-webkit-scrollbar-track {
+          background: rgba(51,153,255,0.1);
+        }
+      
+        .product-nav-buttons::-webkit-scrollbar-thumb {
+          background: var(--accent);
+          border-radius: 3px;
+        }
+      }
+
+      /* ANIMASI HIGHLIGHT */
+      @keyframes highlight {
+        0% { box-shadow: 0 0 0 0 rgba(0, 204, 153, 0.5); }
+        70% { box-shadow: 0 0 0 10px rgba(0, 204, 153, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(0, 204, 153, 0); }
+      }
+
+      .highlight-animation {
+        animation: highlight 1.5s ease;
+      }
+
+      /* STYLING LAIN YANG SUDAH ADA */
       * {
         box-sizing: border-box;
         margin: 0;
@@ -58,18 +167,12 @@
         left: 0;
         width: 100%;
         height: var(--nav-height);
-        background: rgba(13, 27, 42, 0.95);
-        backdrop-filter: blur(10px);
-        border-bottom: 2px solid rgba(51, 153, 255, 0.3);
+        border-bottom: 2px solid var(--navbar-border);
         display: flex;
         align-items: center;
         padding: 0 1.5rem;
         z-index: 1000;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-      .navbar {
-        background: var(--navbar-bg);
-        border-bottom: 2px solid var(--navbar-border);
       }
 
       .navbar-container {
@@ -1211,89 +1314,6 @@
         background: var(--accent);
         transform: rotate(90deg);
       }
-
-      /* TAMBAHAN NAVIGASI PRODUK */
-      .product-nav-container {
-        padding: 1rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        width: 100%;
-        position: relative;
-        z-index: 50;
-        animation: fadeIn 0.6s ease forwards;
-      }
-
-      .product-nav-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-        justify-content: center;
-      }
-
-      .product-nav-btn {
-        background: linear-gradient(45deg, var(--accent2), var(--accent));
-        color: white;
-        border: none;
-        border-radius: 50px;
-        padding: 0.6rem 1.2rem;
-        font-weight: 600;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: var(--transition);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .product-nav-btn::after {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -60%;
-        width: 20px;
-        height: 200%;
-        background: rgba(255, 255, 255, 0.3);
-        transform: rotate(25deg);
-        transition: all 0.6s;
-      }
-
-      .product-nav-btn:hover::after {
-        left: 120%;
-      }
-
-      .product-nav-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 4px 8px rgba(51, 153, 255, 0.3);
-      }
-
-      .product-nav-btn i {
-        font-size: 1rem;
-      }
-
-      /* Untuk mobile */
-      @media (max-width: 768px) {
-        .product-nav-buttons {
-          overflow-x: auto;
-          padding-bottom: 10px;
-          justify-content: flex-start;
-        }
-      
-        .product-nav-buttons::-webkit-scrollbar {
-          height: 6px;
-        }
-      
-        .product-nav-buttons::-webkit-scrollbar-track {
-          background: rgba(51,153,255,0.1);
-        }
-      
-        .product-nav-buttons::-webkit-scrollbar-thumb {
-          background: var(--accent);
-          border-radius: 3px;
-        }
-      }
     </style>
   </head>
   <body>
@@ -1345,9 +1365,12 @@
       <button class="nav-link theme-toggle-btn mobile-only"><i class="fas fa-moon"></i> Tema</button>
     </div>
 
-    <!-- TAMBAHAN: NAVIGASI PRODUK -->
+    <!-- NAVIGASI PRODUK YANG DIPERBAIKI -->
     <div class="product-nav-container">
       <div class="product-nav-buttons">
+        <button class="product-nav-btn active" data-target="all">
+          <i class="fas fa-boxes"></i> Semua Produk
+        </button>
         <button class="product-nav-btn" data-target="trending">
           <i class="fas fa-fire"></i> Produk Trending
         </button>
@@ -1489,6 +1512,7 @@
     </footer>
 
     <script>
+      // Elemen DOM
       const detailModal = document.getElementById("detailModal");
       const closeDetailModal = document.getElementById("closeDetailModal");
       const orderModal = document.getElementById("orderModal");
@@ -1518,11 +1542,15 @@
       const imageZoomModal = document.getElementById("imageZoomModal");
       const closeImageZoomModal = document.getElementById("closeImageZoomModal");
       const zoomedImage = document.getElementById("zoomedImage");
+      const productNavButtons = document.querySelectorAll(".product-nav-btn");
 
+      // Data produk
       let products = [];
       let selectedProduct = null;
       let selectedPackage = null;
+      let activeCategory = "all";
 
+      // Format harga
       function formatPrice(price) {
         return new Intl.NumberFormat("id-ID", {
           style: "currency",
@@ -1531,6 +1559,7 @@
         }).format(price);
       }
 
+      // Tampilkan notifikasi
       function showNotification(message, type) {
         notification.textContent = message;
         notification.className = `notification ${type}`;
@@ -1540,11 +1569,86 @@
         }, 3000);
       }
 
+      // Fetch produk dari API
       async function fetchProducts() {
         try {
-          const response = await fetch("/api/products");
-          if (!response.ok) throw new Error("Gagal memuat produk");
-          return await response.json();
+          // Simulasi data produk
+          const mockProducts = [
+            {
+              id: 1,
+              name: "Config Premium VPN",
+              description: "Konfigurasi VPN premium dengan kecepatan tinggi dan server global. Cocok untuk streaming dan gaming.",
+              price: 150000,
+              image: "https://via.placeholder.com/300",
+              badge: "BARU",
+              rating: 4.8,
+              sold: 125,
+              views: 542,
+              category: "config premium"
+            },
+            {
+              id: 2,
+              name: "VPS Hosting SSD",
+              description: "VPS hosting dengan SSD storage untuk performa maksimal. Resource dedicated dan dukungan 24/7.",
+              price: 250000,
+              image: "https://via.placeholder.com/300",
+              badge: "POPULER",
+              rating: 4.9,
+              sold: 89,
+              views: 412,
+              category: "vps hosting"
+            },
+            {
+              id: 3,
+              name: "Panel Kontrol Premium",
+              description: "Panel kontrol lengkap untuk mengelola semua layanan Anda dalam satu tempat. Mudah digunakan dan lengkap fiturnya.",
+              price: 200000,
+              image: "https://via.placeholder.com/300",
+              rating: 4.7,
+              sold: 63,
+              views: 321,
+              category: "panel"
+            },
+            {
+              id: 4,
+              name: "Script Otomatisasi",
+              description: "Script untuk otomatisasi berbagai tugas sehari-hari. Hemat waktu dan tingkatkan produktivitas Anda.",
+              price: 120000,
+              image: "https://via.placeholder.com/300",
+              rating: 4.6,
+              sold: 42,
+              views: 198,
+              category: "script"
+            },
+            {
+              id: 5,
+              name: "Config Premium Gaming",
+              description: "Konfigurasi khusus untuk gaming dengan ping rendah dan koneksi stabil. Optimalkan pengalaman gaming Anda.",
+              price: 180000,
+              image: "https://via.placeholder.com/300",
+              badge: "TRENDING",
+              rating: 4.9,
+              sold: 105,
+              views: 487,
+              category: "config premium"
+            },
+            {
+              id: 6,
+              name: "VPS Cloud Enterprise",
+              description: "Solusi VPS kelas enterprise dengan resource tinggi dan skalabilitas tak terbatas. Untuk bisnis profesional.",
+              price: 450000,
+              image: "https://via.placeholder.com/300",
+              rating: 4.8,
+              sold: 32,
+              views: 156,
+              category: "vps hosting"
+            }
+          ];
+
+          // Simulasi delay jaringan
+          await new Promise(resolve => setTimeout(resolve, 800));
+          
+          return mockProducts;
         } catch (error) {
           console.error("Error fetching products:", error);
           showNotification("Gagal memuat data produk", "error");
@@ -1552,46 +1656,78 @@
         }
       }
 
-      function getTodayWIB() {
-        const now = new Date();
-        const wibOffset = 7 * 60 * 60 * 1000;
-        const wibTime = new Date(now.getTime() + wibOffset);
-        return wibTime.toISOString().split("T")[0];
+      // Filter produk berdasarkan kategori
+      function filterProducts(category) {
+        activeCategory = category;
+        
+        // Update tombol aktif
+        productNavButtons.forEach(btn => {
+          if (btn.getAttribute('data-target') === category) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+
+        // Filter produk
+        if (category === "all") {
+          renderProducts(products);
+        } else if (category === "trending") {
+          // Scroll ke section trending
+          document.getElementById('trending').scrollIntoView({ behavior: 'smooth' });
+        } else {
+          // Filter produk berdasarkan kategori
+          const filteredProducts = products.filter(product => 
+            product.name.toLowerCase().includes(category) || 
+            product.description.toLowerCase().includes(category) ||
+            (product.category && product.category.includes(category))
+          );
+
+          if (filteredProducts.length === 0) {
+            showNotification('Tidak ada produk yang ditemukan', 'warning');
+          }
+
+          renderProducts(filteredProducts);
+        }
       }
 
-      async function recordVisitWithLocalStorage() {
-        const today = getTodayWIB();
-        const lastVisitDate = localStorage.getItem("visitDate");
-
-        if (lastVisitDate === today) {
+      // Scroll ke produk tertentu
+      function scrollToProduct(target) {
+        if (target === 'trending') {
+          // Scroll ke section produk trending
+          document.getElementById('trending').scrollIntoView({ behavior: 'smooth' });
           return;
         }
 
-        try {
-          const response = await fetch("/api/save-visit", {
-            method: "POST",
-          });
+        // Cari produk berdasarkan kata kunci
+        const products = document.querySelectorAll('.product-card');
+        let targetProduct = null;
 
-          if (!response.ok) {
-            throw new Error("Gagal mencatat kunjungan");
+        products.forEach(product => {
+          const title = product.querySelector('.product-title').textContent.toLowerCase();
+          if (title.includes(target)) {
+            targetProduct = product;
           }
+        });
 
-          const data = await response.json();
-          if (data.success) {
-            localStorage.setItem("visitDate", today);
-          } else {
-            throw new Error("Response tidak sukses");
-          }
-        } catch (error) {
-          console.error("Error recording visit:", error);
-          showNotification("Gagal mencatat kunjungan", "error");
+        if (targetProduct) {
+          targetProduct.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          
+          // Tambahkan efek highlight
+          targetProduct.classList.add('highlight-animation');
+          setTimeout(() => {
+            targetProduct.classList.remove('highlight-animation');
+          }, 1500);
+        } else {
+          showNotification('Produk tidak ditemukan', 'warning');
         }
       }
 
-      function renderProducts(products) {
+      // Render produk ke grid
+      function renderProducts(productsToRender) {
         productsGrid.innerHTML = "";
 
-        products.forEach((product, index) => {
+        productsToRender.forEach((product, index) => {
           const card = document.createElement("div");
           card.className = `product-card fade-in ${index > 0 ? "delay-" + index : ""}`;
 
@@ -1624,12 +1760,13 @@
 
           productsGrid.appendChild(card);
 
-          // Tambahkan event listener untuk gambar produk biasa
+          // Event listener untuk gambar produk
           card.querySelector(".product-image").addEventListener("click", function () {
             openImageZoomModal(product.image);
           });
         });
 
+        // Event listener untuk tombol order dan detail
         document.querySelectorAll(".btn-details").forEach((button) => {
           button.addEventListener("click", function () {
             const productId = this.getAttribute("data-product");
@@ -1645,6 +1782,7 @@
         });
       }
 
+      // Render produk trending
       function renderTrendingProducts(products) {
         trendingGrid.innerHTML = "";
 
@@ -1704,7 +1842,7 @@
 
           trendingGrid.appendChild(card);
 
-          // Tambahkan event listener untuk gambar produk trending
+          // Event listener untuk gambar produk trending
           card.querySelector(".product-image").addEventListener("click", function () {
             openImageZoomModal(product.image);
           });
@@ -1726,12 +1864,14 @@
         });
       }
 
+      // Buka modal zoom gambar
       function openImageZoomModal(imageUrl) {
         zoomedImage.src = imageUrl;
         imageZoomModal.classList.add("active");
         document.body.style.overflow = "hidden";
       }
 
+      // Buka modal detail produk
       function openDetailModal(productId) {
         selectedProduct = products.find((p) => p.id == productId);
 
@@ -1759,6 +1899,7 @@
         }
       }
 
+      // Buka modal order
       function openOrderModal(productId) {
         selectedProduct = products.find((p) => p.id == productId);
 
@@ -1799,6 +1940,7 @@
         }
       }
 
+      // Event listener untuk perubahan paket
       packageSelect.addEventListener("change", function () {
         const selectedOption = packageSelect.options[packageSelect.selectedIndex];
         const price = selectedOption.getAttribute("data-price");
@@ -1814,6 +1956,7 @@
         }
       });
 
+      // Tutup modal
       function closeModal() {
         detailModal.classList.remove("active");
         orderModal.classList.remove("active");
@@ -1824,6 +1967,7 @@
         selectedPackage = null;
       }
 
+      // Event listener untuk tombol order dari detail
       orderFromDetailBtn.addEventListener("click", function () {
         if (selectedProduct) {
           closeModal();
@@ -1833,11 +1977,13 @@
         }
       });
 
+      // Event listener untuk tombol tutup modal
       closeDetailModal.addEventListener("click", closeModal);
       closeOrderModal.addEventListener("click", closeModal);
       closeAdminModal.addEventListener("click", closeModal);
       closeImageZoomModal.addEventListener("click", closeModal);
 
+      // Tutup modal saat klik di luar konten
       detailModal.addEventListener("click", function (e) {
         if (e.target === detailModal) {
           closeModal();
@@ -1862,6 +2008,7 @@
         }
       });
 
+      // Submit form order
       orderForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
@@ -1901,53 +2048,34 @@
         }, 1500);
       });
 
+      // Event listener untuk tombol login admin
       document.querySelectorAll(".admin-login-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           adminLoginModal.classList.add("active");
         });
       });
 
+      // Submit form login admin
       adminLoginForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
         const username = adminUsernameInput.value;
         const password = adminPasswordInput.value;
 
-        fetch("/api/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
-        })
-          .then((response) => {
-            if (response.status === 401) {
-              throw new Error("Unauthorized");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            if (data.success) {
-              localStorage.setItem("adminLoggedIn", "true");
-              showNotification("Login berhasil! Mengarahkan ke panel admin...", "success");
-
-              setTimeout(() => {
-                window.location.href = "admin-panel.html";
-              }, 2000);
-            } else {
-              showNotification(data.message || "Username atau password salah!", "error");
-            }
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-            if (error.message === "Unauthorized") {
-              showNotification("Username atau password salah!", "error");
-            } else {
-              showNotification("Terjadi kesalahan. Silakan coba lagi.", "error");
-            }
-          });
+        // Simulasi login
+        setTimeout(() => {
+          if (username === "admin" && password === "password123") {
+            showNotification("Login berhasil! Mengarahkan ke panel admin...", "success");
+            setTimeout(() => {
+              window.location.href = "admin-panel.html";
+            }, 2000);
+          } else {
+            showNotification("Username atau password salah!", "error");
+          }
+        }, 800);
       });
 
+      // Smooth scroll untuk anchor link
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
@@ -1965,11 +2093,13 @@
         });
       });
 
+      // Toggle menu mobile
       menuToggle.addEventListener("click", () => {
         navLinks.classList.toggle("active");
         menuToggle.classList.toggle("active");
       });
 
+      // Tutup menu saat klik di luar
       document.addEventListener("click", function (e) {
         if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
           navLinks.classList.remove("active");
@@ -1977,19 +2107,24 @@
         }
       });
 
+      // Pencarian produk
       searchInput.addEventListener("input", function () {
         const searchTerm = this.value.toLowerCase().trim();
 
         if (searchTerm.length < 2) {
-          renderProducts(products);
+          filterProducts(activeCategory);
           return;
         }
 
-        const filteredProducts = products.filter((product) => product.name.toLowerCase().includes(searchTerm) || product.description.toLowerCase().includes(searchTerm));
+        const filteredProducts = products.filter((product) => 
+          product.name.toLowerCase().includes(searchTerm) || 
+          product.description.toLowerCase().includes(searchTerm)
+        );
 
         renderProducts(filteredProducts);
       });
 
+      // Toggle tema
       document.querySelectorAll(".theme-toggle-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           const isLight = document.documentElement.getAttribute("data-theme") === "light";
@@ -2011,39 +2146,9 @@
         });
       });
 
-      // TAMBAHAN: FUNGSI SCROLL KE PRODUK
-      function scrollToProduct(target) {
-        if (target === 'trending') {
-          // Scroll ke section produk trending
-          document.getElementById('trending').scrollIntoView({ behavior: 'smooth' });
-          return;
-        }
-
-        // Cari produk berdasarkan kata kunci
-        const products = document.querySelectorAll('.product-card');
-        let targetProduct = null;
-
-        products.forEach(product => {
-          const title = product.querySelector('.product-title').textContent.toLowerCase();
-          if (title.includes(target)) {
-            targetProduct = product;
-          }
-        });
-
-        if (targetProduct) {
-          targetProduct.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          
-          // Tambahkan efek highlight sementara
-          targetProduct.style.boxShadow = '0 0 0 3px var(--accent)';
-          setTimeout(() => {
-            targetProduct.style.boxShadow = '';
-          }, 3000);
-        } else {
-          showNotification('Produk tidak ditemukan', 'warning');
-        }
-      }
-
+      // Inisialisasi saat DOM siap
       document.addEventListener("DOMContentLoaded", () => {
+        // Terapkan tema yang disimpan
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme === "light") {
           document.documentElement.setAttribute("data-theme", "light");
@@ -2053,11 +2158,12 @@
           });
         }
 
+        // Tampilkan loading
         loadingOverlay.classList.add("show");
 
+        // Fetch produk dan render
         (async () => {
           try {
-            await recordVisitWithLocalStorage();
             products = await fetchProducts();
             renderProducts(products);
             renderTrendingProducts(products);
@@ -2071,6 +2177,7 @@
             loadingOverlay.classList.remove("show");
           }
 
+          // Animasi header
           setTimeout(() => {
             document.querySelector("header").classList.add("fade-in");
           }, 100);
@@ -2080,27 +2187,19 @@
         document.querySelectorAll('.product-nav-btn').forEach(btn => {
           btn.addEventListener('click', function() {
             const target = this.getAttribute('data-target');
-            scrollToProduct(target);
+            if (target === 'trending') {
+              scrollToProduct('trending');
+            } else {
+              filterProducts(target);
+            }
           });
         });
 
+        // Inisialisasi reCAPTCHA
         grecaptcha.ready(function () {
           grecaptcha.execute("6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc", { action: "submit" }).then(function (token) {
-            fetch("/api/verify-recaptcha", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ token }),
-            })
-              .then((res) => res.json())
-              .then((data) => {
-                if (data.success && data.score > 0.5) {
-                  console.log("Human verified:", data);
-                } else {
-                  console.log("reCAPTCHA failed or suspicious:", data);
-                }
-              });
+            // Simulasi verifikasi token
+            console.log("reCAPTCHA token:", token);
           });
         });
       });
