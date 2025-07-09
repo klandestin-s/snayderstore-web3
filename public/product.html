@@ -1496,156 +1496,348 @@
       <p>&copy; 2025 <strong>SNAYDER'S STORE</strong> &mdash; Allright Reserved <i class="fas fa-heart" style="color: var(--accent)"></i></p>
     </footer>
 
-    <script>
-      const detailModal = document.getElementById("detailModal");
-      const closeDetailModal = document.getElementById("closeDetailModal");
-      const orderModal = document.getElementById("orderModal");
-      const closeOrderModal = document.getElementById("closeOrderModal");
-      const orderForm = document.getElementById("orderForm");
-      const productNameInput = document.getElementById("productName");
-      const productPriceInput = document.getElementById("productPrice");
-      const packageSelect = document.getElementById("packageSelect");
-      const productDescriptionInput = document.getElementById("productDescription");
-      const packageList = document.getElementById("packageList");
-      const detailProductTitle = document.getElementById("detailProductTitle");
-      const detailProductDescription = document.getElementById("detailProductDescription");
-      const orderFromDetailBtn = document.getElementById("orderFromDetailBtn");
-      const adminLoginModal = document.getElementById("adminLoginModal");
-      const closeAdminModal = document.getElementById("closeAdminModal");
-      const adminLoginForm = document.getElementById("adminLoginForm");
-      const adminUsernameInput = document.getElementById("adminUsername");
-      const adminPasswordInput = document.getElementById("adminPassword");
-      const productsGrid = document.getElementById("productsGrid");
-      const trendingGrid = document.getElementById("trendingGrid");
-      const notification = document.getElementById("notification");
-      const submitOrderBtn = document.getElementById("submitOrderBtn");
-      const loadingOverlay = document.getElementById("loadingOverlay");
-      const menuToggle = document.getElementById("menuToggle");
-      const navLinks = document.getElementById("navLinks");
-      const searchInput = document.getElementById("searchInput");
-      const imageZoomModal = document.getElementById("imageZoomModal");
-      const closeImageZoomModal = document.getElementById("closeImageZoomModal");
-      const zoomedImage = document.getElementById("zoomedImage");
+<script>
+  const API_ENDPOINT = "/api/products";
 
-      let products = [];
-      let selectedProduct = null;
-      let selectedPackage = null;
-      let activeCategory = "all";
+  const detailModal = document.getElementById("detailModal");
+  const closeDetailModal = document.getElementById("closeDetailModal");
+  const orderModal = document.getElementById("orderModal");
+  const closeOrderModal = document.getElementById("closeOrderModal");
+  const orderForm = document.getElementById("orderForm");
+  const productNameInput = document.getElementById("productName");
+  const productPriceInput = document.getElementById("productPrice");
+  const packageSelect = document.getElementById("packageSelect");
+  const productDescriptionInput = document.getElementById("productDescription");
+  const packageList = document.getElementById("packageList");
+  const detailProductTitle = document.getElementById("detailProductTitle");
+  const detailProductDescription = document.getElementById("detailProductDescription");
+  const orderFromDetailBtn = document.getElementById("orderFromDetailBtn");
+  const adminLoginModal = document.getElementById("adminLoginModal");
+  const closeAdminModal = document.getElementById("closeAdminModal");
+  const adminLoginForm = document.getElementById("adminLoginForm");
+  const adminUsernameInput = document.getElementById("adminUsername");
+  const adminPasswordInput = document.getElementById("adminPassword");
+  const productsGrid = document.getElementById("productsGrid");
+  const trendingGrid = document.getElementById("trendingGrid");
+  const notification = document.getElementById("notification");
+  const submitOrderBtn = document.getElementById("submitOrderBtn");
+  const loadingOverlay = document.getElementById("loadingOverlay");
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+  const searchInput = document.getElementById("searchInput");
+  const imageZoomModal = document.getElementById("imageZoomModal");
+  const closeImageZoomModal = document.getElementById("closeImageZoomModal");
+  const zoomedImage = document.getElementById("zoomedImage");
 
-      function formatPrice(price) {
-        return new Intl.NumberFormat("id-ID", {
-          style: "currency",
-          currency: "IDR",
-          maximumFractionDigits: 0,
-        }).format(price);
+  let products = [];
+  let selectedProduct = null;
+  let selectedPackage = null;
+  let activeCategory = "all";
+
+  function formatPrice(price) {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      maximumFractionDigits: 0,
+    }).format(price);
+  }
+
+  function showNotification(message, type) {
+    notification.textContent = message;
+    notification.className = `notification ${type}`;
+    setTimeout(() => {
+      notification.className = "notification";
+    }, 3000);
+  }
+
+  async function fetchProducts() {
+    try {
+      loadingOverlay.classList.add("show");
+
+      const res = await fetch(API_ENDPOINT);
+      if (!res.ok) throw new Error("Gagal memuat produk dari API");
+
+      const data = await res.json();
+      products = data;
+
+      loadingOverlay.classList.remove("show");
+      renderProducts(products);
+      renderTrendingProducts(products);
+
+    } catch (error) {
+      console.error(error);
+      showNotification("Gagal memuat produk dari API", "error");
+      loadingOverlay.classList.remove("show");
+    }
+  }
+
+  function renderProducts(productsArray) {
+    productsGrid.innerHTML = "";
+
+    if (productsArray.length === 0) {
+      productsGrid.innerHTML = `
+        <div class="no-trending" style="grid-column: 1 / -1;">
+          <i class="fas fa-box-open"></i>
+          <h3>Tidak ada produk yang ditemukan</h3>
+          <p>Coba kategori lain atau kata kunci pencarian</p>
+        </div>
+      `;
+      return;
+    }
+
+    productsArray.forEach((product, index) => {
+      const card = document.createElement("div");
+      card.className = `product-card fade-in ${index > 0 ? "delay-" + index : ""}`;
+      const badge = product.badge ? `<span class="product-badge">${product.badge}</span>` : "";
+
+      card.innerHTML = `
+        ${badge}
+        <img src="${product.image}" alt="${product.name}" class="product-image">
+        <div class="product-content">
+          <div class="product-top">
+            <h3 class="product-title">${product.name}</h3>
+          </div>
+          <div class="product-spacer"></div>
+          <div class="product-description-container">
+            <p class="product-description">${product.description}</p>
+          </div>
+          <div class="product-footer">
+            <p class="product-price">Mulai ${formatPrice(product.price)}</p>
+            <div class="product-actions">
+              <button class="action-btn btn-order" data-product="${product.id}">
+                <i class="fas fa-shopping-cart"></i> Order
+              </button>
+              <button class="action-btn btn-details" data-product="${product.id}">
+                <i class="fas fa-info-circle"></i> Detail
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      productsGrid.appendChild(card);
+
+      card.querySelector(".product-image").addEventListener("click", () => {
+        openImageZoomModal(product.image);
+      });
+    });
+
+    document.querySelectorAll(".btn-details").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const id = this.getAttribute("data-product");
+        openDetailModal(id);
+      });
+    });
+
+    document.querySelectorAll(".btn-order").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const id = this.getAttribute("data-product");
+        openOrderModal(id);
+      });
+    });
+  }
+
+  function renderTrendingProducts(productsArray) {
+    trendingGrid.innerHTML = "";
+    const trending = productsArray.filter(p => p.rating > 4.5);
+
+    if (trending.length === 0) {
+      trendingGrid.innerHTML = `
+        <div class="no-trending">
+          <i class="fas fa-star"></i>
+          <h3>Tidak ada produk trending saat ini</h3>
+          <p>Cek kembali nanti ya!</p>
+        </div>
+      `;
+      return;
+    }
+
+    trending.forEach((product, index) => {
+      const card = document.createElement("div");
+      card.className = `product-card fade-in ${index > 0 ? "delay-" + index : ""}`;
+
+      card.innerHTML = `
+        <span class="product-badge trending-badge">TRENDING</span>
+        <img src="${product.image}" alt="${product.name}" class="product-image">
+        <div class="product-content">
+          <div class="product-top">
+            <h3 class="product-title">${product.name}</h3>
+          </div>
+          <div class="product-spacer"></div>
+          <div class="product-description-container">
+            <p class="product-description">${product.description}</p>
+          </div>
+          <div class="product-stats">
+            <div class="product-stat">
+              <i class="fas fa-star"></i> ${product.rating?.toFixed(1)}
+            </div>
+            <div class="product-stat">
+              <i class="fas fa-shopping-cart"></i> ${product.sold}
+            </div>
+            <div class="product-stat">
+              <i class="fas fa-eye"></i> ${product.views}
+            </div>
+          </div>
+          <div class="product-footer">
+            <p class="product-price">Mulai ${formatPrice(product.price)}</p>
+            <div class="product-actions">
+              <button class="action-btn btn-order" data-product="${product.id}">
+                <i class="fas fa-shopping-cart"></i> Order
+              </button>
+              <button class="action-btn btn-details" data-product="${product.id}">
+                <i class="fas fa-info-circle"></i> Detail
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      trendingGrid.appendChild(card);
+
+      card.querySelector(".product-image").addEventListener("click", () => {
+        openImageZoomModal(product.image);
+      });
+    });
+
+    trendingGrid.querySelectorAll(".btn-details").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const id = this.getAttribute("data-product");
+        openDetailModal(id);
+      });
+    });
+
+    trendingGrid.querySelectorAll(".btn-order").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const id = this.getAttribute("data-product");
+        openOrderModal(id);
+      });
+    });
+  }
+
+  function filterProducts(category) {
+    activeCategory = category;
+
+    if (category === "all") {
+      renderProducts(products);
+    } else if (category === "trending") {
+      renderTrendingProducts(products);
+    } else {
+      const filtered = products.filter(p => p.category?.toLowerCase() === category);
+      renderProducts(filtered);
+    }
+  }
+
+  function openImageZoomModal(imageUrl) {
+    zoomedImage.src = imageUrl;
+    imageZoomModal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function openDetailModal(productId) {
+    selectedProduct = products.find((p) => p.id == productId);
+
+    if (selectedProduct) {
+      detailProductTitle.textContent = selectedProduct.name;
+      detailProductDescription.textContent = selectedProduct.description;
+
+      packageList.innerHTML = "";
+      if (selectedProduct.packages?.length > 0) {
+        selectedProduct.packages.forEach((pkg) => {
+          const div = document.createElement("div");
+          div.className = "package-item";
+          div.innerHTML = `
+            <div class="package-name">${pkg.name}</div>
+            <div class="package-price">${formatPrice(pkg.price)}</div>
+            <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">${pkg.description || ""}</div>
+          `;
+          div.addEventListener("click", () => {
+            packageList.querySelectorAll(".package-item").forEach(item => item.classList.remove("selected"));
+            div.classList.add("selected");
+            selectedPackage = pkg;
+          });
+          packageList.appendChild(div);
+        });
+      } else {
+        packageList.innerHTML = "<p>Tidak ada paket tersedia</p>";
       }
 
-      function showNotification(message, type) {
-        notification.textContent = message;
-        notification.className = `notification ${type}`;
+      detailModal.classList.add("active");
+    }
+  }
 
-        setTimeout(() => {
-          notification.className = "notification";
-        }, 3000);
+  function openOrderModal(productId) {
+    selectedProduct = products.find((p) => p.id == productId);
+
+    if (selectedProduct) {
+      productNameInput.value = selectedProduct.name;
+      productDescriptionInput.value = selectedProduct.description;
+
+      packageSelect.innerHTML = '<option value="">-- Pilih Paket --</option>';
+
+      if (selectedProduct.packages?.length > 0) {
+        selectedProduct.packages.forEach((pkg) => {
+          const option = document.createElement("option");
+          option.value = pkg.id;
+          option.textContent = `${pkg.name} - ${formatPrice(pkg.price)}`;
+          packageSelect.appendChild(option);
+        });
+      } else {
+        packageSelect.innerHTML = '<option value="">Tidak ada paket tersedia</option>';
       }
 
-      // API untuk mengambil produk
-      async function fetchProducts() {
-        try {
-          // Simulasi API dengan data produk
-          const mockProducts = [
-            {
-              id: 1,
-              name: "Config Premium 1",
-              description: "Config premium untuk akses internet tanpa batas dengan kecepatan tinggi.",
-              price: 150000,
-              image: "https://via.placeholder.com/300x200?text=Config+Premium",
-              rating: 4.8,
-              sold: 120,
-              views: 450,
-              category: "config premium",
-              packages: [
-                { id: "p1", name: "Paket 1 Bulan", price: 150000, description: "Akses 30 hari" },
-                { id: "p2", name: "Paket 3 Bulan", price: 400000, description: "Akses 90 hari" },
-                { id: "p3", name: "Paket 6 Bulan", price: 700000, description: "Akses 180 hari" }
-              ]
-            },
-            {
-              id: 2,
-              name: "VPS Hosting Basic",
-              description: "VPS hosting dengan spesifikasi dasar untuk website dan aplikasi.",
-              price: 250000,
-              image: "https://via.placeholder.com/300x200?text=VPS+Hosting",
-              rating: 4.5,
-              sold: 85,
-              views: 320,
-              category: "vps hosting",
-              packages: [
-                { id: "v1", name: "Basic Package", price: 250000, description: "1GB RAM, 25GB SSD" },
-                { id: "v2", name: "Advanced Package", price: 450000, description: "2GB RAM, 50GB SSD" }
-              ]
-            },
-            {
-              id: 3,
-              name: "Control Panel Pro",
-              description: "Panel kontrol untuk mengelola server dan aplikasi dengan mudah.",
-              price: 350000,
-              image: "https://via.placeholder.com/300x200?text=Control+Panel",
-              rating: 4.9,
-              sold: 95,
-              views: 380,
-              category: "panel",
-              packages: [
-                { id: "c1", name: "Standard License", price: 350000, description: "1 domain" },
-                { id: "c2", name: "Enterprise License", price: 600000, description: "Unlimited domains" }
-              ]
-            },
-            {
-              id: 4,
-              name: "Automation Script",
-              description: "Script otomatisasi untuk mempermudah manajemen website Anda.",
-              price: 180000,
-              image: "https://via.placeholder.com/300x200?text=Automation+Script",
-              rating: 4.7,
-              sold: 110,
-              views: 410,
-              category: "script",
-              packages: [
-                { id: "s1", name: "Basic Script", price: 180000, description: "Fitur dasar" },
-                { id: "s2", name: "Pro Script", price: 300000, description: "Fitur lengkap" }
-              ]
-            },
-            {
-              id: 5,
-              name: "Config Premium 2",
-              description: "Config premium dengan fitur tambahan dan dukungan 24/7.",
-              price: 200000,
-              image: "https://via.placeholder.com/300x200?text=Config+Premium+2",
-              rating: 4.9,
-              sold: 150,
-              views: 500,
-              category: "config premium",
-              packages: [
-                { id: "p4", name: "Paket 1 Bulan", price: 200000, description: "Akses 30 hari" },
-                { id: "p5", name: "Paket 3 Bulan", price: 550000, description: "Akses 90 hari" }
-              ]
-            },
-            {
-              id: 6,
-              name: "VPS Hosting Pro",
-              description: "VPS hosting dengan spesifikasi tinggi untuk kebutuhan profesional.",
-              price: 500000,
-              image: "https://via.placeholder.com/300x200?text=VPS+Hosting+Pro",
-              rating: 4.8,
-              sold: 75,
-              views: 280,
-              category: "vps hosting",
-              packages: [
-                { id: "v3", name: "Pro Package", price: 500000, description: "4GB RAM, 100GB SSD" },
-                { id: "v4", name: "Ultimate Package", price: 800000, description: "8GB RAM, 200GB SSD" }
-              ]
-            }
-          ];
+      productPriceInput.value = formatPrice(selectedProduct.price);
+      orderModal.classList.add("active");
+    }
+  }
+
+  closeDetailModal?.addEventListener("click", () => {
+    detailModal.classList.remove("active");
+  });
+
+  closeOrderModal?.addEventListener("click", () => {
+    orderModal.classList.remove("active");
+  });
+
+  closeImageZoomModal?.addEventListener("click", () => {
+    imageZoomModal.classList.remove("active");
+    document.body.style.overflow = "";
+  });
+
+  menuToggle?.addEventListener("click", () => {
+    menuToggle.classList.toggle("active");
+    navLinks.classList.toggle("active");
+  });
+
+  document.querySelectorAll(".product-nav-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".product-nav-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      filterProducts(btn.dataset.target);
+    });
+  });
+
+  orderForm?.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("customerName").value;
+    const packageId = packageSelect.value;
+    const pkg = selectedProduct?.packages?.find((p) => p.id === packageId);
+
+    const price = pkg ? formatPrice(pkg.price) : formatPrice(selectedProduct?.price);
+
+    const message = `*Order Produk SNAYDER'S STORE*\n\n` +
+      `Nama: ${name}\n` +
+      `Produk: ${selectedProduct?.name}\n` +
+      `Paket: ${pkg?.name || "-"}\n` +
+      `Harga: ${price}\n` +
+      `Deskripsi: ${selectedProduct?.description}\n`;
+
+    const waUrl = `https://wa.me/6287866361260?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, "_blank");
+  });
+
+  window.addEventListener("DOMContentLoaded", () => {
+    fetchProducts();
+  });
+
           
           // Simulasi delay API
           await new Promise(resolve => setTimeout(resolve, 1000));
