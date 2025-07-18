@@ -1516,6 +1516,16 @@
             });
         });
       });
+     // Tambahkan target="_blank" ke semua tombol download
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".download-btn").forEach(button => {
+      button.setAttribute("target", "_blank");
+      button.setAttribute("rel", "noopener noreferrer"); // keamanan tambahan
+    });
+
+    // Jalankan logika status juga
+    applyConfigStatus();
+  });
   const configStatus = {
     xl: false,
     telkomsel: false,
