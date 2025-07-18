@@ -715,6 +715,57 @@
         font-size: 1.3rem;
       }
     }
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.4rem;
+  color: var(--accent);
+  margin: 0;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  min-width: 90px;
+  justify-content: flex-end;
+}
+
+.status-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pulseBlink 2s infinite ease-in-out;
+}
+
+.status-active .status-circle {
+  background-color: var(--success);
+}
+.status-active .status-text {
+  color: var(--success);
+}
+
+.status-inactive .status-circle {
+  background-color: var(--danger);
+}
+.status-inactive .status-text {
+  color: var(--danger);
+}
+
+@keyframes pulseBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
   </style>
 </head>
 <body>
@@ -804,11 +855,18 @@
   <h2 class="section-title">CONFIG TERBARU</h2>
 
   <div class="category-grid">
+
     <!-- Kategori 1: Config XL -->
     <div class="category-card fade-in">
-      <div class="category-header">
-        <h3 class="category-title"><i class="fas fa-download"></i> Config XL</h3>
-      </div>
+    <div class="category-header">
+  <h3 class="category-title" data-category="xl">
+    <i class="fas fa-download"></i> Config XL
+  </h3>
+  <span class="status-indicator">
+    <span class="status-circle"></span>
+    <span class="status-text">Loading...</span>
+  </span>
+  </div>
       <div class="download-list">
         <div class="download-item">
           <div>
@@ -905,9 +963,15 @@
 
     <!-- Kategori 2: Config Telkomsel -->
     <div class="category-card fade-in delay-1">
-      <div class="category-header">
-        <h3 class="category-title"><i class="fas fa-download"></i> Config Telkomsel</h3>
-      </div>
+       <div class="category-header">
+  <h3 class="category-title" data-category="telkomsel">
+    <i class="fas fa-download"></i> Config Tsel
+  </h3>
+  <span class="status-indicator">
+    <span class="status-circle"></span>
+    <span class="status-text">Loading...</span>
+  </span>
+  </div>
       <div class="download-list">
         <div class="download-item">
           <div>
@@ -975,7 +1039,13 @@
     <!-- Kategori 3: Config Axis -->
     <div class="category-card fade-in delay-2">
       <div class="category-header">
-        <h3 class="category-title"><i class="fas fa-download"></i> Config Axis</h3>
+       <h3 class="category-title" data-category="axis">
+    <i class="fas fa-download"></i> Config Axis
+  </h3>
+  <span class="status-indicator">
+    <span class="status-circle"></span>
+    <span class="status-text">Loading...</span>
+  </span>
       </div>
       <div class="download-list">
         <div class="download-item">
@@ -1074,7 +1144,13 @@
     <!-- Kategori 4: Config By U -->
     <div class="category-card fade-in delay-3">
       <div class="category-header">
-        <h3 class="category-title"><i class="fas fa-download"></i> Config By U</h3>
+       <h3 class="category-title" data-category="byu">
+    <i class="fas fa-download"></i> Config By U
+  </h3>
+  <span class="status-indicator">
+    <span class="status-circle"></span>
+    <span class="status-text">Loading...</span>
+  </span>
       </div>
       <div class="download-list">
         <div class="download-item">
@@ -1123,7 +1199,13 @@
     <!-- Kategori 5: Config Isat -->
     <div class="category-card fade-in delay-4">
       <div class="category-header">
-        <h3 class="category-title"><i class="fas fa-download"></i> Config Isat</h3>
+        <h3 class="category-title" data-category="isat">
+    <i class="fas fa-download"></i> Config Isat
+  </h3>
+  <span class="status-indicator">
+    <span class="status-circle"></span>
+    <span class="status-text">Loading...</span>
+  </span>
       </div>
       <div class="download-list">
         <div class="download-item">
@@ -1162,7 +1244,13 @@
 <!-- !-- Kategori 6: Config Smartfren -->
 <div class="category-card fade-in delay-5">
   <div class="category-header">
-    <h3 class="category-title"><i class="fas fa-download"></i> Config Smartfren</h3>
+  <h3 class="category-title" data-category="smartfren">
+    <i class="fas fa-download"></i> Config Smart
+  </h3>
+  <span class="status-indicator">
+    <span class="status-circle"></span>
+    <span class="status-text">Loading...</span>
+  </span>
   </div>
   <div class="download-list">
     <div class="download-item">
@@ -1194,7 +1282,13 @@
   <div class="popular-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem">
     <div class="category-card fade-in" style="grid-column: span 2; background: linear-gradient(135deg, rgba(51, 170, 255, 0.1), rgba(0, 102, 255, 0.1))">
       <div class="category-header" style="background: transparent">
-        <h3 class="category-title"><i class="fas fa-fire"></i> Rekomendasi Spesial</h3>
+      <h3 class="category-title" data-category="special">
+    <i class="fas fa-download"></i> Rekomendasi Special
+  </h3>
+  <span class="status-indicator">
+    <span class="status-circle"></span>
+    <span class="status-text">Loading...</span>
+  </span>
       </div>
       <div class="download-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem">
         <div class="download-item">
@@ -1278,7 +1372,6 @@
           notification.className = "notification";
         }, 3000);
       }
-
       // Event listener untuk tombol admin login
       adminLoginBtns.forEach(btn => {
         btn.addEventListener("click", () => {
@@ -1423,6 +1516,39 @@
             });
         });
       });
+  const configStatus = {
+    xl: false,
+    telkomsel: false,
+    axis: false,
+    byu: false,
+    isat: false,
+    smartfren: false,
+    special: false
+  };
+
+  function applyConfigStatus() {
+    document.querySelectorAll(".category-title").forEach(title => {
+      const categoryKey = title.dataset.category;
+      const statusIndicator = title.parentElement.querySelector(".status-indicator");
+
+      if (!categoryKey || !statusIndicator) return;
+
+      const isActive = configStatus[categoryKey];
+
+      if (isActive) {
+        statusIndicator.classList.remove("status-inactive");
+        statusIndicator.classList.add("status-active");
+        statusIndicator.querySelector(".status-text").textContent = "Active";
+      } else {
+        statusIndicator.classList.remove("status-active");
+        statusIndicator.classList.add("status-inactive");
+        statusIndicator.querySelector(".status-text").textContent = "Non-Active";
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", applyConfigStatus);
+
   </script>
 </body>
 </html>
