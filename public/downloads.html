@@ -511,7 +511,112 @@
       background: var(--accent);
       transform: translateY(-3px);
     }
+/* Call to Action */
+      .cta-section {
+        padding: 5rem 1rem;
+        text-align: center;
+        background: linear-gradient(135deg, rgba(13, 27, 42, 0.8), rgba(27, 38, 59, 0.8));
+        position: relative;
+        overflow: hidden;
+      }
 
+      .cta-content {
+        max-width: 700px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .cta-title {
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-light);
+      }
+
+      .cta-description {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+      }
+            /* Hero Section */
+      .hero {
+        text-align: center;
+        padding: 4rem 1rem 3rem;
+        background: linear-gradient(135deg, #0d1b2a, #1b263b);
+        position: relative;
+        overflow: hidden;
+        border-bottom: 3px solid var(--accent);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        margin-top: calc(var(--nav-height) - 10px);
+      }
+
+      .hero-logo {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent);
+        text-shadow: 0 0 15px rgba(51, 170, 255, 0.7);
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 1px;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        max-width: 700px;
+        margin: 0 auto 1.5rem;
+        line-height: 1.7;
+      }
+
+      .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 0.9rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(45deg, var(--accent2), var(--accent));
+        color: white;
+        box-shadow: 0 5px 15px rgba(51, 153, 255, 0.4);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(51, 153, 255, 0.6);
+      }
+
+      .btn-secondary {
+        background: rgba(51, 153, 255, 0.1);
+        color: var(--text-light);
+        border: 1px solid rgba(51, 153, 255, 0.3);
+      }
+
+      .btn-secondary:hover {
+        background: rgba(51, 153, 255, 0.25);
+        transform: translateY(-3px);
+      }
     /* Animasi */
     @keyframes fadeIn {
       from {
@@ -765,7 +870,17 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
 }
-
+   @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
   </style>
 </head>
 <body>
@@ -1325,7 +1440,18 @@
     </div>
   </div>
 </section>
-  
+      <!-- Call to Action -->
+    <section class="cta-section">
+      <div class="cta-content">
+        <div class="rocket-icon" style="font-size: 4rem; color: var(--accent); animation: float 2s ease-in-out infinite">🚀</div>
+        <h2 class="cta-title">Ingin config dengan kecepatan maksimal?</h2>
+        <p class="cta-description">
+          Nikmati koneksi terbaik dengan kecepatan maksimal menggunakan config premium tercepat dari kami. Dirancang khusus untuk kamu yang butuh performa tinggi tanpa gangguan — cocok untuk kebutuhan harian, gaming, streaming, hingga
+          produktivitas tanpa delay.
+        </p>
+        <a href="product.html" class="btn btn-primary"> <i class="fas fa-shopping-cart"></i> Order Sekarang </a>
+      </div>
+    </section>
   <!-- Footer -->
   <footer>
     <div class="social-links">
