@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Komunitas - SNAYDER'S STORE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-     <link rel="icon" href="https://raw.githubusercontent.com/klandestin-s/Cloud_v2/main/tmp/b281edce.png" />
+    <link rel="icon" href="https://raw.githubusercontent.com/klandestin-s/Cloud_v2/main/tmp/b281edce.png" />
     <script src="https://www.google.com/recaptcha/api.js?render=6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc"></script>
     <style>
       :root {
@@ -1099,24 +1099,6 @@
         color: #dd4b39;
       }
 
-      /* Responsivitas untuk mobile */
-      @media (max-width: 768px) {
-        .community-grid {
-          grid-template-columns: repeat(2, 1fr); /* 2 kolom pada mobile */
-          gap: 1.5rem; /* Gap lebih kecil untuk mobile */
-        }
-
-        .community-card {
-          min-height: 300px; /* Ukuran tetap untuk mobile */
-        }
-      }
-
-      /* Untuk layar yang sangat kecil (mobile kecil) */
-      @media (max-width: 480px) {
-        .community-grid {
-          grid-template-columns: 1fr; /* 1 kolom pada mobile kecil */
-        }
-      }
       .testimonial-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr); /* 2 kolom default di semua HP */
@@ -1142,22 +1124,31 @@
         }
       }
       .community-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* default untuk mobile */
-  gap: 2rem;
-}
+        display: grid;
+        grid-template-columns: 1fr; /* Default: 1 kolom */
+        gap: 2rem;
+      }
 
-@media (min-width: 768px) {
-  .community-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+      /* Jika HP besar / tinggi: tampilkan 2 grid */
+      @media (min-width: 480px) and (min-height: 700px) {
+        .community-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
 
-@media (min-width: 1024px) {
-  .community-grid {
-    grid-template-columns: repeat(4, 1fr); /* desktop */
-  }
-}
+      /* Tablet → 3 kolom */
+      @media (min-width: 768px) {
+        .community-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /* Desktop → 4 kolom */
+      @media (min-width: 1024px) {
+        .community-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
     </style>
   </head>
   <body>
@@ -1209,7 +1200,7 @@
       <a href="downloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
       <a href="product.html" class="nav-link"> <i class="fas fa-box-open"></i> Produk Kami </a>
       <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
-    <a href="testimoni.html" class="nav-link"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
+      <a href="testimoni.html" class="nav-link"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
       <a href="index.html#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
       <button class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
     </div>
