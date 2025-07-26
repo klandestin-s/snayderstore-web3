@@ -1177,7 +1177,6 @@
               <div class="dropdown-content">
                 <a href="downloads.html"><i class="fas fa-download"></i> Download Config</a>
                 <a href="product.html"><i class="fas fa-box-open"></i> Produk Kami</a>
-                <a href="visitors.html"><i class="fas fa-chart-line"></i> Statistik Pengunjung</a>
                 <a href="testimoni.html"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
                 <a href="index.html#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
                 <button class="admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
@@ -1199,7 +1198,6 @@
       <a href="index.html" class="nav-link active"> <i class="fas fa-home"></i> Beranda </a>
       <a href="downloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
       <a href="product.html" class="nav-link"> <i class="fas fa-box-open"></i> Produk Kami </a>
-      <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
       <a href="testimoni.html" class="nav-link"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
       <a href="index.html#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
       <button class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
@@ -1632,45 +1630,6 @@
           });
       });
 
-      // Fungsi untuk mendapatkan tanggal hari ini dalam format YYYY-MM-DD (WIB)
-      function getTodayWIB() {
-        const now = new Date();
-        const wibOffset = 7 * 60 * 60 * 1000; // UTC+7 dalam milidetik
-        const wibTime = new Date(now.getTime() + wibOffset);
-        return wibTime.toISOString().split("T")[0];
-      }
-
-      // Fungsi untuk mencatat kunjungan dengan localStorage
-      async function recordVisitWithLocalStorage() {
-        const today = getTodayWIB();
-        const lastVisitDate = localStorage.getItem("visitDate");
-
-        // Jika sudah mengunjungi hari ini, tidak perlu catat lagi
-        if (lastVisitDate === today) {
-          return;
-        }
-
-        try {
-          const response = await fetch("/api/save-visit", {
-            method: "POST",
-          });
-
-          if (!response.ok) {
-            throw new Error("Gagal mencatat kunjungan");
-          }
-
-          const data = await response.json();
-          if (data.success) {
-            localStorage.setItem("visitDate", today);
-          } else {
-            throw new Error("Response tidak sukses");
-          }
-        } catch (error) {
-          console.error("Error recording visit:", error);
-          showNotification("Gagal mencatat kunjungan", "error");
-        }
-      }
-
       // ========= FUNGSI PENCARIAN PRODUK =========
       // Fungsi untuk memfilter testimoni berdasarkan produk
       function filterTestimonials(searchTerm) {
@@ -1737,9 +1696,6 @@
       document.addEventListener("DOMContentLoaded", async () => {
         // Tampilkan loading
         showLoading();
-
-        // Catat kunjungan pengunjung
-        await recordVisitWithLocalStorage();
 
         // Ambil data testimoni
         await fetchTestimonials();
