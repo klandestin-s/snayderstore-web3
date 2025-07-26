@@ -6,7 +6,7 @@
   <title>Download Center - SNAYDER'S STORE</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="icon" href="https://raw.githubusercontent.com/klandestin-s/Cloud_v2/main/tmp/b281edce.png" />
-   <script src="https://www.google.com/recaptcha/api.js?render=6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc"></script>
   <style>
     /* Variabel warna - tema modern gelap */
     :root {
@@ -26,7 +26,7 @@
       --border-radius: 6px;
     }
 
-    /* NAVBAR - Konsisten dengan index.html */
+    /* NAVBAR */
     .navbar {
       position: fixed;
       top: 0;
@@ -207,7 +207,7 @@
       opacity: 1;
     }
 
-    /* Menu mobile - Konsisten dengan index.html */
+    /* Menu mobile */
     .nav-links {
       display: none;
       position: fixed;
@@ -884,7 +884,7 @@
   </style>
 </head>
 <body>
-  <!-- Navbar Baru - Konsisten dengan index.html -->
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="navbar-container">
       <a href="index.html" class="logo-brand">
@@ -900,17 +900,16 @@
           </a>
           
           <!-- Service Dropdown -->
-            <div class="service-dropdown">
-              <button class="service-btn"><i class="fas fa-concierge-bell"></i> SERVICE <i class="fas fa-caret-down"></i></button>
-              <div class="dropdown-content">
-                <a href="downloads.html"><i class="fas fa-download"></i> Download Config</a>
-                <a href="product.html"><i class="fas fa-box-open"></i> Produk Kami</a>
-                <a href="visitors.html"><i class="fas fa-chart-line"></i> Statistik Pengunjung</a>
-                                <a href="testimoni.html"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
-             <a href="index.html#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
-                <button class="admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
-              </div>
+          <div class="service-dropdown">
+            <button class="service-btn"><i class="fas fa-concierge-bell"></i> SERVICE <i class="fas fa-caret-down"></i></button>
+            <div class="dropdown-content">
+              <a href="downloads.html"><i class="fas fa-download"></i> Download Config</a>
+              <a href="product.html"><i class="fas fa-box-open"></i> Produk Kami</a>
+              <a href="testimoni.html"><i class="fas fa-comments"></i> Testimoni Pembeli</a>
+              <a href="index.html#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
+              <button class="admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
             </div>
+          </div>
           
           <!-- Hamburger Menu -->
           <div class="menu-toggle" id="menuToggle">
@@ -922,16 +921,15 @@
     </div>
   </nav>
 
-  <!-- Menu Mobile - Konsisten dengan index.html -->
-    <div class="nav-links" id="navLinks">
-      <a href="index.html" class="nav-link active"> <i class="fas fa-home"></i> Beranda </a>
-      <a href="downloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
-      <a href="product.html" class="nav-link"> <i class="fas fa-box-open"></i> Produk Kami </a>
-      <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
-<a href="testimoni.html" class="nav-link"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
+  <!-- Menu Mobile -->
+  <div class="nav-links" id="navLinks">
+    <a href="index.html" class="nav-link active"> <i class="fas fa-home"></i> Beranda </a>
+    <a href="downloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
+    <a href="product.html" class="nav-link"> <i class="fas fa-box-open"></i> Produk Kami </a>
+    <a href="testimoni.html" class="nav-link"><i class="fas fa-comments"></i> Testimoni Pembeli</a>
     <a href="index.html#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
-      <button class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
-    </div>
+    <button class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
+  </div>
 
   <!-- Admin Login Modal -->
   <div class="admin-modal" id="adminLoginModal">
@@ -965,522 +963,523 @@
       <p class="subtitle">Selamat menikmati layanan kami, server free/ config gratis ini restart setiap jam. untuk pengalaman internet dengan nyaman gunakan config premium untuk config high speed- performa🚀</p>
     </header>
 
-       <!-- Download Section -->
-<section class="downloads-section">
-  <h2 class="section-title">CONFIG TERBARU</h2>
+    <!-- Download Section -->
+    <section class="downloads-section">
+      <h2 class="section-title">CONFIG TERBARU</h2>
 
-  <div class="category-grid">
+      <div class="category-grid">
 
-    <!-- Kategori 1: Config XL -->
-    <div class="category-card fade-in">
-    <div class="category-header">
-  <h3 class="category-title" data-category="xl">
-    <i class="fas fa-download"></i> Config XL
-  </h3>
-  <span class="status-indicator">
-    <span class="status-circle"></span>
-    <span class="status-text">Loading...</span>
-  </span>
-  </div>
-      <div class="download-list">
-        <div class="download-item">
-          <div>
-            <div class="download-name">XL SUPER PREMIUM</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 506.09 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.7K</span>
+        <!-- Kategori 1: Config XL -->
+        <div class="category-card fade-in">
+          <div class="category-header">
+            <h3 class="category-title" data-category="xl">
+              <i class="fas fa-download"></i> Config XL
+            </h3>
+            <span class="status-indicator">
+              <span class="status-circle"></span>
+              <span class="status-text">Loading...</span>
+            </span>
+          </div>
+          <div class="download-list">
+            <div class="download-item">
+              <div>
+                <div class="download-name">XL SUPER PREMIUM</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 506.09 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.7K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/9ytXKrxtXGe" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">XL CONFERENCE</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 717.36 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.2K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/5gxVlRRKgMn" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">XL UNLI VIDIO</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 952.76 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.3K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/2atTF4euryh" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">XL OPOK ALL TKP</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 488.19 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/2wDTR7RpCsq" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">XL EDUKASI</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 726.96 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/44FUHgiU3KU" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">XL GAME</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 717.04 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.7K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/6spW10aRqgQ" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">XL IFLIX</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 723.38 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.2K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/6dDVT1ouY0h" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">XL MUSIC, SPOTIFY</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 523.38 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/1GVToe5YCQL" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">XL VISION+</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 433.38 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.8K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/7T3WOZQ7W8i" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">XL VIU</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 604.38 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.1K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/7i7WuMw5k4U" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">XL NETFLIX</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 354.75 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.4K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/7EhWGjoJyw4" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
             </div>
           </div>
-          <a href="https://sfile.mobi/9ytXKrxtXGe" class="download-btn"> <i class="fas fa-download"></i> Download </a>
         </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">XL CONFERENCE</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 717.36 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.2K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/5gxVlRRKgMn" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">XL UNLI VIDIO</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 952.76 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.3K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/2atTF4euryh" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">XL OPOK ALL TKP</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 488.19 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/2wDTR7RpCsq" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">XL EDUKASI</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 726.96 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/44FUHgiU3KU" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-          <div class="download-item">
-          <div>
-            <div class="download-name">XL GAME</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 717.04 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.7K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/6spW10aRqgQ" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">XL IFLIX</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 723.38 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.2K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/6dDVT1ouY0h" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">XL MUSIC, SPOTIFY</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 523.38 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/1GVToe5YCQL" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">XL VISION+</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 433.38 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.8K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/7T3WOZQ7W8i" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">XL VIU</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 604.38 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.1K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/7i7WuMw5k4U" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">XL NETFLIX</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 354.75 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.4K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/7EhWGjoJyw4" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-      </div>
-    </div>
 
-    <!-- Kategori 2: Config Telkomsel -->
-    <div class="category-card fade-in delay-1">
-       <div class="category-header">
-  <h3 class="category-title" data-category="telkomsel">
-    <i class="fas fa-download"></i> Config Tsel
-  </h3>
-  <span class="status-indicator">
-    <span class="status-circle"></span>
-    <span class="status-text">Loading...</span>
-  </span>
-  </div>
-      <div class="download-list">
-        <div class="download-item">
-          <div>
-            <div class="download-name">TSEL OPOK</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 717.55 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.8K</span>
+        <!-- Kategori 2: Config Telkomsel -->
+        <div class="category-card fade-in delay-1">
+          <div class="category-header">
+            <h3 class="category-title" data-category="telkomsel">
+              <i class="fas fa-download"></i> Config Tsel
+            </h3>
+            <span class="status-indicator">
+              <span class="status-circle"></span>
+              <span class="status-text">Loading...</span>
+            </span>
+          </div>
+          <div class="download-list">
+            <div class="download-item">
+              <div>
+                <div class="download-name">TSEL OPOK</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 717.55 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.8K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/4c3UKOpbPWB" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">TSEL ILMUPEDIA</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 975.78 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.7K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/6VXWgg4ypGh" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">TSEL GAMEMAX</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 718.09 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.9K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/4FBV0B39LOZ" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">TSEL SOSMED</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 477.10 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.1K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/9NfXQFagCW4" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">TSEL RUANGGURU</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 718.59 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.2K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/9NfXQFagCW4" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">TSEL OMG</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 478.16 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/9jHXzZWvLOf" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
             </div>
           </div>
-          <a href="https://sfile.mobi/4c3UKOpbPWB" class="download-btn"> <i class="fas fa-download"></i> Download </a>
         </div>
-                <div class="download-item">
-          <div>
-            <div class="download-name">TSEL ILMUPEDIA</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 975.78 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.7K</span>
-            </div>
-          </div>
-            <a href="https://sfile.mobi/6VXWgg4ypGh"class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">TSEL GAMEMAX</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 718.09 KB</span>
-               <span class="info-item"><i class="fas fa-download"></i> 0.9K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/4FBV0B39LOZ" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">TSEL SOSMED</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 477.10 KB</span>
-               <span class="info-item"><i class="fas fa-download"></i> 0.1K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/9NfXQFagCW4" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-                <div class="download-item">
-          <div>
-            <div class="download-name">TSEL RUANGGURU</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 718.59 KB</span>
-               <span class="info-item"><i class="fas fa-download"></i> 0.2K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/9NfXQFagCW4" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">TSEL OMG</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 478.16 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/9jHXzZWvLOf" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-      </div>
-    </div>
 
-    <!-- Kategori 3: Config Axis -->
-    <div class="category-card fade-in delay-2">
-      <div class="category-header">
-       <h3 class="category-title" data-category="axis">
-    <i class="fas fa-download"></i> Config Axis
-  </h3>
-  <span class="status-indicator">
-    <span class="status-circle"></span>
-    <span class="status-text">Loading...</span>
-  </span>
-      </div>
-      <div class="download-list">
-        <div class="download-item">
-          <div>
-            <div class="download-name">AXIS OPOK ALL TKP</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 475.81 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 1.3K</span>
+        <!-- Kategori 3: Config Axis -->
+        <div class="category-card fade-in delay-2">
+          <div class="category-header">
+            <h3 class="category-title" data-category="axis">
+              <i class="fas fa-download"></i> Config Axis
+            </h3>
+            <span class="status-indicator">
+              <span class="status-circle"></span>
+              <span class="status-text">Loading...</span>
+            </span>
+          </div>
+          <div class="download-list">
+            <div class="download-item">
+              <div>
+                <div class="download-name">AXIS OPOK ALL TKP</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 475.81 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 1.3K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/3B7UnfGKAo3" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">AXIS SUSHIROLL- GENFLIX</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 3.17 MB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.8K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/7T3WKq2qqst" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">AXIS BOOSTER GAME</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 725.94 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 1.2K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/6spVWqn9UQ0" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">AXIS BOOSTER EDUKASI</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 725.24 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.2K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/2SNTYfR7ksf" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">AXIS BOOSTER CONFERENCE</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 727.68 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/30bU1YSa5q9" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">AXIS SOSMED</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 711.25 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 1.2K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/bHrYQKfAsw7" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">AXIS BOOSTER VIDIO</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 715.58 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 3.2K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/51LVaIBK9Gt" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">AXIS NETFLIX</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 728.10 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.2K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/9r5XAUjqPCo" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">AXIS CHAT</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 728.10 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.2K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/1zxTeRMGtCJ" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">AXIS MUSIC SPOTIFY</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 478.58 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 1.1K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/8fdWVWV4FUy" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
             </div>
           </div>
-          <a href="https://sfile.mobi/3B7UnfGKAo3" class="download-btn"> <i class="fas fa-download"></i> Download </a>
         </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">AXIS SUSHIROLL- GENFLIX</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 3.17 MB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.8K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/7T3WKq2qqst" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">AXIS BOOSTER GAME</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 725.94 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 1.2K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/6spVWqn9UQ0" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">AXIS BOOSTER EDUKASI</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 725.24 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.2K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/2SNTYfR7ksf" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">AXIS BOOSTER CONFERENCE</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 727.68 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/30bU1YSa5q9" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">AXIS SOSMED</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 711.25 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 1.2K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/bHrYQKfAsw7" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">AXIS BOOSTER VIDIO</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 715.58 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 3.2K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/51LVaIBK9Gt" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">AXIS NETFLIX</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 728.10 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.2K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/9r5XAUjqPCo" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">AXIS CHAT</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 728.10 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.2K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/1zxTeRMGtCJ" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">AXIS MUSIC SPOTIFY</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 478.58 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 1.1K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/8fdWVWV4FUy" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-      </div>
-    </div>
 
-    <!-- Kategori 4: Config By U -->
-    <div class="category-card fade-in delay-3">
-      <div class="category-header">
-       <h3 class="category-title" data-category="byu">
-    <i class="fas fa-download"></i> Config By U
-  </h3>
-  <span class="status-indicator">
-    <span class="status-circle"></span>
-    <span class="status-text">Loading...</span>
-  </span>
-      </div>
-      <div class="download-list">
-        <div class="download-item">
-          <div>
-            <div class="download-name">BY U OPOK ALL TKP</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 720.17 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 1.5K</span>
+        <!-- Kategori 4: Config By U -->
+        <div class="category-card fade-in delay-3">
+          <div class="category-header">
+            <h3 class="category-title" data-category="byu">
+              <i class="fas fa-download"></i> Config By U
+            </h3>
+            <span class="status-indicator">
+              <span class="status-circle"></span>
+              <span class="status-text">Loading...</span>
+            </span>
+          </div>
+          <div class="download-list">
+            <div class="download-item">
+              <div>
+                <div class="download-name">BY U OPOK ALL TKP</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 720.17 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 1.5K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/8tZX5vWfWE6" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">BY U ILMUPEDIA</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 975.83 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 1.5K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/7wTWyIf1dex" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">BY U GAME/ GGWP</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 477.41 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 2.9K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/b6vYwSL3NK7" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">BY U RUANGGURU</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 957.97 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.9K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/5YRVI33fPyT" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
             </div>
           </div>
-          <a href="https://sfile.mobi/8tZX5vWfWE6" class="download-btn"> <i class="fas fa-download"></i> Download </a>
         </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">BY U ILMUPEDIA</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 975.83 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 1.5K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/7wTWyIf1dex" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">BY U GAME/ GGWP</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 477.41 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 2.9K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/b6vYwSL3NK7" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">BY U RUANGGURU</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 957.97 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.9K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/5YRVI33fPyT" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-      </div>
-    </div>
 
-    <!-- Kategori 5: Config Isat -->
-    <div class="category-card fade-in delay-4">
-      <div class="category-header">
-        <h3 class="category-title" data-category="isat">
-    <i class="fas fa-download"></i> Config Isat
-  </h3>
-  <span class="status-indicator">
-    <span class="status-circle"></span>
-    <span class="status-text">Loading...</span>
-  </span>
-      </div>
-      <div class="download-list">
-        <div class="download-item">
-          <div>
-            <div class="download-name">ISAT APPS FUN</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 726.84 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 1.5K</span>
+        <!-- Kategori 5: Config Isat -->
+        <div class="category-card fade-in delay-4">
+          <div class="category-header">
+            <h3 class="category-title" data-category="isat">
+              <i class="fas fa-download"></i> Config Isat
+            </h3>
+            <span class="status-indicator">
+              <span class="status-circle"></span>
+              <span class="status-text">Loading...</span>
+            </span>
+          </div>
+          <div class="download-list">
+            <div class="download-item">
+              <div>
+                <div class="download-name">ISAT APPS FUN</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 726.84 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 1.5K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/5RtVEuWY3mb" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">ISAT OPOK</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 980.38 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.8K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/599VgnH7HGY" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">ISAT APPS GAME</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 728.98 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 4.2K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/b6vYy7amFq7" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
             </div>
           </div>
-          <a href="https://sfile.mobi/5RtVEuWY3mb" class="download-btn"> <i class="fas fa-download"></i> Download </a>
         </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">ISAT OPOK</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 980.38 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 0.8K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/599VgnH7HGY" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">ISAT APPS GAME</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 728.98 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 4.2K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/b6vYy7amFq7" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-      </div>
- </div>
 
-<!-- !-- Kategori 6: Config Smartfren -->
-<div class="category-card fade-in delay-5">
-  <div class="category-header">
-  <h3 class="category-title" data-category="smartfren">
-    <i class="fas fa-download"></i> Config Smart
-  </h3>
-  <span class="status-indicator">
-    <span class="status-circle"></span>
-    <span class="status-text">Loading...</span>
-  </span>
-  </div>
-  <div class="download-list">
-    <div class="download-item">
-      <div>
-        <div class="download-name">SMARTFREN OPOK NEW</div>
-        <div class="download-info">
-          <span class="info-item"><i class="fas fa-database"></i> 242.34 KB</span>
-          <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
-        </div>
-      </div>
-      <a href="https://sfile.mobi/aRJYummbL2M" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-    </div>
-    <div class="download-item">
-      <div>
-        <div class="download-name">SMARTFREN EDU NEW</div>
-        <div class="download-info">
-          <span class="info-item"><i class="fas fa-database"></i> 442.34 KB</span>
-          <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
-        </div>
-      </div>
-      <a href="https://sfile.mobi/5K5VEOZlRKJ" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-    </div>
-    <div class="download-item">
-          <div>
-            <div class="download-name">SMARTFREN CHAT WHATSAPP</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 241.00 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 2.2K</span>
+        <!-- Kategori 6: Config Smartfren -->
+        <div class="category-card fade-in delay-5">
+          <div class="category-header">
+            <h3 class="category-title" data-category="smartfren">
+              <i class="fas fa-download"></i> Config Smart
+            </h3>
+            <span class="status-indicator">
+              <span class="status-circle"></span>
+              <span class="status-text">Loading...</span>
+            </span>
+          </div>
+          <div class="download-list">
+            <div class="download-item">
+              <div>
+                <div class="download-name">SMARTFREN OPOK NEW</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 242.34 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/aRJYummbL2M" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">SMARTFREN EDU NEW</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 442.34 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 0.5K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/5K5VEOZlRKJ" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">SMARTFREN CHAT WHATSAPP</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 241.00 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 2.2K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/9NfXTiTDkkQ" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
             </div>
           </div>
-          <a href="https://sfile.mobi/9NfXTiTDkkQ" class="download-btn"> <i class="fas fa-download"></i> Download </a>
         </div>
       </div>
- </div>
-</div>
 
-  <!-- Popular Downloads Section -->
-  <div class="section-title" style="margin-top: 2rem; margin-bottom: 1rem">Download Terpopuler</div>
-  <div class="popular-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem">
-    <div class="category-card fade-in" style="grid-column: span 2; background: linear-gradient(135deg, rgba(51, 170, 255, 0.1), rgba(0, 102, 255, 0.1))">
-      <div class="category-header" style="background: transparent">
-      <h3 class="category-title" data-category="special">
-    <i class="fas fa-download"></i> Rekomendasi Special
-  </h3>
-  <span class="status-indicator">
-    <span class="status-circle"></span>
-    <span class="status-text">Loading...</span>
-  </span>
+      <!-- Popular Downloads Section -->
+      <div class="section-title" style="margin-top: 2rem; margin-bottom: 1rem">Download Terpopuler</div>
+      <div class="popular-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem">
+        <div class="category-card fade-in" style="grid-column: span 2; background: linear-gradient(135deg, rgba(51, 170, 255, 0.1), rgba(0, 102, 255, 0.1))">
+          <div class="category-header" style="background: transparent">
+            <h3 class="category-title" data-category="special">
+              <i class="fas fa-download"></i> Rekomendasi Special
+            </h3>
+            <span class="status-indicator">
+              <span class="status-circle"></span>
+              <span class="status-text">Loading...</span>
+            </span>
+          </div>
+          <div class="download-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem">
+            <div class="download-item">
+              <div>
+                <div class="download-name">UDP ALL SIM CARD v5.2</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 581.76 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 2.2K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/44FUF9jOhWS" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">TSEL ILPED NEW</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 717.55 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 3.8K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/6VXWgg4ypGh" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+            <div class="download-item">
+              <div>
+                <div class="download-name">XL SUPER XUTP XCS</div>
+                <div class="download-info">
+                  <span class="info-item"><i class="fas fa-database"></i> 983.09 KB</span>
+                  <span class="info-item"><i class="fas fa-download"></i> 2.9K</span>
+                </div>
+              </div>
+              <a href="https://sfile.mobi/9ytXKrxtXGe" class="download-btn" target="_blank"> <i class="fas fa-download"></i> Download </a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="download-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem">
-        <div class="download-item">
-          <div>
-            <div class="download-name">UDP ALL SIM CARD v5.2</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 581.76 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 2.2K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/44FUF9jOhWS" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">TSEL ILPED NEW</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 717.55 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 3.8K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/6VXWgg4ypGh" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-        <div class="download-item">
-          <div>
-            <div class="download-name">XL SUPER XUTP XCS</div>
-            <div class="download-info">
-              <span class="info-item"><i class="fas fa-database"></i> 983.09 KB</span>
-              <span class="info-item"><i class="fas fa-download"></i> 2.9K</span>
-            </div>
-          </div>
-          <a href="https://sfile.mobi/9ytXKrxtXGe" class="download-btn"> <i class="fas fa-download"></i> Download </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-      <!-- Call to Action -->
+    </section>
+    
+    <!-- Call to Action -->
     <section class="cta-section">
       <div class="cta-content">
         <div class="rocket-icon" style="font-size: 4rem; color: var(--accent); animation: float 2s ease-in-out infinite">🚀</div>
@@ -1492,6 +1491,8 @@
         <a href="product.html" class="btn btn-primary"> <i class="fas fa-shopping-cart"></i> Order Sekarang </a>
       </div>
     </section>
+  </div>
+  
   <!-- Footer -->
   <footer>
     <div class="social-links">
@@ -1557,7 +1558,7 @@
         }
       });
 
-      // Toggle menu mobile - Konsisten dengan index.html
+      // Toggle menu mobile
       menuToggle.addEventListener('click', function() {
         navLinks.classList.toggle('active');
         menuToggle.classList.toggle('active');
@@ -1615,115 +1616,41 @@
           }
         });
       });
-      
-      // Fungsi untuk mendapatkan tanggal hari ini dalam format YYYY-MM-DD (WIB)
-      function getTodayWIB() {
-        const now = new Date();
-        // WIB adalah UTC+7
-        const wibOffset = 7 * 60 * 60 * 1000; // Offset dalam milidetik
-        const wibTime = new Date(now.getTime() + wibOffset);
-        return wibTime.toISOString().split('T')[0];
-      }
-
-      // Fungsi untuk mencatat kunjungan dengan localStorage
-      async function recordVisitWithLocalStorage() {
-        const today = getTodayWIB();
-        const lastVisitDate = localStorage.getItem('visitDate');
-
-        // Jika sudah mengunjungi hari ini, tidak perlu catat lagi
-        if (lastVisitDate === today) {
-          return;
-        }
-
-        try {
-          const response = await fetch('/api/save-visit', {
-            method: 'POST'
-          });
-
-          if (!response.ok) {
-            throw new Error('Gagal mencatat kunjungan');
-          }
-
-          const data = await response.json();
-          if (data.success) {
-            // Set localStorage dengan tanggal hari ini
-            localStorage.setItem('visitDate', today);
-          } else {
-            throw new Error('Response tidak sukses');
-          }
-        } catch (error) {
-          console.error('Error recording visit:', error);
-          // Tampilkan notifikasi jika diperlukan
-          showNotification("Gagal mencatat kunjungan", "error");
-        }
-      }
-
-      // Panggil fungsi untuk mencatat kunjungan
-      recordVisitWithLocalStorage();
     });
-       grecaptcha.ready(function () {
-        grecaptcha.execute("6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc", { action: "submit" }).then(function (token) {
-          // Kirim token ke server
-          fetch("/api/verify-recaptcha", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ token }),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.success && data.score > 0.5) {
-                console.log("Human verified:", data);
-                // lanjutkan proses form atau logika lainnya
-              } else {
-                console.log("reCAPTCHA failed or suspicious:", data);
-              }
-            });
-        });
+    
+    // Fungsi untuk mengatur status config
+    const configStatus = {
+      xl: true,
+      telkomsel: true,
+      axis: true,
+      byu: true,
+      isat: true,
+      smartfren: true,
+      special: true
+    };
+
+    function applyConfigStatus() {
+      document.querySelectorAll(".category-title").forEach(title => {
+        const categoryKey = title.dataset.category;
+        const statusIndicator = title.parentElement.querySelector(".status-indicator");
+
+        if (!categoryKey || !statusIndicator) return;
+
+        const isActive = configStatus[categoryKey];
+
+        if (isActive) {
+          statusIndicator.classList.remove("status-inactive");
+          statusIndicator.classList.add("status-active");
+          statusIndicator.querySelector(".status-text").textContent = "Active";
+        } else {
+          statusIndicator.classList.remove("status-active");
+          statusIndicator.classList.add("status-inactive");
+          statusIndicator.querySelector(".status-text").textContent = "Non-Active";
+        }
       });
-     // Tambahkan target="_blank" ke semua tombol download
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".download-btn").forEach(button => {
-      button.setAttribute("target", "_blank");
-      button.setAttribute("rel", "noopener noreferrer"); // keamanan tambahan
-    });
+    }
 
-    // Jalankan logika status juga
-    applyConfigStatus();
-  });
-  const configStatus = {
-    xl: true,
-    telkomsel: true,
-    axis: true,
-    byu: true,
-    isat: true,
-    smartfren: true,
-    special: true
-  };
-
-  function applyConfigStatus() {
-    document.querySelectorAll(".category-title").forEach(title => {
-      const categoryKey = title.dataset.category;
-      const statusIndicator = title.parentElement.querySelector(".status-indicator");
-
-      if (!categoryKey || !statusIndicator) return;
-
-      const isActive = configStatus[categoryKey];
-
-      if (isActive) {
-        statusIndicator.classList.remove("status-inactive");
-        statusIndicator.classList.add("status-active");
-        statusIndicator.querySelector(".status-text").textContent = "Active";
-      } else {
-        statusIndicator.classList.remove("status-active");
-        statusIndicator.classList.add("status-inactive");
-        statusIndicator.querySelector(".status-text").textContent = "Non-Active";
-      }
-    });
-  }
-
-  document.addEventListener("DOMContentLoaded", applyConfigStatus);
+    document.addEventListener("DOMContentLoaded", applyConfigStatus);
 
   </script>
 </body>
