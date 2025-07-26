@@ -6,7 +6,6 @@
     <title>SNAYDER'S STORE - Toko Config Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="icon" href="https://raw.githubusercontent.com/klandestin-s/Cloud_v2/main/tmp/b281edce.png" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?render=6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc"></script>
     <style>
       :root {
@@ -520,47 +519,6 @@
         color: var(--text-muted);
       }
 
-      /* Statistik Pengunjung */
-      .visitors-section {
-        padding: 4rem 1rem;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .chart-container {
-        background: var(--card-bg);
-        border-radius: 16px;
-        padding: 2rem;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(51, 153, 255, 0.2);
-        margin-top: 2rem;
-      }
-
-      .chart-title {
-        font-size: 1.4rem;
-        margin-bottom: 1.5rem;
-        color: var(--accent);
-        text-align: center;
-      }
-
-      .chart-wrapper {
-        height: 300px;
-        position: relative;
-      }
-      /* Tambahan CSS untuk grid chart baru */
-      .visitors-section .charts-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* ← ubah ke 2 kolom */
-        gap: 2rem;
-        margin-top: 2rem;
-      }
-
-      @media (max-width: 768px) {
-        .visitors-section .charts-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
       /* ====== STYLE UNTUK SECTION KOMUNITAS ====== */
       .community-section {
         padding: 3rem 1rem;
@@ -901,10 +859,6 @@
         .section-title {
           font-size: 1.7rem;
         }
-
-        .chart-wrapper {
-          height: 250px;
-        }
       }
       /* Tambahan untuk modal admin login */
       .admin-modal {
@@ -1122,18 +1076,6 @@
           grid-template-columns: repeat(4, 1fr);
         }
       }
-
-      @media (max-width: 480px) {
-        .chart-wrapper {
-          height: 200px;
-        }
-        .chart-container {
-          padding: 1.2rem;
-        }
-        .chart-title {
-          font-size: 1rem;
-        }
-      }
     </style>
   </head>
   <body>
@@ -1156,7 +1098,6 @@
               <div class="dropdown-content">
                 <a href="downloads.html"><i class="fas fa-download"></i> Download Config</a>
                 <a href="product.html"><i class="fas fa-box-open"></i> Produk Kami</a>
-                <a href="visitors.html"><i class="fas fa-chart-line"></i> Statistik Pengunjung</a>
                 <a href="testimoni.html"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
                 <a href="#community" class="nav-link"> <i class="fas fa-users"></i> Komunitas </a>
                 <button class="admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
@@ -1178,7 +1119,6 @@
       <a href="index.html" class="nav-link active"> <i class="fas fa-home"></i> Beranda </a>
       <a href="downloads.html" class="nav-link"> <i class="fas fa-download"></i> Download Config </a>
       <a href="product.html" class="nav-link"> <i class="fas fa-box-open"></i> Produk Kami </a>
-      <a href="visitors.html" class="nav-link"> <i class="fas fa-chart-line"></i> Statistik Pengunjung </a>
       <a href="testimoni.html" class="nav-link"><i class="fas fa-chart-line"></i> Testimoni pembeli</a>
 
       <button class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin Login</button>
@@ -1268,28 +1208,9 @@
         </div>
       </div>
     </section>
-    <!-- Statistik Pengunjung - Bagian yang diperbaiki -->
-    <section class="visitors-section">
-      <h2 class="section-title">Statistik Pengunjung</h2>
 
-      <div class="charts-grid">
-        <div class="chart-container fade-in">
-          <h3 class="chart-title">Pengunjung Harian (30 Hari Terakhir)</h3>
-          <div class="chart-wrapper">
-            <canvas id="dailyChart"></canvas>
-          </div>
-        </div>
-
-        <div class="chart-container fade-in delay-1">
-          <h3 class="chart-title">Pengunjung Bulanan</h3>
-          <div class="chart-wrapper">
-            <canvas id="monthlyChart"></canvas>
-          </div>
-        </div>
-      </div>
-    </section>
     <!-- ======== SECTION KOMUNITAS ======== -->
-    <section class="community-section">
+    <section class="community-section" id="community">
       <h2 class="community-title">Bergabung dengan Komunitas Kami</h2>
       <p class="subtitle">Terhubung dengan kami melalui berbagai platform untuk update terbaru dan dukungan pelanggan</p>
 
@@ -1486,216 +1407,12 @@
         }, 3000);
       }
 
-      // Initialize visitors charts
-      document.addEventListener("DOMContentLoaded", async () => {
-        // Show loading overlay
-        loadingOverlay.classList.add("show");
-
-        try {
-          // Fetch visitors data from API
-          const response = await fetch("/api/get-stats");
-          if (!response.ok) throw new Error("Gagal memuat data pengunjung");
-          const data = await response.json();
-
-          // Check if data is valid
-          if (!data.dates || !data.dailyData || !data.months || !data.monthlyData) {
-            throw new Error("Format data tidak valid");
-          }
-
-          // Create daily chart
-          const dailyCtx = document.getElementById("dailyChart").getContext("2d");
-          const dailyChart = new Chart(dailyCtx, {
-            type: "line",
-            data: {
-              labels: data.dates,
-              datasets: [
-                {
-                  label: "Pengunjung Harian",
-                  data: data.dailyData,
-                  borderColor: "rgba(51, 170, 255, 1)",
-                  backgroundColor: "rgba(51, 170, 255, 0.1)",
-                  borderWidth: 3,
-                  pointBackgroundColor: "rgba(51, 170, 255, 1)",
-                  pointRadius: 4,
-                  tension: 0.3,
-                  fill: true,
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  display: false,
-                },
-                tooltip: {
-                  backgroundColor: "rgba(29, 31, 37, 0.9)",
-                  titleColor: "#e0f0ff",
-                  bodyColor: "#88bbff",
-                  borderColor: "#3399ff",
-                  borderWidth: 1,
-                },
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  grid: {
-                    color: "rgba(51, 153, 255, 0.1)",
-                  },
-                  ticks: {
-                    color: "#88bbff",
-                  },
-                },
-                x: {
-                  grid: {
-                    color: "rgba(51, 153, 255, 0.1)",
-                  },
-                  ticks: {
-                    color: "#88bbff",
-                  },
-                },
-              },
-            },
-          });
-
-          // Create monthly chart
-          const monthlyCtx = document.getElementById("monthlyChart").getContext("2d");
-          const monthlyChart = new Chart(monthlyCtx, {
-            type: "bar",
-            data: {
-              labels: data.months,
-              datasets: [
-                {
-                  label: "Pengunjung Bulanan",
-                  data: data.monthlyData,
-                  backgroundColor: "rgba(51, 170, 255, 0.5)",
-                  borderColor: "rgba(51, 170, 255, 1)",
-                  borderWidth: 1,
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  display: false,
-                },
-                tooltip: {
-                  backgroundColor: "rgba(29, 31, 37, 0.9)",
-                  titleColor: "#e0f0ff",
-                  bodyColor: "#88bbff",
-                  borderColor: "#3399ff",
-                  borderWidth: 1,
-                },
-              },
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  grid: {
-                    color: "rgba(51, 153, 255, 0.1)",
-                  },
-                  ticks: {
-                    color: "#88bbff",
-                  },
-                },
-                x: {
-                  grid: {
-                    color: "rgba(51, 153, 255, 0.1)",
-                  },
-                  ticks: {
-                    color: "#88bbff",
-                  },
-                },
-              },
-            },
-          });
-        } catch (error) {
-          console.error("Error initializing charts:", error);
-          showNotification("Gagal memuat data statistik pengunjung", "error");
-        } finally {
-          loadingOverlay.classList.remove("show");
-        }
-      });
+      // ReCAPTCHA untuk keamanan form
       grecaptcha.ready(function () {
         grecaptcha.execute("6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc", { action: "submit" }).then(function (token) {
-          // Kirim token ke server
-          fetch("/api/verify-recaptcha", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ token }),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.success && data.score > 0.5) {
-                console.log("Human verified:", data);
-                // lanjutkan proses form atau logika lainnya
-              } else {
-                console.log("reCAPTCHA failed or suspicious:", data);
-              }
-            });
+          // Kirim token ke server jika diperlukan
+          // Contoh implementasi bisa ditambahkan di sini
         });
-      });
-      // Fungsi untuk mendapatkan tanggal hari ini dalam format YYYY-MM-DD WIB
-      function getTodayWIB() {
-        const now = new Date();
-        const wibOffset = 7 * 60 * 60 * 1000; // WIB UTC+7
-        const wibTime = new Date(now.getTime() + wibOffset);
-        return wibTime.toISOString().split("T")[0];
-      }
-
-      // Fungsi untuk mencatat kunjungan dengan localStorage
-      async function recordVisitWithLocalStorage() {
-        const today = getTodayWIB();
-        const lastVisitDate = localStorage.getItem("visitDate");
-
-        // Cek apakah pengunjung sudah mengunjungi hari ini
-        if (lastVisitDate === today) {
-          return;
-        }
-
-        try {
-          const response = await fetch("/api/save-visit", {
-            method: "POST",
-          });
-
-          if (!response.ok) {
-            throw new Error("Gagal mencatat kunjungan");
-          }
-
-          const data = await response.json();
-          if (data.success) {
-            localStorage.setItem("visitDate", today);
-          } else {
-            throw new Error("Response tidak sukses");
-          }
-        } catch (error) {
-          console.error("Error recording visit:", error);
-          showNotification("Gagal mencatat kunjungan", "error");
-        }
-      }
-
-      // Panggil fungsi saat halaman dimuat
-      document.addEventListener("DOMContentLoaded", async () => {
-        // Tampilkan loading overlay
-        loadingOverlay.classList.add("show");
-
-        try {
-          // Rekam kunjungan
-          await recordVisitWithLocalStorage();
-
-          // Inisialisasi grafik pengunjung (kode yang sudah ada)
-          // ... (kode inisialisasi grafik)
-        } catch (error) {
-          console.error("Failed to load data:", error);
-          showNotification("Gagal memuat data, coba lagi nanti", "error");
-        } finally {
-          // Sembunyikan loading overlay
-          loadingOverlay.classList.remove("show");
-        }
       });
     </script>
   </body>
