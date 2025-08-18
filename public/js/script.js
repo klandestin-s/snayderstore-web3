@@ -1,131 +1,93 @@
-let produkList = [];
+const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+      const adminLoginBtns = document.querySelectorAll(".admin-login-btn");
+      const adminLoginModal = document.getElementById("adminLoginModal");
+      const closeAdminModal = document.getElementById("closeAdminModal");
+      const adminLoginForm = document.getElementById("adminLoginForm");
+      const notification = document.getElementById("notification");
+      const loadingOverlay = document.getElementById("loadingOverlay");
 
-const produkContainer = document.getElementById("produkContainer");
-const checkoutSection = document.getElementById("checkoutSection");
-const produkDipilihInput = document.getElementById("produkDipilih");
-const hargaProdukInput = document.getElementById("hargaProduk");
-const paketPilihanSelect = document.getElementById("paketPilihan");
-const labelPaket = document.getElementById("labelPaket");
-const namaPembeliInput = document.getElementById("namaPembeli");
-const closeFormBtn = document.getElementById("closeFormBtn");
-const checkoutForm = document.getElementById("checkoutForm");
-const produkDeskripsi = document.getElementById("produkDeskripsi");
+      // Toggle mobile menu
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        menuToggle.classList.toggle("active");
+      });
 
-// Render produk dari API
-async function renderProduk() {
-  try {
-    produkContainer.innerHTML = "<p>Memuat produk...</p>";
-    const res = await fetch("/api/products");
-    if (!res.ok) throw new Error("Gagal memuat produk");
-    produkList = await res.json();
+      // Close menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains("active")) {
+          navLinks.classList.remove("active");
+          menuToggle.classList.remove("active");
+        }
+      });
 
-    produkContainer.innerHTML = "";
-    produkList.forEach((produk, index) => {
-      const card = document.createElement("div");
-      card.className = "card";
+      // Admin login buttons
+      adminLoginBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          adminLoginModal.classList.add("active");
+        });
+      });
 
-      // Bikin wrapper untuk gambar
-      const imgWrapper = document.createElement("div");
-      imgWrapper.className = "img-wrapper";
+      // Close admin modal
+      closeAdminModal.addEventListener("click", () => {
+        adminLoginModal.classList.remove("active");
+      });
 
-      const img = document.createElement("img");
-      img.src = produk.img;
-      img.alt = produk.nama;
+      // Close modal when clicking outside
+      adminLoginModal.addEventListener("click", (e) => {
+        if (e.target === adminLoginModal) {
+          adminLoginModal.classList.remove("active");
+        }
+      });
 
-      // Masukkan img ke wrapper
-      imgWrapper.appendChild(img);
+      // Admin login form submission
+      adminLoginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-      // Masukkan wrapper dan elemen lain ke card
-      card.appendChild(imgWrapper);
+        const username = document.getElementById("adminUsername").value;
+        const password = document.getElementById("adminPassword").value;
 
-      const h3 = document.createElement("h3");
-      h3.textContent = produk.nama;
-      card.appendChild(h3);
+        try {
+          const response = await fetch("/api/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          });
 
-      const btn = document.createElement("button");
-      btn.textContent = "CHECKOUT";
-      btn.onclick = () => bukaFormCheckout(index);
-      card.appendChild(btn);
+          const data = await response.json();
 
-      produkContainer.appendChild(card);
-    });
-  } catch (e) {
-    produkContainer.innerHTML = "<p>Gagal memuat produk.</p>";
-    console.error(e);
-  }
-}
+          if (data.success) {
+            localStorage.setItem("adminLoggedIn", "true");
+            showNotification("Login berhasil! Mengarahkan ke panel admin...", "success");
 
-renderProduk();
+            setTimeout(() => {
+              window.location.href = "admin-panel.html";
+            }, 2000);
+          } else {
+            showNotification(data.message || "Username atau password salah!", "error");
+          }
+        } catch (error) {
+          console.error("Login error:", error);
+          showNotification("Terjadi kesalahan. Silakan coba lagi.", "error");
+        }
+      });
 
-// Buka form checkout produk
-function bukaFormCheckout(index) {
-  const produk = produkList[index];
-  checkoutSection.classList.remove("hidden");
-  document.body.classList.add("form-active");
+      // Show notification
+      function showNotification(message, type) {
+        notification.textContent = message;
+        notification.className = `notification ${type}`;
 
-  produkDipilihInput.value = produk.nama;
-  namaPembeliInput.value = "";
-  produkDeskripsi.textContent = produk.desc || "Tidak Ada Deskripsi";
-  if (produk.paket && produk.paket.length > 0) {
-    labelPaket.classList.remove("hidden");
-    paketPilihanSelect.classList.remove("hidden");
-    paketPilihanSelect.innerHTML = "";
-    produk.paket.forEach((p) => {
-      const option = document.createElement("option");
-      option.value = p.harga;
-      option.textContent = `${p.name} - Rp${p.harga.toLocaleString()}`;
-      paketPilihanSelect.appendChild(option);
-    });
-    hargaProdukInput.value = "Rp" + produk.paket[0].harga.toLocaleString();
-  } else if (produk.harga) {
-    labelPaket.classList.add("hidden");
-    paketPilihanSelect.classList.add("hidden");
-    hargaProdukInput.value = "Rp" + produk.harga.toLocaleString();
-  } else {
-    labelPaket.classList.add("hidden");
-    paketPilihanSelect.classList.add("hidden");
-    hargaProdukInput.value = "Rp0";
-  }
-}
+        setTimeout(() => {
+          notification.className = "notification";
+        }, 3000);
+      }
 
-// Update harga saat paket dipilih berubah
-paketPilihanSelect.addEventListener("change", () => {
-  hargaProdukInput.value = "Rp" + Number(paketPilihanSelect.value).toLocaleString();
-});
-
-// Tutup form checkout
-closeFormBtn.addEventListener("click", () => {
-  checkoutSection.classList.add("hidden");
-  document.body.classList.remove("form-active");
-});
-
-// Kirim order ke WhatsApp
-function sendToWhatsApp(event) {
-  event.preventDefault();
-
-  const nama = namaPembeliInput.value.trim();
-  const produk = produkDipilihInput.value;
-  const harga = hargaProdukInput.value;
-  const paket = !paketPilihanSelect.classList.contains("hidden") ? paketPilihanSelect.options[paketPilihanSelect.selectedIndex].text : "";
-
-  if (!nama) {
-    alert("Isi nama pembeli!");
-    return;
-  }
-
-  let pesan = `Halo Admin, saya ingin order:\n\nNama: ${nama}\nProduk: ${produk}`;
-  if (paket) pesan += `\nPaket/Spesifikasi: ${paket}`;
-  pesan += `\nHarga: ${harga}`;
-
-  const waUrl = `https://wa.me/6287866361260?text=${encodeURIComponent(pesan)}`;
-  window.open(waUrl, "_blank");
-}
-
-// Submit form checkout
-checkoutForm.addEventListener("submit", sendToWhatsApp);
-
-const audioPlayer = document.getElementById("audio-player");
-
-window.addEventListener("click", function () {
-  audioPlayer.play();
-});
+      // ReCAPTCHA untuk keamanan form
+      grecaptcha.ready(function () {
+        grecaptcha.execute("6LfZknsrAAAAAOfe66QaWr0TzRixA1oGm-IMo8sc", { action: "submit" }).then(function (token) {
+          // Kirim token ke server jika diperlukan
+          // Contoh implementasi bisa ditambahkan di sini
+        });
+      });
